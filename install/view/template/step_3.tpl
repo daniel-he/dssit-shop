@@ -58,6 +58,14 @@
             <span class="required"><?php echo $error_db_prefix; ?></span>
             <?php } ?></td>
         </tr>
+	<tr>
+	  <td><span class="required">*</span> CAS host:</td>
+          <td><input type="text" name="cas_host" value="<?php echo $cas_host; ?>" />
+            <br />
+            <?php if ($error_cas_host) { ?>
+            <span class="required"><?php echo $error_cas_host; ?></span>
+            <?php } ?></td>
+	</tr>
       </table>
     </fieldset>
     <p>2. Please enter a username and password for the administration.</p>
