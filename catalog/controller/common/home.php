@@ -13,6 +13,7 @@ class ControllerCommonHome extends Controller {
 		}
 		
 		$this->children = array(
+			'common/auth',
 			'common/column_left',
 			'common/column_right',
 			'common/content_top',
