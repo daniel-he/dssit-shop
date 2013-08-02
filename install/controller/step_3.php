@@ -33,7 +33,13 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_USERNAME\', \'' . addslashes($this->request->post['db_user']) . '\');' . "\n";
 			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($this->request->post['db_password']) . '\');' . "\n";
 			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_name']) . '\');' . "\n";
-			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
+			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n\n";
+
+			$output .= '// CAS' . "\n";
+			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
+			$output .= 'define(\'CAS_HOST\', \'' . addslashes($this->request->post['cas_host']) . '\');' . "\n";
+			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cos_context']) . '\');' . "\n";
+			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n";
 			$output .= '?>';				
 		
 			$file = fopen(DIR_OPENCART . 'config.php', 'w');
@@ -73,6 +79,12 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n";
 			$output .= '?>';	
 
+			$output .= '// CAS' . "\n";
+			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
+			$output .= 'define(\'CAS_HOST\', \'' . addslashes($this->request->post['cas_host']) . '\');' . "\n";
+			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cos_context']) . '\');' . "\n";
+			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n";
+			$output .= '?>';				
 			$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
 		
 			fwrite($file, $output);

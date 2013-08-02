@@ -58,12 +58,29 @@
             <span class="required"><?php echo $error_db_prefix; ?></span>
             <?php } ?></td>
         </tr>
+<!-- CAS variables. -->
 	<tr>
 	  <td><span class="required">*</span> CAS host:</td>
           <td><input type="text" name="cas_host" value="<?php echo $cas_host; ?>" />
             <br />
             <?php if ($error_cas_host) { ?>
             <span class="required"><?php echo $error_cas_host; ?></span>
+            <?php } ?></td>
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> CAS context:</td>
+          <td><input type="text" name="cas_context" value="<?php echo $cas_host; ?>" />
+            <br />
+            <?php if ($error_cas_context) { ?>
+            <span class="required"><?php echo $error_cas_context; ?></span>
+            <?php } ?></td>
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> CAS port:</td>
+          <td><input type="text" name="cas_port" value="<?php echo $cas_host; ?>" />
+            <br />
+            <?php if ($error_cas_port) { ?>
+            <span class="required"><?php echo $error_cas_port; ?></span>
             <?php } ?></td>
 	</tr>
       </table>
