@@ -28,11 +28,7 @@ phpCAS::client(CAS_VERSION_2_0, CAS_HOST, CAS_PORT, CAS_CONTEXT);
 
 // For production use set the CA certificate that is the issuer of the cert
 // on the CAS server and uncomment the line below
-// phpCAS::setCasServerCACert($cas_server_ca_cert_path);
-
-// For quick testing you can disable SSL validation of the CAS server.
-// THIS SETTING IS NOT RECOMMENDED FOR PRODUCTION.
-// VALIDATING THE CAS SERVER IS CRUCIAL TO THE SECURITY OF THE CAS PROTOCOL!
+// phpCAS::setCasServerCACert(CAS_SERVER_CA_CERT_PATH);
 phpCAS::setNoCasServerValidation();
 
 // force CAS authentication
@@ -97,13 +93,7 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
     <input type="text" name="search" placeholder="<?php echo $text_search; ?>" value="<?php echo $search; ?>" />
   </div>
   <div id="welcome">
-<!--    <?php if (!$logged) { ?>
-    <?php echo $text_welcome; ?>
-    <?php } else { ?>
-    <?php echo $text_logged; ?>
-    <?php } ?>
-Temporarily removed. Needs updated when login system is updated.
--->
+    <?php echo $text_logged . phpCAS::getUser() . '.'; ?>
   </div>
   <div class="links"><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a><a href="<?php echo $shopping_cart; ?>"><?php echo $text_shopping_cart; ?></a><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></div>
 </div>
