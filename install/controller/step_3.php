@@ -38,7 +38,7 @@ class ControllerStep3 extends Controller {
 			$output .= '// CAS' . "\n";
 			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
 			$output .= 'define(\'CAS_HOST\', \'' . addslashes($this->request->post['cas_host']) . '\');' . "\n";
-			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cos_context']) . '\');' . "\n";
+			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cas_context']) . '\');' . "\n";
 			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n";
 			$output .= '?>';				
 		
@@ -81,7 +81,7 @@ class ControllerStep3 extends Controller {
 			$output .= '// CAS' . "\n";
 			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
 			$output .= 'define(\'CAS_HOST\', \'' . addslashes($this->request->post['cas_host']) . '\');' . "\n";
-			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cos_context']) . '\');' . "\n";
+			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cas_context']) . '\');' . "\n";
 			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n";
 			$output .= '?>';				
 			$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
