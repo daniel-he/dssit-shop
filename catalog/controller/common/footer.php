@@ -16,7 +16,6 @@ class ControllerCommonFooter extends Controller {
 		$this->data['text_account'] = $this->language->get('text_account');
 		$this->data['text_order'] = $this->language->get('text_order');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
-		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
 		
 		$this->load->model('catalog/information');
 		
@@ -41,7 +40,6 @@ class ControllerCommonFooter extends Controller {
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
 		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
-		$this->data['newsletter'] = $this->url->link('account/newsletter', '', 'SSL');		
 
 		$this->data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 		
