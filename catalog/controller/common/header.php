@@ -48,6 +48,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_shopping_cart'] = $this->language->get('text_shopping_cart');
     	$this->data['text_search'] = $this->language->get('text_search');
 		$this->data['text_logged'] = $this->language->get('text_logged');
+		$this->data['text_logout'] = sprintf($this->language->get('text_logout'), $this->url->link('account/logout'));
 		$this->data['text_account'] = $this->language->get('text_account');
     	$this->data['text_checkout'] = $this->language->get('text_checkout');
 				
@@ -150,3 +151,4 @@ class ControllerCommonHeader extends Controller {
 	} 	
 }
 ?>
+
