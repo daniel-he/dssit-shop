@@ -55,7 +55,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['home'] = $this->url->link('common/home');
 		$this->data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
-		$this->data['shopping_cart'] = $this->url->link('checkout/cart');
 		$this->data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 		
 		// Daniel's robot detector
