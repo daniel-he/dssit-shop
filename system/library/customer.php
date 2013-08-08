@@ -9,6 +9,12 @@ class Customer {
 	private $newsletter;
 	private $customer_group_id;
 	private $address_id;
+
+	/*ldap test code */
+   	$ldap_server = ldap_connect("ldap.ucdavis.edu");
+	ldap_bind($ldap_server);
+   	$temp = ldap_search($ldap_server, "ou=People, dc=ucdavis, dc=edu", "uid=" . phpCAS::getUser());
+   	$me = ldap_get_entries($ldap_server, $temp);
 	
   	public function __construct($registry) {
 		$this->config = $registry->get('config');
