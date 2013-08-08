@@ -1,4 +1,3 @@
-<?php
 class Customer {
 	private $customer_id;
 	private $firstname;
@@ -6,15 +5,8 @@ class Customer {
 	private $email;
 	private $telephone;
 	private $fax;
-	private $newsletter;
 	private $customer_group_id;
-	private $address_id;
-
-	/*ldap test code */
-   	$ldap_server = ldap_connect("ldap.ucdavis.edu");
-	ldap_bind($ldap_server);
-   	$temp = ldap_search($ldap_server, "ou=People, dc=ucdavis, dc=edu", "uid=" . phpCAS::getUser());
-   	$me = ldap_get_entries($ldap_server, $temp);
+	private $address_id;;
 	
   	public function __construct($registry) {
 		$this->config = $registry->get('config');
@@ -32,7 +24,6 @@ class Customer {
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
 				$this->fax = $customer_query->row['fax'];
-				$this->newsletter = $customer_query->row['newsletter'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->address_id = $customer_query->row['address_id'];
 							
@@ -46,15 +37,24 @@ class Customer {
 			} else {
 				$this->logout();
 			}
-  		}
+  		} else {
+		      $this->login();
+		}
 	}
 		
-  	public function login($email, $password, $override = false) {
-		if ($override) {
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer where LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND status = '1'");
-		} else {
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE LOWER(email) = '" . $this->db->escape(utf8_strtolower($email)) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1' AND approved = '1'");
-		}
+  	public function login() {
+	       //authenticate with CAS
+	       phpCAS::forceAuthentication();
+
+	       //ldap connection code
+   	       $ldap_server = ldap_connect("ldap.ucdavis.edu");
+	       ldap_bind($ldap_server);
+	       $ldsearch = ldap_search($ldap_server, "ou=People, dc=ucdavis, dc=edu", "uid=" . phpCAS::getUser());
+   	       $usr = ldap_get_entries($ldap_server, $ldsearch);
+	       
+	       $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer where LOWER(email) = '" . $this->db->escape(utf8_strtolower($usr[0]['mail'][0])) . "' AND status = '1'");
+
+	       $this->load->model('account/customer');
 		
 		if ($customer_query->num_rows) {
 			$this->session->data['customer_id'] = $customer_query->row['customer_id'];	
@@ -91,15 +91,28 @@ class Customer {
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
 			$this->fax = $customer_query->row['fax'];
-			$this->newsletter = $customer_query->row['newsletter'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
 			$this->address_id = $customer_query->row['address_id'];
-          	
+
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
 	  		return true;
     	} else {
-      		return false;
+		$this->firstname = $usr[0]['givenname'][0];
+		$this->lastname = $usr[0]['sn'][0];
+		$this->email = $usr[0]['mail'][0];
+		$this->telephone = (isset($usr[0]['telephonenumber'][0] ? $usr[0]['telephonenumber'][0] : "");
+		$this->fax = '0';
+
+		model_account_customer->addCustomer(array(
+			'firstname' => $this->firstname,
+			'lastname' => $this->lastname,
+			'email' => $this->email,
+			'telephone' => $this->telephone,
+			'fax' => $this->fax));
+          	
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+      		return true;
     	}
   	}
   	
@@ -114,7 +127,6 @@ class Customer {
 		$this->email = '';
 		$this->telephone = '';
 		$this->fax = '';
-		$this->newsletter = '';
 		$this->customer_group_id = '';
 		$this->address_id = '';
   	}
@@ -147,10 +159,6 @@ class Customer {
 		return $this->fax;
   	}
 	
-  	public function getNewsletter() {
-		return $this->newsletter;	
-  	}
-
   	public function getCustomerGroupId() {
 		return $this->customer_group_id;	
   	}

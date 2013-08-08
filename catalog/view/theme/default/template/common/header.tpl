@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
-<head>
 <?php
 // force CAS authentication
 phpCAS::forceAuthentication();
 ?>
+<html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
+<head>
 <meta charset="UTF-8" />
 <title><?php echo $title; ?></title>
 <base href="<?php echo $base; ?>" />
