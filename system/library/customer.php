@@ -14,6 +14,7 @@ class Customer {
 		$this->db = $registry->get('db');
 		$this->request = $registry->get('request');
 		$this->session = $registry->get('session');
+		$this->load = $registry->get('load');
 				
 		if (isset($this->session->data['customer_id'])) { 
 			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$this->session->data['customer_id'] . "' AND status = '1'");
@@ -102,10 +103,10 @@ class Customer {
 		$this->firstname = $usr[0]['givenname'][0];
 		$this->lastname = $usr[0]['sn'][0];
 		$this->email = $usr[0]['mail'][0];
-		$this->telephone = (isset($usr[0]['telephonenumber'][0] ? $usr[0]['telephonenumber'][0] : "");
+		$this->telephone = (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "");
 		$this->fax = '0';
 
-		model_account_customer->addCustomer(array(
+		$this->load->model_account_customer->addCustomer(array(
 			'firstname' => $this->firstname,
 			'lastname' => $this->lastname,
 			'email' => $this->email,
