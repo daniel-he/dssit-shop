@@ -1089,6 +1089,7 @@ CREATE TABLE `oc_customer` (
   `store_id` int(11) NOT NULL DEFAULT '0',
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL,
+  `uid` varchar(32) NOT NULL,
   `email` varchar(96) NOT NULL,
   `telephone` varchar(32),
   `fax` varchar(32) NOT NULL,

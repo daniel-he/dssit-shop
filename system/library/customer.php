@@ -7,7 +7,8 @@ class Customer {
 	private $telephone;
 	private $fax;
 	private $customer_group_id;
-	private $address_id;;
+	private $address_id;
+	private $uid;
 	
   	public function __construct($registry) {
 		$this->config = $registry->get('config');
@@ -23,6 +24,7 @@ class Customer {
 				$this->customer_id = $customer_query->row['customer_id'];
 				$this->firstname = $customer_query->row['firstname'];
 				$this->lastname = $customer_query->row['lastname'];
+				$this->uid = $customer_query->row['uid'];
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
 				$this->fax = $customer_query->row['fax'];
@@ -54,7 +56,7 @@ class Customer {
 	       $ldsearch = ldap_search($ldap_server, "ou=People, dc=ucdavis, dc=edu", "uid=" . phpCAS::getUser());
    	       $usr = ldap_get_entries($ldap_server, $ldsearch);
 	       
-	       $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer where LOWER(email) = '" . $this->db->escape(utf8_strtolower($usr[0]['mail'][0])) . "' AND status = '1'");
+	       $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer where LOWER(uid) = '" . $this->db->escape(utf8_strtolower($usr[0]['uid'][0])) . "' AND status = '1'");
 
 	       $this->load->model('account/customer');
 		
@@ -90,6 +92,7 @@ class Customer {
 			$this->customer_id = $customer_query->row['customer_id'];
 			$this->firstname = $customer_query->row['firstname'];
 			$this->lastname = $customer_query->row['lastname'];
+			$this->uid = $customer_query->row['uid'];
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
 			$this->fax = $customer_query->row['fax'];
@@ -102,6 +105,7 @@ class Customer {
     	} else {
 		$this->firstname = $usr[0]['givenname'][0];
 		$this->lastname = $usr[0]['sn'][0];
+		$this->uid = $usr[0]['uid'][0];
 		$this->email = $usr[0]['mail'][0];
 		$this->telephone = (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "");
 		$this->fax = '0';
