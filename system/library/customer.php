@@ -138,7 +138,7 @@ class Customer {
 	        $ldsearch = ldap_search($ldap_server, LDAP_SEARCH_BASE, "uid=" . phpCAS::getUser());
    	        $usr = ldap_get_entries($ldap_server, $ldsearch);
 	       	
-		$query_string = "UPDATE" . DB_PREFIX . "customer SET ";
+		$query_string = "UPDATE " . DB_PREFIX . "customer SET ";
 		if ($this->firstname != $usr[0]['givenname'][0]) {
 		   $query_string .= "firstname = '" . $usr[0]['givenname'][0] . "', ";
 		   $modified = TRUE;
@@ -153,11 +153,11 @@ class Customer {
 		   $modified = TRUE;
 		}*/
 		if ($this->email != $usr[0]['mail'][0]) {
-		   $query_string .= "email = '" . $usr[0]['mail'][0] . "', ";
+		   $query_string .= "email = '" . $this->db->escape($usr[0]['mail'][0]) . "', ";
 		   $modified = TRUE;
 		}
 		if ($this->telephone != (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "")) {
-		   $query_string .= "telephone = '" . (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "") . ", ";
+		   $query_string .= "telephone = '" . $this->db->escape((isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "")) . "', ";
 		   $modified = TRUE;
 		}
 
