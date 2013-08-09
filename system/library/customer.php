@@ -100,14 +100,11 @@ class Customer {
 			$this->address_id = $customer_query->row['address_id'];
 
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+
+			$this->validate();
 			
 	  		return true;
     	} else {
-		$this->firstname = $usr[0]['givenname'][0];
-		$this->lastname = $usr[0]['sn'][0];
-		$this->uid = $usr[0]['uid'][0];
-		$this->email = $usr[0]['mail'][0];
-		$this->telephone = (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "");
 		$this->fax = '0';
 
 		$this->load->model_account_customer->addCustomer(array(
@@ -122,6 +119,52 @@ class Customer {
       		return true;
     	}
   	}
+
+	public function validate() {
+	/* Function keeps customer table in database 
+	 * consistent with LDAP server. Called on every login, 
+	 * except the one where the user is first registered.
+	 */
+		$modified = FALSE;
+	 
+	        //ldap connection code
+   	        $ldap_server = ldap_connect(LDAP_HOST);
+	        ldap_bind($ldap_server);
+	        $ldsearch = ldap_search($ldap_server, LDAP_SEARCH_BASE, "uid=" . phpCAS::getUser());
+   	        $usr = ldap_get_entries($ldap_server, $ldsearch);
+	       	
+		$query_string = "UPDATE" . DB_PREFIX . "customer SET ";
+		if ($this->firstname != $usr[0]['givenname'][0]) {
+		   $query_string .= "firstname = '" . $usr[0]['givenname'][0] . "', ";
+		   $modified = TRUE;
+		}
+		if ($this->lastname != $usr[0]['sn'][0]) {
+		   $query_string .= "lastname = '" . $usr[0]['sn'][0] . "', ";
+		   $modified = TRUE;
+		}
+		/* Doesn't need validated. */
+		/*if ($this->uid != $usr[0]['uid'][0]) {
+		   $query_string .= "uid = '" . $usr[0]['uid'][0] . "', ";
+		   $modified = TRUE;
+		}*/
+		if ($this->email != $usr[0]['mail'][0]) {
+		   $query_string .= "email = '" . $usr[0]['mail'][0] . "', ";
+		   $modified = TRUE;
+		}
+		if ($this->telephone != (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "")) {
+		   $query_string .= "telephone = '" . (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "") . ", ";
+		   $modified = TRUE;
+		}
+
+		//remove trailing comma (and space)
+		$query_string = rtrim($query_string, " ,");
+		
+		$query_string .= " WHERE uid = '" . phpCAS::getUser() . "';";
+
+		if ($modified) {
+		   $this->db->query($this->db->escape($query_string));
+		}
+	}
   	
 	public function logout() {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
@@ -184,6 +227,6 @@ class Customer {
 		$query = $this->db->query("SELECT SUM(points) AS total FROM " . DB_PREFIX . "customer_reward WHERE customer_id = '" . (int)$this->customer_id . "'");
 	
 		return $query->row['total'];	
-  	}	
+  	}
 }
 ?>
