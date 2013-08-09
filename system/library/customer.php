@@ -105,6 +105,11 @@ class Customer {
 			
 	  		return true;
     	} else {
+		$this->firstname = $usr[0]['givenname'][0];
+-		$this->lastname = $usr[0]['sn'][0];
+-		$this->uid = $usr[0]['uid'][0];
+-		$this->email = $usr[0]['mail'][0];
+-		$this->telephone = (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "");
 		$this->fax = '0';
 
 		$this->load->model_account_customer->addCustomer(array(
