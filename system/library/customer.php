@@ -51,9 +51,9 @@ class Customer {
 	       phpCAS::forceAuthentication();
 
 	       //ldap connection code
-   	       $ldap_server = ldap_connect("ldap.ucdavis.edu");
+   	       $ldap_server = ldap_connect(LDAP_HOST);
 	       ldap_bind($ldap_server);
-	       $ldsearch = ldap_search($ldap_server, "ou=People, dc=ucdavis, dc=edu", "uid=" . phpCAS::getUser());
+	       $ldsearch = ldap_search($ldap_server, LDAP_SEARCH_BASE, "uid=" . phpCAS::getUser());
    	       $usr = ldap_get_entries($ldap_server, $ldsearch);
 	       
 	       $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer where LOWER(uid) = '" . $this->db->escape(utf8_strtolower($usr[0]['uid'][0])) . "' AND status = '1'");

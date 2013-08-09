@@ -58,7 +58,11 @@
             <span class="required"><?php echo $error_db_prefix; ?></span>
             <?php } ?></td>
         </tr>
-<!-- CAS variables. -->
+      </table>
+    </fieldset>
+    <p>2. Please enter your CAS server details.</p>
+    <fieldset>
+      <table class="form">
 	<tr>
 	  <td><span class="required">*</span> CAS host:</td>
           <td><input type="text" name="cas_host" value="<?php echo $cas_host; ?>" />
@@ -85,7 +89,28 @@
 	</tr>
       </table>
     </fieldset>
-    <p>2. Please enter a username and password for the administration.</p>
+    <p>3. Please enter your LDAP server details.</p>
+    <fieldset>
+      <table class="form">
+	<tr>
+	  <td><span class="required">*</span> LDAP host:</td>
+          <td><input type="text" name="ldap_host" value="<?php echo $ldap_host; ?>" />
+            <br />
+            <?php if ($error_ldap_host) { ?>
+            <span class="required"><?php echo $error_ldap_host; ?></span>
+            <?php } ?></td>
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> LDAP search base:</td>
+          <td><input type="text" name="ldap_search_base" value="<?php echo $ldap_search_base; ?>" />
+            <br />
+            <?php if ($error_ldap_search_base) { ?>
+            <span class="required"><?php echo $error_ldap_search_base; ?></span>
+            <?php } ?></td>
+	</tr>
+      </table>
+    </fieldset>
+    <p>4. Please enter a username and password for the administration.</p>
     <fieldset>
       <table class="form">
         <tr>

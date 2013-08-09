@@ -53,9 +53,6 @@ phpCAS::client(CAS_VERSION_2_0, CAS_HOST, CAS_PORT, CAS_CONTEXT);
 // phpCAS::setCasServerCACert(CAS_SERVER_CA_CERT_PATH);
 phpCAS::setNoCasServerValidation();
 
-// force CAS authentication
-//phpCAS::forceAuthentication();
-
 // Registry
 $registry = new Registry();
 
