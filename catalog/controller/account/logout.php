@@ -27,20 +27,6 @@ class ControllerAccountLogout extends Controller {
 			
       		$this->redirect($this->url->link('account/logout', '', 'SSL'));
     	}
-	// Load the CAS lib
-	require_once('CAS.php');
-	
-	// Uncomment to enable debugging
-	phpCAS::setDebug();
-	
-	// Initialize phpCAS
-	phpCAS::client(CAS_VERSION_2_0, CAS_HOST, CAS_PORT, CAS_CONTEXT);
-
-	// For production use set the CA certificate that is the issuer of the cert
-	// on the CAS server and uncomment the line below
-	// phpCAS::setCasServerCACert(CAS_SERVER_CA_CERT_PATH);
-	phpCAS::setNoCasServerValidation();
-
 	phpCAS::logout();
 	}
 }

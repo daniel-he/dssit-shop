@@ -17,8 +17,8 @@ class Customer {
 		$this->session = $registry->get('session');
 		$this->load = $registry->get('load');
 				
-		if (isset($this->session->data['customer_id'])) { 
-			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$this->session->data['customer_id'] . "' AND status = '1'");
+		if (phpCAS::isAuthenticated()) { 
+			$customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE uid = '" . phpCAS::getUser() . "' AND status = '1'");
 			
 			if ($customer_query->num_rows) {
 				$this->customer_id = $customer_query->row['customer_id'];
@@ -39,7 +39,7 @@ class Customer {
 					$this->db->query("INSERT INTO " . DB_PREFIX . "customer_ip SET customer_id = '" . (int)$this->session->data['customer_id'] . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "', date_added = NOW()");
 				}
 			} else {
-				$this->logout();
+				$this->login();
 			}
   		} else {
 		      $this->login();
@@ -115,7 +115,8 @@ class Customer {
 			'lastname' => $this->lastname,
 			'email' => $this->email,
 			'telephone' => $this->telephone,
-			'fax' => $this->fax));
+			'fax' => $this->fax,
+			'uid' => $this->uid));
           	
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
       		return true;
