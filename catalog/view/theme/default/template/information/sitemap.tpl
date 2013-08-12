@@ -35,7 +35,6 @@
         <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
         <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
           <ul>
-            <li><a href="<?php echo $address; ?>"><?php echo $text_address; ?></a></li>
             <li><a href="<?php echo $history; ?>"><?php echo $text_history; ?></a></li>
             <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
           </ul>

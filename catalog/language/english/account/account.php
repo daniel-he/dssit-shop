@@ -7,7 +7,6 @@ $_['text_account']       = 'Account';
 $_['text_my_account']    = 'My Account';
 $_['text_my_orders']     = 'My Orders';
 $_['text_my_newsletter'] = 'Newsletter';
-$_['text_address']       = 'Modify your address book entries';
 $_['text_wishlist']      = 'Modify your wish list';
 $_['text_order']         = 'View your order history';
 $_['text_download']      = 'Downloads';

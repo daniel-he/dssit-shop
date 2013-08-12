@@ -32,7 +32,6 @@ class ControllerAccountAccount extends Controller {
     	$this->data['text_my_account'] = $this->language->get('text_my_account');
 		$this->data['text_my_orders'] = $this->language->get('text_my_orders');
 		$this->data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
-    	$this->data['text_address'] = $this->language->get('text_address');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
     	$this->data['text_order'] = $this->language->get('text_order');
     	$this->data['text_download'] = $this->language->get('text_download');
@@ -40,7 +39,6 @@ class ControllerAccountAccount extends Controller {
 		$this->data['text_transaction'] = $this->language->get('text_transaction');
 		$this->data['text_recurring'] = $this->language->get('text_recurring');
 
-		$this->data['address'] = $this->url->link('account/address', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist');
     	$this->data['order'] = $this->url->link('account/order', '', 'SSL');
     	$this->data['download'] = $this->url->link('account/download', '', 'SSL');

@@ -1095,7 +1095,7 @@ CREATE TABLE `oc_customer` (
   `fax` varchar(32) NOT NULL,
   `cart` text,
   `wishlist` text,
-  `address_id` int(11) NOT NULL DEFAULT '0',
+  `address_id` int(11) NOT NULL DEFAULT '1',
   `customer_group_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL,

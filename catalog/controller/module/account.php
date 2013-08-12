@@ -7,7 +7,6 @@ class ControllerModuleAccount extends Controller {
     	
 		$this->data['text_logout'] = $this->language->get('text_logout');
 		$this->data['text_account'] = $this->language->get('text_account');
-		$this->data['text_address'] = $this->language->get('text_address');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
 		$this->data['text_order'] = $this->language->get('text_order');
 		$this->data['text_download'] = $this->language->get('text_download');
@@ -17,7 +16,6 @@ class ControllerModuleAccount extends Controller {
 		
 		$this->data['logout'] = $this->url->link('account/logout', '', 'SSL');
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
-		$this->data['address'] = $this->url->link('account/address', '', 'SSL');
 		$this->data['wishlist'] = $this->url->link('account/wishlist');
 		$this->data['order'] = $this->url->link('account/order', '', 'SSL');
 		$this->data['download'] = $this->url->link('account/download', '', 'SSL');

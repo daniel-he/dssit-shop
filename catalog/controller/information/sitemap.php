@@ -23,7 +23,6 @@ class ControllerInformationSitemap extends Controller {
 
 		$this->data['text_special'] = $this->language->get('text_special');
 		$this->data['text_account'] = $this->language->get('text_account');
-    	$this->data['text_address'] = $this->language->get('text_address');
     	$this->data['text_history'] = $this->language->get('text_history');
     	$this->data['text_download'] = $this->language->get('text_download');
     	$this->data['text_cart'] = $this->language->get('text_cart');
@@ -72,7 +71,6 @@ class ControllerInformationSitemap extends Controller {
 		
 		$this->data['special'] = $this->url->link('product/special');
 		$this->data['account'] = $this->url->link('account/account', '', 'SSL');
-    	$this->data['address'] = $this->url->link('account/address', '', 'SSL');
     	$this->data['history'] = $this->url->link('account/order', '', 'SSL');
     	$this->data['download'] = $this->url->link('account/download', '', 'SSL');
     	$this->data['cart'] = $this->url->link('checkout/cart');
