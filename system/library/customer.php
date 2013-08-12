@@ -7,7 +7,6 @@ class Customer {
 	private $telephone;
 	private $fax;
 	private $customer_group_id;
-	private $address_id;
 	private $uid;
 	
   	public function __construct($registry) {
@@ -31,7 +30,6 @@ class Customer {
 				$this->telephone = $customer_query->row['telephone'];
 				$this->fax = $customer_query->row['fax'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
-				$this->address_id = $customer_query->row['address_id'];
 							
       			$this->db->query("UPDATE " . DB_PREFIX . "customer SET cart = '" . $this->db->escape(isset($this->session->data['cart']) ? serialize($this->session->data['cart']) : '') . "', wishlist = '" . $this->db->escape(isset($this->session->data['wishlist']) ? serialize($this->session->data['wishlist']) : '') . "', ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 			
@@ -125,7 +123,6 @@ class Customer {
 			$this->telephone = $customer_query->row['telephone'];
 			$this->fax = $customer_query->row['fax'];
 			$this->customer_group_id = $customer_query->row['customer_group_id'];
-			$this->address_id = $customer_query->row['address_id'];
 
 			$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
@@ -198,7 +195,6 @@ class Customer {
 		$this->telephone = '';
 		$this->fax = '';
 		$this->customer_group_id = '';
-		$this->address_id = '';
   	}
   
   	public function isLogged() {
@@ -231,10 +227,6 @@ class Customer {
 	
   	public function getCustomerGroupId() {
 		return $this->customer_group_id;	
-  	}
-	
-  	public function getAddressId() {
-		return $this->address_id;	
   	}
 	
   	public function getBalance() {
