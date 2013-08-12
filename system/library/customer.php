@@ -71,6 +71,9 @@ class Customer {
 			'uid' => $this->uid));
           	
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
+
+		ldap_close($ldap_server);
+
       		return true;
 	  
 	}
@@ -178,6 +181,8 @@ class Customer {
 		if ($modified) {
 		   $this->db->query($query_string);
 		}
+
+		$ldap_close($ldap_server);
 	}
   	
 	public function logout() {
