@@ -29,8 +29,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
 	
     $this->data['button_continue'] = $this->language->get('button_continue');
     
-    $this->load->model('account/address');
-    
     $this->load->model('account/customer_group');
     
     $customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->customer->getCustomerGroupId());
