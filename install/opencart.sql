@@ -705,7 +705,7 @@ CREATE TABLE `oc_building` (
 --
 
 INSERT INTO `oc_building` (`building_id`, `name`, `status`) VALUES
-(1, 'Afghanistan', 'AF', 'AFG', '', 0, 1),
+(1, 'Young', 1);
 
 -- --------------------------------------------------------
 
