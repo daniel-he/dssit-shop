@@ -18,14 +18,14 @@ class ControllerCheckoutPaymentAddress extends Controller {
     $this->data['entry_address_2'] = $this->language->get('entry_address_2');
     $this->data['entry_postcode'] = $this->language->get('entry_postcode');
     $this->data['entry_city'] = $this->language->get('entry_city');
-    $this->data['entry_country'] = $this->language->get('entry_country');
+    $this->data['entry_building'] = $this->language->get('entry_building');
     $this->data['entry_zone'] = $this->language->get('entry_zone');
 
     //Default Values
     $this->data['customer_firstname'] = $this->customer->getFirstName();
     $this->data['customer_lastname'] = $this->customer->getLastName();
     $this->data['customer_email'] = $this->customer->getEmail();
-    $this->data['customer_telephone'] = $this->customer->getLastName();
+    $this->data['customer_telephone'] = $this->customer->getTelephone();
 	
     $this->data['button_continue'] = $this->language->get('button_continue');
     
