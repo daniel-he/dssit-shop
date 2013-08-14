@@ -174,4 +174,5 @@ $('input[name=\'next\']').bind('change', function() {
 	
 	$('#' + this.value).show();
 });
+//--></script>
 <?php echo $footer; ?>
