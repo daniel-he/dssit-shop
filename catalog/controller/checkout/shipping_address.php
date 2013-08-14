@@ -28,7 +28,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 
 		$this->load->model('account/address');
 
-		$this->data['addresses'] = $this->model_account_address->getAddresses();
+		  $this->data['addresses'] = $this->model_account_address->getAddresses();
 
 		if (isset($this->session->data['shipping_postcode'])) {
 			$this->data['postcode'] = $this->session->data['shipping_postcode'];		

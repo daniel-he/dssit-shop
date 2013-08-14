@@ -8,7 +8,6 @@ $_['text_remove']            = 'Success: You have modified your shopping cart!';
 $_['text_coupon']            = 'Success: Your coupon discount has been applied!';
 $_['text_voucher']           = 'Success: Your gift voucher discount has been applied!';
 $_['text_reward']            = 'Success: Your reward points discount has been applied!';
-$_['text_shipping']          = 'Success: Your shipping estimate has been applied!';
 $_['text_login']             = 'Attention: You must <a href="%s">login</a> or <a href="%s">create an account</a> to view prices!';
 $_['text_points']            = 'Reward Points: %s';
 $_['text_items']             = '%s item(s) - %s';
@@ -17,9 +16,6 @@ $_['text_next_choice']       = 'Choose if you have a discount code or reward poi
 $_['text_use_coupon']        = 'Use Coupon Code';
 $_['text_use_voucher']       = 'Use Gift Voucher';
 $_['text_use_reward']        = 'Use Reward Points (Available %s)';
-$_['text_shipping_estimate'] = 'Estimate Shipping &amp; Taxes';
-$_['text_shipping_detail']   = 'Enter your destination to get a shipping estimate.';
-$_['text_shipping_method']   = 'Please select the preferred shipping method to use on this order.';
 $_['text_empty']             = 'Your shopping cart is empty!';
 $_['text_until_cancelled']   = 'until cancelled';
 $_['text_recurring_item']    = 'Recurring item';
@@ -46,8 +42,6 @@ $_['entry_coupon']           = 'Enter your coupon here:';
 $_['entry_voucher']          = 'Enter your gift voucher code here:';
 $_['entry_reward']           = 'Points to use (Max %s):';
 $_['entry_country']          = 'Country:';
-$_['entry_zone']             = 'Region / State:';
-$_['entry_postcode']         = 'Post Code:';
 
 // Error
 $_['error_stock']            = 'Products marked with *** are not available in the desired quantity or not in stock!';
@@ -62,8 +56,6 @@ $_['error_maximum']          = 'Warning: The maximum number of points that can b
 $_['error_postcode']         = 'Postcode must be between 2 and 10 characters!';
 $_['error_country']          = 'Please select a country!';
 $_['error_zone']             = 'Please select a region / state!';
-$_['error_shipping']         = 'Warning: Shipping method required!';
-$_['error_no_shipping']      = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
 $_['error_profile_required'] = 'Please select a payment profile!';
 
 $_['text_trial']             = '%s every %s %s for %s payments then ';

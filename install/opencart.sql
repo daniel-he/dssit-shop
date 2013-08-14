@@ -1551,7 +1551,11 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (398, 'total', 'voucher'),
 (407, 'payment', 'free_checkout'),
 (427, 'module', 'featured'),
-(419, 'module', 'slideshow');
+(419, 'module', 'slideshow'),
+(3141, 'payment', 'dafis'),
+(1592, 'shipping', 'service_center_pickup'),
+(6535, 'shipping', 'office_delivery');
+
 
 -- --------------------------------------------------------
 
