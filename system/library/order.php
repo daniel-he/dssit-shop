@@ -5,6 +5,13 @@ class Order {
   private $deliveryInfo;
   private $deliveryMethod;
 
+  function __construct() {
+    $data = array();
+    $billingInfo = array();
+    $deliveryInfo = array();
+    $deliveryMethod = array();
+  }
+
   public function setBillingInfo($key, $value) {
     $this->billingInfo[$key] = $value;
   }
@@ -22,12 +29,12 @@ class Order {
     $this->data[$key] = $value;
   }
 
-  public function getBillingInfo($key) {
-    return $this->getBillingInfo[$key];
+  public function getBillingInfo() {
+    return $this->billingInfo;
   }
 
   public function getDeliveryInfo($key) {
-    return $this->deliveryInfo[$key];
+    return $this->deliveryInfo;
   }
 
   public function getDeliveryMethod() {
@@ -35,7 +42,7 @@ class Order {
   }
 
   public function getData($key) {
-    return $this->data[$key];
+    return $this->data;
   }
 }
 ?>

@@ -21,12 +21,40 @@ class ControllerCheckoutPaymentAddress extends Controller {
     $this->data['entry_building'] = $this->language->get('entry_building');
     $this->data['entry_zone'] = $this->language->get('entry_zone');
 
+    $this->billingInfo = $this->order->getBillingInfo();
+
     //Default Values
-    $this->data['customer_firstname'] = $this->customer->getFirstName();
-    $this->data['customer_lastname'] = $this->customer->getLastName();
-    $this->data['customer_email'] = $this->customer->getEmail();
-    $this->data['customer_telephone'] = $this->customer->getTelephone();
-	
+    if (isset($this->billingInfo['firstname'])) {
+      $this->data['customer_firstname'] = $this->billingInfo['firstname'];
+    } else {
+      $this->data['customer_firstname'] = $this->customer->getFirstName();
+    }
+    if (isset($this->billingInfo['lastname'])) {
+      $this->data['customer_lastname'] = $this->billingInfo['lastname'];
+    } else {
+      $this->data['customer_lastname'] = $this->customer->getLastName();
+    }
+    if (isset($this->billingInfo['email'])) {
+      $this->data['customer_email'] = $this->billingInfo['email'];
+    } else {
+      $this->data['customer_email'] = $this->customer->getEmail();
+    }
+    if (isset($this->billingInfo['telephone'])) {
+      $this->data['customer_telephone'] = $this->billingInfo['telephone'];
+    } else {
+      $this->data['customer_telephone'] = $this->customer->getTelephone();
+    }
+    if (isset($this->billingInfo['address_1'])) {
+      $this->data['address_1'] = $this->billingInfo['address_1'];
+    } else {
+      $this->data['address_1'] = '';
+    }
+    if (isset($this->billingInfo['building_id'])) {
+      $this->data['building_id'] = $this->billingInfo['building_id'];
+    } else {
+      $this->data['building_id'] = ''
+    }
+
     $this->data['button_continue'] = $this->language->get('button_continue');
     
     $this->load->model('account/customer_group');
@@ -55,18 +83,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
       $this->data['tax_id_required'] = $customer_group_info['tax_id_required'];
     } else {
       $this->data['tax_id_required'] = '';
-    }
-										
-    if (isset($this->session->data['payment_country_id'])) {
-      $this->data['country_id'] = $this->session->data['payment_country_id'];		
-    } else {
-      $this->data['country_id'] = $this->config->get('config_country_id');
-    }
-				
-    if (isset($this->session->data['payment_zone_id'])) {
-      $this->data['zone_id'] = $this->session->data['payment_zone_id'];		
-    } else {
-      $this->data['zone_id'] = '';
     }
 		
     $this->load->model('localisation/building');
@@ -152,6 +168,14 @@ class ControllerCheckoutPaymentAddress extends Controller {
 	$json['error']['tax_id'] = $this->language->get('error_vat');
       }						
     }
+
+    // Store values in the order class
+    $this->order->setBillingInfo('firstname', $this->request->post['firstname']);
+    $this->order->setBillingInfo('lastname', $this->request->post['lastname']);
+    $this->order->setBillingInfo('email', $this->request->post['email']);
+    $this->order->setBillingInfo('telephone', $this->request->post['telephone']);
+    $this->order->setBillingInfo('address_1', $this->request->post['address_1']);
+    $this->order->setBillingInfo('building_id', $this->request->post['building_id']);
 		
     $this->response->setOutput(json_encode($json));
   }
