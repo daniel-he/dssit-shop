@@ -18,7 +18,7 @@ class ControllerCheckoutShippingMethod extends Controller {
       if ($this->config->get($result['code'] . '_status')) {
 	$this->load->model('shipping/' . $result['code']);
 	
-	$quote = $this->{'model_shipping_' . $result['code']}->getQuote($shipping_address); 
+	$quote = $this->{'model_shipping_' . $result['code']}->getQuote(new Array()); 
 	
 	if ($quote) {
 	  $quote_data[$result['code']] = array( 
