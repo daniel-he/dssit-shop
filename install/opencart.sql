@@ -1533,9 +1533,7 @@ CREATE TABLE `oc_extension` (
 
 INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (23, 'payment', 'cod'),
-(22, 'total', 'shipping'),
 (57, 'total', 'sub_total'),
-(58, 'total', 'tax'),
 (59, 'total', 'total'),
 (410, 'module', 'banner'),
 (426, 'module', 'carousel'),

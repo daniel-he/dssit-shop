@@ -52,8 +52,8 @@ class ControllerCheckoutCheckout extends Controller {
 	    $this->data['heading_title'] = $this->language->get('heading_title');
 		
 		$this->data['text_checkout_payment_address'] = $this->language->get('text_checkout_payment_address');
-		$this->data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
 		$this->data['text_checkout_shipping_method'] = $this->language->get('text_checkout_shipping_method');
+		$this->data['text_checkout_shipping_address'] = $this->language->get('text_checkout_shipping_address');
 		$this->data['text_checkout_payment_method'] = $this->language->get('text_checkout_payment_method');		
 		$this->data['text_checkout_confirm'] = $this->language->get('text_checkout_confirm');
 		$this->data['text_modify'] = $this->language->get('text_modify');
