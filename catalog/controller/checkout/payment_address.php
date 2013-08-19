@@ -21,7 +21,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
     $this->data['entry_building'] = $this->language->get('entry_building');
     $this->data['entry_zone'] = $this->language->get('entry_zone');
 
-    $this->billingInfo = $this->order->getBillingInfo();
+    $this->billingInfo = $this->session->data['billingInfo'];
 
     //Default Values
     if (isset($this->billingInfo['firstname'])) {
@@ -170,12 +170,14 @@ class ControllerCheckoutPaymentAddress extends Controller {
     }
 
     // Store values in the order class
-    $this->order->setBillingInfo('firstname', $this->request->post['firstname']);
-    $this->order->setBillingInfo('lastname', $this->request->post['lastname']);
-    $this->order->setBillingInfo('email', $this->request->post['email']);
-    $this->order->setBillingInfo('telephone', $this->request->post['telephone']);
-    $this->order->setBillingInfo('address_1', $this->request->post['address_1']);
-    $this->order->setBillingInfo('building_id', $this->request->post['building_id']);
+    $this->session->data['billingInfo'] = array(
+    'firstname' => $this->request->post['firstname']),
+    'lastname' => $this->request->post['lastname']),
+    'email' => $this->request->post['email']),
+    'telephone' => $this->request->post['telephone']),
+    'address_1' => $this->request->post['address_1']),
+    'building_id' => $this->request->post['building_id'])
+    );
 		
     $this->response->setOutput(json_encode($json));
   }
