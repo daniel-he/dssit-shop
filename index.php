@@ -26,7 +26,6 @@ require_once(DIR_SYSTEM . 'library/tax.php');
 require_once(DIR_SYSTEM . 'library/weight.php');
 require_once(DIR_SYSTEM . 'library/length.php');
 require_once(DIR_SYSTEM . 'library/cart.php');
-require_once(DIR_SYSTEM . 'library/order.php');
 
 /**
 * Cas 2.0 client
@@ -217,9 +216,6 @@ $registry->set('document', new Document());
 
 // Customer
 $registry->set('customer', new Customer($registry));
-
-// Order
-$registry->set('order', new Order());
 
 // Affiliate
 $registry->set('affiliate', new Affiliate($registry));
