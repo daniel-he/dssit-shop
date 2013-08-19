@@ -179,7 +179,7 @@ class Customer {
 		   $this->db->query($query_string);
 		}
 
-		$ldap_close($ldap_server);
+		ldap_close($ldap_server);
 	}
   	
 	public function logout() {

@@ -36,7 +36,7 @@
     <?php } ?>
     <tr>
       <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-      <td><input type="text" name="address_1" value="" class="large-field" /></td>
+      <td><input type="text" name="address_1" value=<?php echo $address_1; ?> class="large-field" /></td>
     </tr>
     <tr>
       <td><span class="required">*</span> <?php echo $entry_building; ?></td>

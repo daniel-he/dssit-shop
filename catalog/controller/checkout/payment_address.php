@@ -52,7 +52,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
     if (isset($this->billingInfo['building_id'])) {
       $this->data['building_id'] = $this->billingInfo['building_id'];
     } else {
-      $this->data['building_id'] = ''
+      $this->data['building_id'] = '';
     }
 
     $this->data['button_continue'] = $this->language->get('button_continue');

@@ -33,7 +33,7 @@ class Order {
     return $this->billingInfo;
   }
 
-  public function getDeliveryInfo($key) {
+  public function getDeliveryInfo() {
     return $this->deliveryInfo;
   }
 
@@ -41,7 +41,7 @@ class Order {
     return $this->deliveryMethod;
   }
 
-  public function getData($key) {
+  public function getData() {
     return $this->data;
   }
 }

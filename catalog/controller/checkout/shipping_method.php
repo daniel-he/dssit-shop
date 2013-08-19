@@ -90,11 +90,6 @@ class ControllerCheckoutShippingMethod extends Controller {
       $json['redirect'] = $this->url->link('checkout/checkout', '', 'SSL');
     }
     
-    // Validate if shipping address has been set.
-    if (isset($this->session->data['guest'])) {
-      $shipping_address = $this->session->data['guest']['shipping'];
-    }
-    
     // Validate cart has products and has stock.	
     if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
       $json['redirect'] = $this->url->link('checkout/cart');				
@@ -135,8 +130,12 @@ class ControllerCheckoutShippingMethod extends Controller {
 	
 	$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
 	
-	$this->session->data['comment'] = strip_tags($this->request->post['comment']);
+	$this->order->setData('comment', strip_tags($this->request->post['comment']));
       }							
+    }
+
+    for ($shipping as $mykey => $myval) {
+      echo $mykey . " => " . $myval . "\n";
     }
     
     $this->response->setOutput(json_encode($json));	
