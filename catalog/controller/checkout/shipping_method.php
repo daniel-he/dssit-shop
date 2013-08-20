@@ -65,8 +65,8 @@ class ControllerCheckoutShippingMethod extends Controller {
       $this->data['code'] = '';
     }
     
-    if (isset($this->session->data['comment'])) {
-      $this->data['comment'] = $this->session->data['comment'];
+    if (isset($this->session->data['shippingInfo']['comment'])) {
+      $this->data['comment'] = $this->session->data['shippingInfo']['comment'];
     } else {
       $this->data['comment'] = '';
     }
@@ -130,12 +130,8 @@ class ControllerCheckoutShippingMethod extends Controller {
 	
 	$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
 	
-	$this->order->setData('comment', strip_tags($this->request->post['comment']));
+	$this->session->data['shippingInfo']['comment'] = strip_tags($this->request->post['comment']));
       }							
-    }
-
-    for ($shipping as $mykey => $myval) {
-      echo $mykey . " => " . $myval . "\n";
     }
     
     $this->response->setOutput(json_encode($json));	
