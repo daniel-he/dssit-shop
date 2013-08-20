@@ -15,13 +15,9 @@ class ControllerCheckoutPaymentAddress extends Controller {
     $this->data['entry_company_id'] = $this->language->get('entry_company_id');
     $this->data['entry_tax_id'] = $this->language->get('entry_tax_id');			
     $this->data['entry_address_1'] = $this->language->get('entry_address_1');
-    $this->data['entry_address_2'] = $this->language->get('entry_address_2');
-    $this->data['entry_postcode'] = $this->language->get('entry_postcode');
-    $this->data['entry_city'] = $this->language->get('entry_city');
     $this->data['entry_building'] = $this->language->get('entry_building');
-    $this->data['entry_zone'] = $this->language->get('entry_zone');
 
-    $this->billingInfo = $this->session->data['billingInfo'];
+    $this->billingInfo = (isset($this->session->data['billingInfo']) ? $this->session->data['billingInfo'] : array());
 
     //Default Values
     if (isset($this->billingInfo['firstname'])) {
@@ -171,12 +167,12 @@ class ControllerCheckoutPaymentAddress extends Controller {
 
     // Store values in the order class
     $this->session->data['billingInfo'] = array(
-    'firstname' => $this->request->post['firstname']),
-    'lastname' => $this->request->post['lastname']),
-    'email' => $this->request->post['email']),
-    'telephone' => $this->request->post['telephone']),
-    'address_1' => $this->request->post['address_1']),
-    'building_id' => $this->request->post['building_id'])
+    'firstname' => $this->request->post['firstname'],
+    'lastname' => $this->request->post['lastname'],
+    'email' => $this->request->post['email'],
+    'telephone' => $this->request->post['telephone'],
+    'address_1' => $this->request->post['address_1'],
+    'building_id' => $this->request->post['building_id']
     );
 		
     $this->response->setOutput(json_encode($json));
