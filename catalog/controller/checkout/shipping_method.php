@@ -3,10 +3,6 @@ class ControllerCheckoutShippingMethod extends Controller {
   public function index() {
     $this->language->load('checkout/checkout');
     
-    if (isset($this->session->data['guest'])) {
-      $shipping_address = $this->session->data['guest']['shipping'];
-    }
-    
     // Shipping Methods
     $quote_data = array();
     
@@ -130,11 +126,11 @@ class ControllerCheckoutShippingMethod extends Controller {
 	
 	$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
 	
-	$this->session->data['shippingInfo']['comment'] = strip_tags($this->request->post['comment']));
+	$this->session->data['shippingInfo']['comment'] = strip_tags($this->request->post['comment']);
       }							
     }
     
-    $this->response->setOutput(json_encode($json);	
+  $this->response->setOutput(json_encode($json));	
   }
 }
 ?>
