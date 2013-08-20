@@ -8,6 +8,7 @@ class ControllerShippingOfficeDelivery extends Controller {
 
 		$this->data['entry_firstname'] = $this->language->get('entry_firstname');
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
+		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_company'] = $this->language->get('entry_company');
 		$this->data['entry_address_1'] = $this->language->get('entry_address_1');
 		$this->data['entry_building'] = $this->language->get('entry_building');
@@ -24,6 +25,12 @@ class ControllerShippingOfficeDelivery extends Controller {
 			$this->data['lastname'] = $this->session->data['shippingInfo']['lastname'];
 		} else {
 		  $this->data['lastname'] = $this->customer->getLastName();
+		}
+		
+		if (isset($this->session->data['shippingInfo']['email'])) {
+			$this->data['email'] = $this->session->data['shippingInfo']['email'];
+		} else {
+		  $this->data['email'] = $this->customer->getEmail();
 		}
 		
 		if (isset($this->session->data['shippingInfo']['company'])) {
@@ -81,6 +88,10 @@ class ControllerShippingOfficeDelivery extends Controller {
 				$json['error']['lastname'] = $this->language->get('error_lastname');
 			}
 			
+			if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
+			  $json['error']['email'] = $this->language->get('error_email');
+			}
+
 			if ((utf8_strlen($this->request->post['address_1']) < 1) || (utf8_strlen($this->request->post['address_1']) > 128)) {
 				$json['error']['address_1'] = $this->language->get('error_address_1');
 			}
@@ -97,6 +108,7 @@ class ControllerShippingOfficeDelivery extends Controller {
 		if (!$json) {
 			$this->session->data['shippingInfo']['firstname'] = trim($this->request->post['firstname']);
 			$this->session->data['shippingInfo']['lastname'] = trim($this->request->post['lastname']);
+			$this->session->data['shippingInfo']['email'] = trim($this->request->post['email']);
 			$this->session->data['shippingInfo']['company'] = trim($this->request->post['company']);
 			$this->session->data['shippingInfo']['address_1'] = $this->request->post['address_1'];
 			$this->session->data['shippingInfo']['building_id'] = $this->request->post['building_id'];
