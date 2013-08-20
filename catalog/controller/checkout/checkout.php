@@ -22,7 +22,41 @@ class ControllerCheckoutCheckout extends Controller {
 				$this->redirect($this->url->link('checkout/cart'));
 			}				
 		}
-				
+
+		// Shipping Methods
+		$quote_data = array();
+    
+		$this->load->model('setting/extension');
+    
+		$results = $this->model_setting_extension->getExtensions('shipping');
+    
+		foreach ($results as $result) {
+		  if ($this->config->get($result['code'] . '_status')) {
+		    $this->load->model('shipping/' . $result['code']);
+		    
+		    $quote = $this->{'model_shipping_' . $result['code']}->getQuote(array()); 
+		    
+		    if ($quote) {
+		      $quote_data[$result['code']] = array( 
+			'title'      => $quote['title'],
+	                'quote'      => $quote['quote'], 
+       	                'sort_order' => $quote['sort_order'],
+			'error'      => $quote['error']
+		      );
+		    }
+		  }
+		}
+    
+		$sort_order = array();
+    
+		foreach ($quote_data as $key => $value) {
+		  $sort_order[$key] = $value['sort_order'];
+		}
+		
+		array_multisort($sort_order, SORT_ASC, $quote_data);
+    
+		$this->session->data['shipping_methods'] = $quote_data;
+	
 		$this->language->load('checkout/checkout');
 		
 		$this->document->setTitle($this->language->get('heading_title')); 

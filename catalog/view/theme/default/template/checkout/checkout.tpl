@@ -526,6 +526,7 @@ $('#button-guest-shipping').live('click', function() {
 	});	
 });
 
+var code = '';
 $('#button-shipping-method').live('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/shipping_method/validate',
@@ -535,6 +536,7 @@ $('#button-shipping-method').live('click', function() {
 		beforeSend: function() {
 			$('#button-shipping-method').attr('disabled', true);
 			$('#button-shipping-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
+			code = $('shipping-method input[type=\'radio\']:checked');
 		},	
 		complete: function() {
 			$('#button-shipping-method').attr('disabled', false);
@@ -551,7 +553,31 @@ $('#button-shipping-method').live('click', function() {
 					
 					$('.warning').fadeIn('slow');
 				}			
-			} else {
+<?php 
+  foreach ($shipping_methods as $shipping_method) {
+    foreach ($shipping_method['quote'] as $quote) {
+?>
+    } else if (<?php echo $quote['code']; ?> == code) {
+				$.ajax({
+				        url: <?php echo 'index.php?route=shipping/' . $quote['code']; ?>,
+					dataType: 'html',
+					success: function(html) {
+						$('#shipping-address .checkout-content').html(html);
+						
+						$('#shipping-method .checkout-content').slideUp('slow');
+						
+						$('#shipping-address .checkout-content').slideDown('slow');
+
+						$('#shipping-method .checkout-heading a').remove();
+						$('#payment-method .checkout-heading a').remove();
+						
+						$('#shipping-method .checkout-heading').append('<a><?php echo $text_modify; ?></a>');	
+					},
+  <?php 
+    } 
+  }
+?>
+    } else {
 				$.ajax({
 					url: 'index.php?route=checkout/shipping_address',
 					dataType: 'html',
@@ -569,9 +595,9 @@ $('#button-shipping-method').live('click', function() {
 					},
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-					}
+				    }
 				});					
-			}
+                         }
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
