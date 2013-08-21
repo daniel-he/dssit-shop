@@ -556,10 +556,11 @@ $('#button-shipping-method').live('click', function() {
 <?php 
   foreach ($shipping_methods as $shipping_method) {
     foreach ($shipping_method['quote'] as $quote) {
+      $cod = explode('.', $quote['code']);
 ?>
     } else if (<?php echo $quote['code']; ?> == code) {
 				$.ajax({
-				        url: 'index.php?route=shipping/<?php echo $quote["code"]; ?>',
+				        url: 'index.php?route=shipping/<?php echo $cod[0]; ?>',
 					dataType: 'html',
 					success: function(html) {
 						$('#shipping-address .checkout-content').html(html);
