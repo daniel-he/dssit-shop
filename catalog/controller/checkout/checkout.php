@@ -55,7 +55,7 @@ class ControllerCheckoutCheckout extends Controller {
 		
 		array_multisort($sort_order, SORT_ASC, $quote_data);
     
-		$this->session->data['shipping_methods'] = $quote_data;
+		$this->data['shipping_methods'] = $quote_data;
 	
 		$this->language->load('checkout/checkout');
 		
