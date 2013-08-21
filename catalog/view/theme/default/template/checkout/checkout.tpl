@@ -173,7 +173,7 @@ $('#button-payment-address').live('click', function() {
 // Shipping Address			
 $('#button-shipping-address').live('click', function() {
 	$.ajax({
-		url: 'index.php?route=checkout/shipping_address/validate',
+		url: 'index.php?route=shipping/'+code+'/validate',
 		type: 'post',
 		data: $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'password\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address select'),
 		dataType: 'json',
@@ -537,6 +537,7 @@ $('#button-shipping-method').live('click', function() {
 			$('#button-shipping-method').attr('disabled', true);
 			$('#button-shipping-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
 			code = $('#shipping-method input[type=\'radio\']:checked');
+			code = code.split('.')[0];
 		},	
 		complete: function() {
 			$('#button-shipping-method').attr('disabled', false);
@@ -552,15 +553,10 @@ $('#button-shipping-method').live('click', function() {
 					$('#shipping-method .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
 					
 					$('.warning').fadeIn('slow');
-				}			
-<?php 
-  foreach ($shipping_methods as $shipping_method) {
-    foreach ($shipping_method['quote'] as $quote) {
-      $cod = explode('.', $quote['code']);
-?>
-    } else if ("<?php echo $quote['code']; ?>" == code) {
+				}
+			} else if (code != '') {
 				$.ajax({
-				        url: 'index.php?route=shipping/<?php echo $cod[0]; ?>',
+				        url: 'index.php?route=shipping/'+code,
 					dataType: 'html',
 					success: function(html) {
 						$('#shipping-address .checkout-content').html(html);
@@ -577,12 +573,8 @@ $('#button-shipping-method').live('click', function() {
 					error: function(xhr, ajaxOptions, thrownError) {
 						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 				    }
-				});					
-  <?php 
-    } 
-  }
-?>
-    } else {
+				});	
+			} else {
 				$.ajax({
 					url: 'index.php?route=checkout/shipping_address',
 					dataType: 'html',
