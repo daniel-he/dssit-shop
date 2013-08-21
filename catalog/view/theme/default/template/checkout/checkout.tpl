@@ -558,7 +558,7 @@ $('#button-shipping-method').live('click', function() {
     foreach ($shipping_method['quote'] as $quote) {
       $cod = explode('.', $quote['code']);
 ?>
-    } else if (<?php echo $quote['code']; ?> == code) {
+    } else if ("<?php echo $quote['code']; ?>" == code) {
 				$.ajax({
 				        url: 'index.php?route=shipping/<?php echo $cod[0]; ?>',
 					dataType: 'html',
