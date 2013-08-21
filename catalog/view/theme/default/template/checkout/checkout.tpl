@@ -559,7 +559,7 @@ $('#button-shipping-method').live('click', function() {
 ?>
     } else if (<?php echo $quote['code']; ?> == code) {
 				$.ajax({
-				        url: <?php echo 'index.php?route=shipping/' . $quote['code']; ?>,
+				        url: 'index.php?route=shipping/<?php echo $quote["code"]; ?>',
 					dataType: 'html',
 					success: function(html) {
 						$('#shipping-address .checkout-content').html(html);
@@ -571,8 +571,12 @@ $('#button-shipping-method').live('click', function() {
 						$('#shipping-method .checkout-heading a').remove();
 						$('#payment-method .checkout-heading a').remove();
 						
-						$('#shipping-method .checkout-heading').append('<a><?php echo $text_modify; ?></a>');	
+						$('#shipping-method .checkout-heading').append('<a><?php echo $text_modify; ?></a>'); 
 					},
+					error: function(xhr, ajaxOptions, thrownError) {
+						alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				    }
+				});					
   <?php 
     } 
   }
