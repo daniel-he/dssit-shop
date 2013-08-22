@@ -59,6 +59,7 @@ $_['entry_building']                 = 'Building:';
 $_['entry_zone']                     = 'Region / State:';
 $_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter.';
 $_['entry_shipping'] 	             = 'My delivery and billing addresses are the same.';
+$_['entry_dafis']                    = 'DaFIS/KFS Account:'
 
 // Error
 $_['error_warning']                  = 'There was a problem while trying to process your order! If the problem persists please try selecting a different payment method or you can contact the store owner by <a href="%s">clicking here</a>.';
@@ -83,7 +84,7 @@ $_['error_agree']                    = 'Warning: You must agree to the %s!';
 $_['error_address']                  = 'Warning: You must select address!';
 $_['error_shipping']                 = 'Warning: Shipping method required!';
 $_['error_no_shipping']              = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
-$_['error_payment']                  = 'Warning: Payment method required!';
+$_['error_payment']                  = 'Warning: Payment account required!';
 $_['error_no_payment']               = 'Warning: No Payment options are available. Please <a href="%s">contact us</a> for assistance!';
 
 $_['text_trial']                    = '%s every %s %s for %s payments then ';
