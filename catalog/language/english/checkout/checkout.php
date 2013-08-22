@@ -4,10 +4,10 @@ $_['heading_title']                  = 'Checkout';
 
 // Text
 $_['text_cart']                      = 'Shopping Cart';
-$_['text_checkout_payment_address']  = 'Step 1: Billing Details';
-$_['text_checkout_shipping_method']  = 'Step 2: Delivery Method';
-$_['text_checkout_shipping_address'] = 'Step 3: Delivery Details';
-$_['text_checkout_payment_method']   = 'Step 4: Payment Method';
+$_['text_checkout_payment_address']  = 'Step 1: Account Holder\'s Details';
+$_['text_checkout_payment_method']   = 'Step 2: DaFIS/KFS Account';
+$_['text_checkout_shipping_method']  = 'Step 3: Delivery Method';
+$_['text_checkout_shipping_address'] = 'Step 4: Delivery Details';
 $_['text_checkout_confirm']          = 'Step 5: Confirm Order';
 $_['text_modify']                    = 'Modify &raquo;';
 $_['text_your_details']              = 'Your Personal Details';
