@@ -536,7 +536,7 @@ $('#button-shipping-method').live('click', function() {
 		beforeSend: function() {
 			$('#button-shipping-method').attr('disabled', true);
 			$('#button-shipping-method').after('<span class="wait">&nbsp;<img src="catalog/view/theme/default/image/loading.gif" alt="" /></span>');
-			code = $('#shipping-method input[type=\'radio\']:checked');
+			code = $('#shipping-method input[type=\'radio\']:checked').val();
 			code = code.split('.')[0];
 		},	
 		complete: function() {
