@@ -38,7 +38,7 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		
 		// Validate if payment address has been set.
 		if ($this->customer->isLogged() && isset($this->session->data['billingInfo'])) {
-			$payment_address = $this->session->data['billingInfo']);		
+			$payment_address = $this->session->data['billingInfo'];		
 		}	
 				
 		if (empty($payment_address)) {
