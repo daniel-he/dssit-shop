@@ -166,14 +166,12 @@ class ControllerCheckoutPaymentAddress extends Controller {
     }
 
     // Store values in the order class
-    $this->session->data['billingInfo'] = array(
-    'firstname' => $this->request->post['firstname'],
-    'lastname' => $this->request->post['lastname'],
-    'email' => $this->request->post['email'],
-    'telephone' => $this->request->post['telephone'],
-    'address_1' => $this->request->post['address_1'],
-    'building_id' => $this->request->post['building_id']
-    );
+    $this->session->data['billingInfo']['firstname'] = $this->request->post['firstname'];
+    $this->session->data['billingInfo']['lastname'] = $this->request->post['lastname'];
+    $this->session->data['billingInfo']['email'] = $this->request->post['email'];
+    $this->session->data['billingInfo']['telephone'] = $this->request->post['telephone'];
+    $this->session->data['billingInfo']['address_1'] = $this->request->post['address_1'];
+    $this->session->data['billingInfo']['building_id'] = $this->request->post['building_id'];
 		
     $this->response->setOutput(json_encode($json));
   }
