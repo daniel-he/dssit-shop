@@ -1532,7 +1532,6 @@ CREATE TABLE `oc_extension` (
 --
 
 INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
-(23, 'payment', 'cod'),
 (57, 'total', 'sub_total'),
 (59, 'total', 'total'),
 (410, 'module', 'banner'),
@@ -3079,11 +3078,6 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (6, 0, 'total', 'total_status', '1', 0),
 (7, 0, 'tax', 'tax_sort_order', '5', 0),
 (8, 0, 'free_checkout', 'free_checkout_sort_order', '1', 0),
-(9, 0, 'cod', 'cod_sort_order', '5', 0),
-(10, 0, 'cod', 'cod_total', '0.01', 0),
-(11, 0, 'cod', 'cod_order_status_id', '1', 0),
-(12, 0, 'cod', 'cod_geo_zone_id', '0', 0),
-(13, 0, 'cod', 'cod_status', '1', 0),
 (14, 0, 'shipping', 'shipping_status', '1', 0),
 (15, 0, 'shipping', 'shipping_estimator', '1', 0),
 (16, 0, 'config', 'config_google_analytics', '', 0),
