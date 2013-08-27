@@ -132,6 +132,30 @@ class ControllerStep3 extends Controller {
 			$this->data['error_db_prefix'] = '';
 		}
 		
+		if (isset($this->error['cas_host'])) {
+			$this->data['error_cas_host'] = $this->error['cas_host'];
+		} else {
+			$this->data['error_cas_host'] = '';
+		}
+		
+		if (isset($this->error['cas_port'])) {
+			$this->data['error_cas_port'] = $this->error['cas_port'];
+		} else {
+			$this->data['error_cas_port'] = '';
+		}
+		
+		if (isset($this->error['ldap_host'])) {
+			$this->data['error_ldap_host'] = $this->error['ldap_host'];
+		} else {
+			$this->data['error_ldap_host'] = '';
+		}
+		
+		if (isset($this->error['ldap_search_base'])) {
+			$this->data['error_ldap_search_base'] = $this->error['ldap_search_base'];
+		} else {
+			$this->data['error_ldap_search_base'] = '';
+		}
+		
 		if (isset($this->error['username'])) {
 			$this->data['error_username'] = $this->error['username'];
 		} else {
