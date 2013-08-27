@@ -72,6 +72,7 @@
             <?php } ?></td>
 	</tr>
 	<tr>
+	  <td>CAS context:</td>
           <td><input type="text" name="cas_context" value="<?php echo $cas_host; ?>" />
             <br />
 	</tr>
