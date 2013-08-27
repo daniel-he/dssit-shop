@@ -73,12 +73,12 @@
 	</tr>
 	<tr>
 	  <td>CAS context:</td>
-          <td><input type="text" name="cas_context" value="<?php echo $cas_host; ?>" />
+          <td><input type="text" name="cas_context" value="<?php echo $cas_context; ?>" />
             <br />
 	</tr>
 	<tr>
 	  <td><span class="required">*</span> CAS port:</td>
-          <td><input type="text" name="cas_port" value="<?php echo $cas_host; ?>" />
+          <td><input type="text" name="cas_port" value="<?php echo $cas_port; ?>" />
             <br />
             <?php if ($error_cas_port) { ?>
             <span class="required"><?php echo $error_cas_port; ?></span>
