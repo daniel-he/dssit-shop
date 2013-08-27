@@ -245,6 +245,29 @@ class ControllerStep3 extends Controller {
 				mysql_close($connection);
 			}
 		}
+
+		if(!$this->request->post['cas_host']) {
+		  $this->error['cas_host'] = "Error: CAS host required!";
+		}
+
+		if(!$this->request->post['cas_port']) {
+		  $this->error['cas_port'] = "Error: please specify the port to use with CAS.";
+		}
+
+		if(!$this->request->post['ldap_host']) {
+		  $this->error['ldap_host'] = "Error: LDAP host required!";
+		} else {
+		  $cntn = ldap_connect($this->request->post['ldap_host']);
+		  if(!$cntn) {
+		    $this->error['ldap_host'] = "Error: Could not connect to specified LDAP server.";
+		  } else {
+		    ldap_close($cntn);
+		  }
+		}
+
+		if(!$this->request->post['ldap_search_base']) {
+		  $this->error['ldap_search_base'] = "Error: Please specify the LDAP search base!";
+		}
 				
 		if (!$this->request->post['username']) {
 			$this->error['username'] = 'Username required!';

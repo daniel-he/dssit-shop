@@ -72,12 +72,8 @@
             <?php } ?></td>
 	</tr>
 	<tr>
-	  <td><span class="required">*</span> CAS context:</td>
           <td><input type="text" name="cas_context" value="<?php echo $cas_host; ?>" />
             <br />
-            <?php if ($error_cas_context) { ?>
-            <span class="required"><?php echo $error_cas_context; ?></span>
-            <?php } ?></td>
 	</tr>
 	<tr>
 	  <td><span class="required">*</span> CAS port:</td>
