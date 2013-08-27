@@ -212,6 +212,36 @@ class ControllerStep3 extends Controller {
 			$this->data['db_prefix'] = 'oc_';
 		}
 		
+		if (isset($this->request->post['cas_host'])) {
+			$this->data['cas_host'] = html_entity_decode($this->request->post['cas_host']);
+		} else {
+			$this->data['cas_host'] = '';
+		}
+		
+		if (isset($this->request->post['cas_context'])) {
+			$this->data['cas_context'] = html_entity_decode($this->request->post['cas_context']);
+		} else {
+			$this->data['cas_context'] = '';
+		}
+		
+		if (isset($this->request->post['cas_port'])) {
+			$this->data['cas_port'] = html_entity_decode($this->request->post['cas_port']);
+		} else {
+			$this->data['cas_port'] = '';
+		}
+		
+		if (isset($this->request->post['ldap_host'])) {
+			$this->data['ldap_host'] = html_entity_decode($this->request->post['ldap_host']);
+		} else {
+			$this->data['ldap_host'] = '';
+		}
+		
+		if (isset($this->request->post['ldap_search_base'])) {
+			$this->data['ldap_search_base'] = html_entity_decode($this->request->post['ldap_search_base']);
+		} else {
+			$this->data['ldap_search_base'] = '';
+		}
+		
 		if (isset($this->request->post['username'])) {
 			$this->data['username'] = $this->request->post['username'];
 		} else {
