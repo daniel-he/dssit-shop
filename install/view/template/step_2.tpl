@@ -100,10 +100,16 @@
           <td align="center"><?php echo stream_resolve_include_path('CAS.php') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
         </tr>
         <tr>
-          <td>php-LDAP:</td>
-          <td><?php echo function_exists('ldap_connect') ? 'On' : 'Off'; ?></td>
+          <td>LDAP:</td>
+          <td><?php echo extension_loaded('ldap') ? 'On' : 'Off'; ?></td>
           <td>On</td>
-          <td align="center"><?php echo function_exists('ldap_connect') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+          <td align="center"><?php echo extension_loaded('ldap') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+        </tr>
+        <tr>
+          <td>SOAP:</td>
+          <td><?php echo extension_loaded('soap') ? 'On' : 'Off'; ?></td>
+          <td>On</td>
+          <td align="center"><?php echo extension_loaded('soap') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
         </tr>
       </table>
     </fieldset>

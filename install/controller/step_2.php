@@ -69,6 +69,18 @@ class ControllerStep2 extends Controller {
 			$this->error['warning'] = 'Warning: ZLIB extension needs to be loaded for OpenCart to work!';
 		}
 		
+		if (!extension_loaded('ldap')) {
+			$this->error['warning'] = 'Warning: LDAP extension needs to be loaded for OpenCart to work!';
+		}
+		
+		if (!extension_loaded('soap')) {
+			$this->error['warning'] = 'Warning: SOAP extension needs to be loaded for OpenCart to work!';
+		}
+		
+		if (!extension_loaded('phpCAS')) {
+			$this->error['warning'] = 'Warning: phpCAS extension needs to be installed for OpenCart to work!';
+		}
+		
 		if (!file_exists(DIR_OPENCART . 'config.php')) {
 			$this->error['warning'] = 'Warning: config.php does not exist. You need to rename config-dist.php to config.php!';
 		} elseif (!is_writable(DIR_OPENCART . 'config.php')) {
