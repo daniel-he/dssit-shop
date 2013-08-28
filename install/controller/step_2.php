@@ -77,7 +77,7 @@ class ControllerStep2 extends Controller {
 			$this->error['warning'] = 'Warning: SOAP extension needs to be loaded for OpenCart to work!';
 		}
 		
-		if (!extension_loaded('phpCAS')) {
+		if (!stream_resolve_include_path('CAS.php')) {
 			$this->error['warning'] = 'Warning: phpCAS extension needs to be installed for OpenCart to work!';
 		}
 		
