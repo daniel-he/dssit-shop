@@ -93,6 +93,18 @@
           <td>On</td>
           <td align="center"><?php echo extension_loaded('zlib') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
         </tr>
+        <tr>
+          <td>phpCAS:</td>
+          <td><?php echo stream_resolve_include_path('CAS.php') ? 'On' : 'Off'; ?></td>
+          <td>On</td>
+          <td align="center"><?php echo stream_resolve_include_path('CAS.php') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+        </tr>
+        <tr>
+          <td>php-LDAP:</td>
+          <td><?php echo function_exists('ldap_connect') ? 'On' : 'Off'; ?></td>
+          <td>On</td>
+          <td align="center"><?php echo function_exists('ldap_connect') ? '<img src="view/image/good.png" alt="Good" />' : '<img src="view/image/bad.png" alt="Bad" />'; ?></td>
+        </tr>
       </table>
     </fieldset>
     <p>3. Please make sure you have set the correct permissions on the files list below.</p>
