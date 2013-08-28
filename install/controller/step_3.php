@@ -312,10 +312,11 @@ class ControllerStep3 extends Controller {
 		  $this->error['ldap_host'] = "Error: LDAP host required!";
 		} else {
 		  $cntn = ldap_connect($this->request->post['ldap_host']);
-		  if(!$cntn) {
-		    $this->error['ldap_host'] = "Error: Could not connect to specified LDAP server.";
-		  } else {
+		  try {
+		    ldap_bind($cntn);
 		    ldap_close($cntn);
+		  } catch (Exception $e) {
+		    $this->error['ldap_host'] = "Error: Could not connect to specified LDAP server.";
 		  }
 		}
 
