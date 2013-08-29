@@ -375,11 +375,11 @@ class ControllerStep3 extends Controller {
 		  $this->error['sysaid_host'] = "Error: Please specify the Sysaid Server!";
 		}
 				
-		if ($this->request->post['sysaid_account']) {
+		if (!$this->request->post['sysaid_account']) {
 			$this->error['sysaid_account'] = 'Please specify the sysaid account.';
 		}
 				
-		if ($this->request->post['sysaid_serial'] && preg_match('/[^A-Z0-9_]/', $this->request->post['sysaid_serial'])) {
+		if (!$this->request->post['sysaid_serial'] || preg_match('/[^A-Z0-9]/', $this->request->post['sysaid_serial'])) {
 			$this->error['sysaid_serial'] = 'Sysaid Serial invalid!';
 		}
 				
