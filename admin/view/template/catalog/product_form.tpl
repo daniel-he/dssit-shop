@@ -62,6 +62,13 @@
                 <?php } ?></td>
             </tr>
             <tr>
+              <td><span class="required">*</span> <?php echo $entry_sysaid_category; ?></td>
+              <td><input type="text" name="sysaid_category" value="<?php echo $sysaid_category; ?>" />
+                <?php if ($error_sysaid_category) { ?>
+                <span class="error"><?php echo $error_sysaid_category; ?></span>
+                <?php } ?></td>
+            </tr>
+            <tr>
               <td><?php echo $entry_sku; ?></td>
               <td><input type="text" name="sku" value="<?php echo $sku; ?>" /></td>
             </tr>

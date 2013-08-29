@@ -32,6 +32,7 @@ $_['entry_description']      = 'Description:';
 $_['entry_store']            = 'Stores:';
 $_['entry_keyword']          = 'SEO Keyword:<br /><span class="help">Do not use spaces instead replace spaces with - and make sure the keyword is globally unique.</span>';
 $_['entry_model']            = 'Model:';
+$_['entry_sysaid_category']  = 'Sysaid Category:';
 $_['entry_sku']              = 'SKU:<br/><span class="help">Stock Keeping Unit</span>';
 $_['entry_upc']              = 'UPC:<br/><span class="help">Universal Product Code</span>';
 $_['entry_ean']              = 'EAN:<br/><span class="help">European Article Number</span>';
@@ -101,4 +102,5 @@ $_['error_warning']          = 'Warning: Please check the form carefully for err
 $_['error_permission']       = 'Warning: You do not have permission to modify products!';
 $_['error_name']             = 'Product Name must be greater than 3 and less than 255 characters!';
 $_['error_model']            = 'Product Model must be greater than 3 and less than 64 characters!';
+$_['error_sysaid_category']  = 'You must specify the Sysaid Category!';
 ?>
