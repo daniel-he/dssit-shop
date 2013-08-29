@@ -7,8 +7,8 @@ class ModelSysaidSysaid extends Model {
   public function makeTicket($data) {
     $ticket_no = '';
 
-    $sysaidApi = new SoapClient(SOAP_WSDL);
-    $sysaidSessId = $sysaidApi->login(SYSAID_ACCOUNT, "AD3\\japorito", "Abithiw2itb.Boafft.Lbyl!");
+    $sysaidApi = new SoapClient(SYSAID_WSDL);
+    $sysaidSessId = $sysaidApi->login(array(SYSAID_ACCOUNT, "AD3\\japorito", "Abithiw2itb.Boafft.Lbyl!"));
 
     $sysaidApi->logout($sysaddSessId);
 
