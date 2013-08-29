@@ -43,8 +43,14 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// LDAP' . "\n";
 			$output .= 'define(\'LDAP_HOST\', \'' . addslashes($this->request->post['ldap_host']) . '\');' . "\n";
-			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n";
-			$output .= '?>';				
+			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n\n";
+		
+			$output .= '// Sysaid' . "\n";
+			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes($this->request->post['sysaid_host']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_WSDL\', \'' . addslashes($this->request->post['sysaid_host']) . '/services/SysaidApiService?wsdl' . '\');' . "\n";
+			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_SERIAL\', \'' . addslashes($this->request->post['sysaid_serial']) . '\');' . "\n";
+			$output .= '?>';
 		
 			$file = fopen(DIR_OPENCART . 'config.php', 'w');
 		
@@ -90,9 +96,15 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// LDAP' . "\n";
 			$output .= 'define(\'LDAP_HOST\', \'' . addslashes($this->request->post['ldap_host']) . '\');' . "\n";
-			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n";
-			$output .= '?>';				
+			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n\n";
 				
+			$output .= '// Sysaid' . "\n";
+			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes($this->request->post['sysaid_host']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_WSDL\', \'' . addslashes($this->request->post['sysaid_host']) . '/services/SysaidApiService?wsdl' . '\');' . "\n";
+			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_SERIAL\', \'' . addslashes($this->request->post['sysaid_serial']) . '\');' . "\n";
+			$output .= '?>';
+		
 			$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
 		
 			fwrite($file, $output);
@@ -154,6 +166,24 @@ class ControllerStep3 extends Controller {
 			$this->data['error_ldap_search_base'] = $this->error['ldap_search_base'];
 		} else {
 			$this->data['error_ldap_search_base'] = '';
+		}
+		
+		if (isset($this->error['sysaid_host'])) {
+			$this->data['error_sysaid_host'] = $this->error['sysaid_host'];
+		} else {
+			$this->data['error_sysaid_host'] = '';
+		}
+		
+		if (isset($this->error['sysaid_account'])) {
+			$this->data['error_sysaid_account'] = $this->error['sysaid_account'];
+		} else {
+			$this->data['error_sysaid_account'] = '';
+		}
+		
+		if (isset($this->error['sysaid_serial'])) {
+			$this->data['error_sysaid_serial'] = $this->error['sysaid_serial'];
+		} else {
+			$this->data['error_sysaid_serial'] = '';
 		}
 		
 		if (isset($this->error['username'])) {
@@ -242,6 +272,24 @@ class ControllerStep3 extends Controller {
 			$this->data['ldap_search_base'] = '';
 		}
 		
+		if (isset($this->request->post['sysaid_host'])) {
+			$this->data['sysaid_host'] = html_entity_decode($this->request->post['sysaid_host']);
+		} else {
+			$this->data['sysaid_host'] = '';
+		}
+		
+		if (isset($this->request->post['sysaid_account'])) {
+			$this->data['sysaid_account'] = html_entity_decode($this->request->post['sysaid_account']);
+		} else {
+			$this->data['sysaid_account'] = '';
+		}
+		
+		if (isset($this->request->post['sysaid_serial'])) {
+			$this->data['sysaid_serial'] = html_entity_decode($this->request->post['sysaid_serial']);
+		} else {
+			$this->data['sysaid_serial'] = '';
+		}
+		
 		if (isset($this->request->post['username'])) {
 			$this->data['username'] = $this->request->post['username'];
 		} else {
@@ -321,6 +369,18 @@ class ControllerStep3 extends Controller {
 
 		if(!$this->request->post['ldap_search_base']) {
 		  $this->error['ldap_search_base'] = "Error: Please specify the LDAP search base!";
+		}
+				
+		if(!$this->request->post['sysaid_host']) {
+		  $this->error['sysaid_host'] = "Error: Please specify the Sysaid Server!";
+		}
+				
+		if ($this->request->post['sysaid_account']) {
+			$this->error['sysaid_account'] = 'Please specify the sysaid account.';
+		}
+				
+		if ($this->request->post['sysaid_serial'] && preg_match('/[^A-Z0-9_]/', $this->request->post['sysaid_serial'])) {
+			$this->error['sysaid_serial'] = 'Sysaid Serial invalid!';
 		}
 				
 		if (!$this->request->post['username']) {

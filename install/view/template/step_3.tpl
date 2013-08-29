@@ -107,7 +107,36 @@
 	</tr>
       </table>
     </fieldset>
-    <p>4. Please enter a username and password for the administration.</p>
+    <p>4. Please enter your Sysaid server details.</p>
+    <fieldset>
+      <table class="form">
+	<tr>
+	  <td><span class="required">*</span> Sysaid Server:</td>
+          <td><input type="text" name="sysaid_host" value="<?php echo $sysaid_host; ?>" />
+            <br />
+            <?php if ($error_sysaid_host) { ?>
+            <span class="required"><?php echo $error_sysaid_host; ?></span>
+            <?php } ?></td>
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> Sysaid Account:</td>
+          <td><input type="text" name="sysaid_account" value="<?php echo $sysaid_account; ?>" />
+            <br />
+            <?php if ($error_sysaid_account) { ?>
+            <span class="required"><?php echo $error_sysaid_account; ?></span>
+            <?php } ?></td>
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> Sysaid Serial:</td>
+          <td><input type="text" name="sysaid_serial" value="<?php echo $sysaid_serial; ?>" />
+            <br />
+            <?php if ($error_sysaid_serial) { ?>
+            <span class="required"><?php echo $error_sysaid_serial; ?></span>
+            <?php } ?></td>
+	</tr>
+      </table>
+    </fieldset>
+    <p>5. Please enter a username and password for the administration.</p>
     <fieldset>
       <table class="form">
         <tr>

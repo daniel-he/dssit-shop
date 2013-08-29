@@ -1318,6 +1318,10 @@ class ControllerCatalogProduct extends Controller {
       $this->error['model'] = $this->language->get('error_model');
     }
 		
+    if ((utf8_strlen($this->request->post['sysaid_category']) < 1) || (utf8_strlen($this->request->post['sysaid_category']) > 64)) {
+      $this->error['sysaid_category'] = $this->language->get('error_sysaid_category');
+    }
+		
     if ($this->error && !isset($this->error['warning'])) {
       $this->error['warning'] = $this->language->get('error_warning');
     }
