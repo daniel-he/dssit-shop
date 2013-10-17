@@ -26,7 +26,7 @@ class ModelSysaidSysaid extends Model {
   public function getTicket($ticket_no) {
     $sessId = $this->login(); 
 
-    $sysaidApi = new SoapClient(SYSAID_WSDL, array('classmap' => array('apiServiceRequest' => 'ApiServiceRequest'));
+    $sysaidApi = new SoapClient(SYSAID_WSDL, array('classmap' => array('apiServiceRequest' => 'ApiServiceRequest')));
 
     $params = array("sessionId" => $sessId, "apiSysObj" => new ApiServiceRequest(), "id" => $ticket_no);
     $ticket = get_object_vars($sysaidApi->loadByStringId($params));
