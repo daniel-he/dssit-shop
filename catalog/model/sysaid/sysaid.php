@@ -30,7 +30,7 @@ class ModelSysaidSysaid extends Model {
 
     $params = array("sessionId" => $sessId, "apiSysObj" => new ApiServiceRequest(), "id" => $ticket_no);
     $ticket = get_object_vars($sysaidApi->loadByStringId($params));
-    $ticket = $ticket["return"];
+    $ticket = (isset($ticket["return"]) ? $ticket["return"] : '');
 
     $this->logout($sessId);
 
