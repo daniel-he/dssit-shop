@@ -27,6 +27,10 @@ require_once(DIR_SYSTEM . 'library/weight.php');
 require_once(DIR_SYSTEM . 'library/length.php');
 require_once(DIR_SYSTEM . 'library/cart.php');
 
+// Sysaid Classes
+require_once(DIR_SYSTEM . 'library/apiSysaidObject.php');
+require_once(DIR_SYSTEM . 'library/apiServiceRequest.php');
+
 /**
 * Cas 2.0 client
 *
