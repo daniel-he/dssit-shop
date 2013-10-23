@@ -49,7 +49,7 @@ class ModelSysaidSysaid extends Model {
        */
     $sessId = $this->login(); 
 
-    $sysaidApi = new SoapClient(SYSAID_WSDL, array('classmap' => array('apiServiceRequest' => 'ApiServiceRequest'), 'trace' => TRUE));
+    $sysaidApi = new SoapClient(SYSAID_WSDL, array('classmap' => array('apiServiceRequest' => 'ApiServiceRequest')));
 
     $params['sessionId'] = $sessId;
     $params['apiSysObj'] = new ApiServiceRequest();
@@ -60,9 +60,6 @@ class ModelSysaidSysaid extends Model {
 
     $ticket = get_object_vars($sysaidApi->save($params));
     $ticket = $ticket["return"];
-    var_dump($ticket);
-
-    echo "Last request: " . htmlentities($sysaidApi->__getLastRequest());
 
     $this->logout($sessId);
 
