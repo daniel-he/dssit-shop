@@ -63,16 +63,22 @@ class ApiServiceRequest extends ApiSysaidObject {
   public $version;
   public $workaround;
 
-  public function ApiServiceRequest() {
-    $this->customDateFields = new stdClass();
-    $this->customDateFields->entry = new stdClass();
-    $this->customDateFields->entry->key = new stdClass();
-    $this->customDateFields->entry->value = new stdClass();
-  
-    $this->customFields = new stdClass();
-    $this->customFields->entry = new stdClass();
-    $this->customFields->entry->key = new stdClass();
-    $this->customFields->entry->value = new stdClass();
+  public function ApiServiceRequest($get=FALSE) {
+    if ($get) {
+      /* Ticket creation will not work if this is run.
+       * However, I think getTicket needs these set.
+       * Will test soon.
+       */
+      $this->customDateFields = new stdClass();
+      $this->customDateFields->entry = new stdClass();
+      $this->customDateFields->entry->key = new stdClass();
+      $this->customDateFields->entry->value = new stdClass();
+      
+      $this->customFields = new stdClass();
+      $this->customFields->entry = new stdClass();
+      $this->customFields->entry->key = new stdClass();
+      $this->customFields->entry->value = new stdClass();
+    }
   }
 }
 ?>

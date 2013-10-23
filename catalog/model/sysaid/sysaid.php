@@ -50,20 +50,17 @@ class ModelSysaidSysaid extends Model {
     $sessId = $this->login(); 
 
     $sysaidApi = new SoapClient(SYSAID_WSDL, array('classmap' => array('apiServiceRequest' => 'ApiServiceRequest'), 'trace' => TRUE));
-    $header = new SoapHeader(XSD_NAMESPACE, 'xsd');
-    $sysaidApi->__setSoapHeaders($header);
-
-    $inputTypes = array('string' => 'xsd:string', 'integer' => 'xsd:int', 'boolean' => 'xsd:boolean');
 
     $params['sessionId'] = $sessId;
     $params['apiSysObj'] = new ApiServiceRequest();
 
     foreach($srFields as $varname => $value) {
-      $params['apiSysObj']->{$varname} = new SoapVar($value, XSD_ANYTYPE, $inputTypes[gettype($value)]);
+      $params['apiSysObj']->{$varname} = $value;
     }
 
     $ticket = get_object_vars($sysaidApi->save($params));
-    //$ticket = $ticket["return"];
+    $ticket = $ticket["return"];
+    var_dump($ticket);
 
     echo "Last request: " . htmlentities($sysaidApi->__getLastRequest());
 
