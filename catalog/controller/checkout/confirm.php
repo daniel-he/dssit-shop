@@ -2,7 +2,14 @@
 class ControllerCheckoutConfirm extends Controller { 
   public function index() {
     $redirect = '';
-    
+    $ticket = array(
+		    'category' => 'Purchasing',
+		    'subCategory' => 'Other',
+		    'title' => 'Purchase for ' . $this->customer->getFirstName() . ' ' . $this->customer->getLastName() . ': ',
+		    'description' => 'Error: purchasing information not available.',
+		    'status' => 1
+    );
+
     if ($this->cart->hasShipping()) {
       // Validate if shipping address has been set.
       if ($this->customer->isLogged() && isset($this->session->data['shippingInfo'])) {					
@@ -252,9 +259,9 @@ class ControllerCheckoutConfirm extends Controller {
 	$data['accept_language'] = '';
       }
     
-      $this->load->model('checkout/order');
+      /*$this->load->model('checkout/order');
     
-      $this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);
+	$this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);*/
     
       $this->data['column_name'] = $this->language->get('column_name');
       $this->data['column_model'] = $this->language->get('column_model');
@@ -353,6 +360,9 @@ class ControllerCheckoutConfirm extends Controller {
       $this->template = 'default/template/checkout/confirm.tpl';
     }
   
+    $this->load->model('sysaid/sysaid');
+    $this->data['ticket_no'] = $this->model_sysaid_sysaid->makeTicket($ticket);
+
     $this->response->setOutput($this->render());
   }
 }
