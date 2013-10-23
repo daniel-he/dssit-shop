@@ -15,12 +15,6 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		} else {
 			$this->data['account'] = '';
 		}
-		
-		if (isset($this->session->data['billingInfo']['comment'])) {
-			$this->data['comment'] = $this->session->data['billingInfo']['comment'];
-		} else {
-			$this->data['comment'] = '';
-		}
 			
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_method.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/checkout/payment_method.tpl';

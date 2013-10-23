@@ -2,6 +2,7 @@
 class ControllerCheckoutConfirm extends Controller { 
   public function index() {
     $redirect = '';
+    // This initializes at least the mandatory ticket creation fields.
     $ticket = array(
 		    'category' => 'Purchasing',
 		    'subCategory' => 'Other',
