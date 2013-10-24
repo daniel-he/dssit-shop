@@ -2,15 +2,9 @@
 <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
 <p><?php echo $text_payment_method; ?></p>
-<table class="form">
-  <tr>
-    <td><span class="required">*</span> <?php echo $entry_dafis; ?></td>
-    <td><input type="text" name="account" value="<?php echo $account; ?>" class="large-field" /></td>
-  </tr>
-</table>
 <br />
-<b><?php echo $text_comments; ?></b>
-<textarea name="comment" rows="8" style="width: 98%;"><?php echo $comment; ?></textarea>
+<span class="required">*</span><b><?php echo $entry_dafis; ?></b>
+<textarea name="account" rows="8" style="width: 98%;"><?php echo $account; ?></textarea>
 <br />
 <br />
 <div class="buttons">

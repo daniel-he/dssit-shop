@@ -6,7 +6,6 @@ class ControllerCheckoutPaymentMethod extends Controller {
 		$this->data['entry_dafis'] = $this->language->get('entry_dafis');
 		
 		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
-		$this->data['text_comments'] = $this->language->get('text_comments');
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
 	  
@@ -70,8 +69,6 @@ class ControllerCheckoutPaymentMethod extends Controller {
 			
 			if (!$json) {
 				$this->session->data['billingInfo']['account'] = $this->request->post['account'];
-			  
-				$this->session->data['billingInfo']['comment'] = strip_tags($this->request->post['comment']);
 			}				
 		}
 		
