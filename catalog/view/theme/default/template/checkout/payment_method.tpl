@@ -1,8 +1,6 @@
 <?php if (isset($error_warning) && $error_warning) { ?>
 <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
-<p><?php echo $text_payment_method; ?></p>
-<br />
 <span class="required">*</span><b><?php echo $entry_dafis; ?></b>
 <textarea name="account" rows="8" style="width: 98%;"><?php echo $account; ?></textarea>
 <br />
