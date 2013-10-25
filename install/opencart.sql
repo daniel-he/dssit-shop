@@ -1550,6 +1550,7 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (419, 'module', 'slideshow'),
 (3141, 'payment', 'dafis'),
 (1592, 'shipping', 'service_center_pickup'),
+(8979, 'shipping', 'other'),
 (6535, 'shipping', 'office_delivery');
 
 
@@ -3196,7 +3197,9 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (129, 0, 'config', 'config_password', '1', 0),
 (130, 0, 'config', 'config_product_count', '1', 0),
 (131, 0, 'service_center_pickup', 'service_center_pickup_sort_order', '2', 0),
-(132, 0, 'service_center_pickup', 'service_center_pickup_status', '1', 0);
+(132, 0, 'service_center_pickup', 'service_center_pickup_status', '1', 0),
+(133, 0, 'other', 'other_sort_order', '2', 0),
+(134, 0, 'other', 'other_status', '1', 0);
 
 -- --------------------------------------------------------
 
