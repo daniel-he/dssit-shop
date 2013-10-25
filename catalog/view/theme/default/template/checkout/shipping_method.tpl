@@ -5,9 +5,6 @@
 <p><?php echo $text_shipping_method; ?></p>
 <table class="radio">
   <?php foreach ($shipping_methods as $shipping_method) { ?>
-  <tr>
-    <td colspan="3"><b><?php echo $shipping_method['title']; ?></b></td>
-  </tr>
   <?php if (!$shipping_method['error']) { ?>
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
   <tr class="highlight">
