@@ -306,7 +306,7 @@ $('#button-shipping-address').live('click', function() {
 	$.ajax({
 		url: 'index.php?route=shipping/'+code+'/validate',
 		type: 'post',
-		data: $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'password\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address select, #shipping-address textarea'),
+		data: $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'password\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address select'),
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-shipping-address').attr('disabled', true);
