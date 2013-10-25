@@ -1,3 +1,4 @@
+<b><?php echo $entry_additional_info; ?></b>
 <textarea name="additional_info" rows="8" style="width: 98%;"><?php echo $additional_info; ?></textarea>
 <br />
 <div class="buttons">
