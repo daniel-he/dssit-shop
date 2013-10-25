@@ -1,13 +1,13 @@
 <?php
 class ModelShippingOther extends Model {
   function getQuote($address) {
-    $this->language->load('shipping/other_pickup');
+    $this->language->load('shipping/other');
     
     $method_data = array();
     
     $quote_data = array();
     
-    $quote_data['service_center_pickup'] = array(
+    $quote_data['other'] = array(
       'code'         => 'other.other',
       'title'        => $this->language->get('text_description'),
       'cost'         => $this->config->get('other_cost'),
