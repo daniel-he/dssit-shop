@@ -1,5 +1,5 @@
 <?php 
-class ControllerShippingServiceCenterPickup extends Controller {
+class ControllerOtherPickup extends Controller {
   	public function index() {	
 		$this->language->load('checkout/checkout');
 		
