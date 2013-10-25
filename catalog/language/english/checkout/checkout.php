@@ -85,7 +85,7 @@ $_['error_agree']                    = 'Warning: You must agree to the %s!';
 $_['error_address']                  = 'Warning: You must select address!';
 $_['error_shipping']                 = 'Warning: Shipping method required!';
 $_['error_no_shipping']              = 'Warning: No Shipping options are available. Please <a href="%s">contact us</a> for assistance!';
-$_['error_payment']                  = 'Warning: Payment account required!';
+$_['error_payment']                  = 'Warning: Fund description required!';
 $_['error_no_payment']               = 'Warning: No Payment options are available. Please <a href="%s">contact us</a> for assistance!';
 
 $_['text_trial']                    = '%s every %s %s for %s payments then ';
