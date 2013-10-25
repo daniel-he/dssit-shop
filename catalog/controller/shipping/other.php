@@ -1,5 +1,5 @@
 <?php 
-class ControllerOther extends Controller {
+class ControllerShippingOther extends Controller {
   	public function index() {	
 		$this->language->load('checkout/checkout');
 		
