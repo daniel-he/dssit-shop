@@ -38,7 +38,7 @@ $_['column_price']                   = 'Price';
 $_['column_total']                   = 'Total';
 
 // Entry
-$_['entry_additional_info']	     = 'Please give additional information about how you would like your purchase delivered:'
+$_['entry_additional_info']	     = 'Please give additional information about how you would like your purchase delivered:';
 $_['entry_email_address']            = 'E-Mail Address:';
 $_['entry_email']                    = 'E-Mail:';
 $_['entry_password']                 = 'Password:';
