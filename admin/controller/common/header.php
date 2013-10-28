@@ -186,8 +186,8 @@ class ControllerCommonHeader extends Controller {
 			$this->data['setting'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['store'] = HTTP_CATALOG;
 			$this->data['stock_status'] = $this->url->link('localisation/stock_status', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['sysaid_account'] = $this->url->link('sysaid/sysaid_account', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['sysaid_config'] = $this->url->link('sysaid/sysaid_config', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['sysaid_account'] = $this->url->link('sysaid/account', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['sysaid_config'] = $this->url->link('sysaid/config', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['total'] = $this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL');
