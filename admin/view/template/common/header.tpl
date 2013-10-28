@@ -182,6 +182,12 @@ $(document).ready(function(){
               <li><a href="<?php echo $user_group; ?>"><?php echo $text_user_group; ?></a></li>
             </ul>
           </li>
+          <li><a class="parent"><?php echo $text_sysaid; ?></a>
+            <ul>
+              <li><a href="<?php echo $sysaid_account; ?>"><?php echo $text_sysaid_account; ?></a></li>
+              <li><a href="<?php echo $sysaid_config; ?>"><?php echo $text_sysaid_config; ?></a></li>
+            </ul>
+          </li>
           <li><a class="parent"><?php echo $text_localisation; ?></a>
             <ul>
               <li><a href="<?php echo $language; ?>"><?php echo $text_language; ?></a></li>
