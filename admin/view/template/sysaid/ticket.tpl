@@ -50,7 +50,7 @@ function addSubcategory() {
 	html  = '<tbody id="subcategory-row' + subcategory_row + '">';
 	html += '  <tr>';
 	html += '    <td class="left"><input type="text" name="subcategory' + subcategory_row + '"></td>';
-	html += '    <td class="left"><a onclick="$(\'#module-row' + module_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
+	html += '    <td class="left"><a onclick="$(\'#subcategory-row' + subcategory_row + '\').remove();" class="button"><?php echo $button_remove; ?></a></td>';
 	html += '  </tr>';
 	html += '</tbody>';
 	
