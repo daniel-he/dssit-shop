@@ -101,5 +101,6 @@ $_['text_recurring_profile']           = 'Recurring Profiles';
 $_['text_sysaid']                      = 'Sysaid';
 $_['text_sysaid_account']              = 'Sysaid Account';
 $_['text_sysaid_config']               = 'Configuration';
+$_['text_sysaid_ticket']               = 'Ticket Parameters';
 
 ?>

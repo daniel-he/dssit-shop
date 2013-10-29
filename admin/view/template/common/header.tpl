@@ -186,6 +186,7 @@ $(document).ready(function(){
             <ul>
               <li><a href="<?php echo $sysaid_account; ?>"><?php echo $text_sysaid_account; ?></a></li>
               <li><a href="<?php echo $sysaid_config; ?>"><?php echo $text_sysaid_config; ?></a></li>
+              <li><a href="<?php echo $sysaid_ticket; ?>"><?php echo $text_sysaid_ticket; ?></a></li>
             </ul>
           </li>
           <li><a class="parent"><?php echo $text_localisation; ?></a>

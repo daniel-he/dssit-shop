@@ -94,6 +94,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_sysaid'] = $this->language->get('text_sysaid');
 		$this->data['text_sysaid_account'] = $this->language->get('text_sysaid_account');
 		$this->data['text_sysaid_config'] = $this->language->get('text_sysaid_config');
+		$this->data['text_sysaid_ticket'] = $this->language->get('text_sysaid_ticket');
 		$this->data['text_tax'] = $this->language->get('text_tax');
 		$this->data['text_tax_class'] = $this->language->get('text_tax_class');
 		$this->data['text_tax_rate'] = $this->language->get('text_tax_rate');
@@ -188,6 +189,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['stock_status'] = $this->url->link('localisation/stock_status', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['sysaid_account'] = $this->url->link('sysaid/account', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['sysaid_config'] = $this->url->link('sysaid/config', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['sysaid_ticket'] = $this->url->link('sysaid/ticket', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_class'] = $this->url->link('localisation/tax_class', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['tax_rate'] = $this->url->link('localisation/tax_rate', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['total'] = $this->url->link('extension/total', 'token=' . $this->session->data['token'], 'SSL');
