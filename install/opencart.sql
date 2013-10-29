@@ -3200,7 +3200,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (132, 0, 'service_center_pickup', 'service_center_pickup_status', '1', 0),
 (133, 0, 'other', 'other_sort_order', '3', 0),
 (134, 0, 'other', 'other_status', '1', 0),
-(135, 0, 'sysaid_subcategories', 'sysaid_subcategories', '', 1);
+(135, 0, 'sysaid_subcategories', 'sysaid_subcategories', 'a:5:{i:0;s:8:"Computer";i:1;s:28:"Computer Replacement Program";i:2;s:5:"Other";i:3;s:7:"Printer";i:4;s:8:"Software";}', 1);
 
 -- --------------------------------------------------------
 
