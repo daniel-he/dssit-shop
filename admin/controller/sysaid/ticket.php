@@ -58,11 +58,11 @@ class ControllerSysaidTicket extends Controller {
 		
 		$this->data['subcategories'] = array();
 		
-		if (isset($this->request->post)) {
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 		  $this->data['subcategories'] = array_values($this->request->post);
 		} elseif ($this->config->get('sysaid_subcategories')) { 
 			$this->data['subcategories'] = $this->config->get('sysaid_subcategories');
-		}	
+		}
 		
 		$this->template = 'sysaid/ticket.tpl';
 		$this->children = array(
