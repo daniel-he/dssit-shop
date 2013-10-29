@@ -10,7 +10,7 @@ class ControllerSysaidTicket extends Controller {
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('affiliate', $this->request->post);		
+			$this->model_setting_setting->editSetting('sysaid_subcategories', $this->request->post);		
 					
 			$this->session->data['success'] = $this->language->get('text_success');
 						
@@ -58,8 +58,8 @@ class ControllerSysaidTicket extends Controller {
 		
 		$this->data['subcategories'] = array();
 		
-		if (isset($this->request->post['affiliate_module'])) {
-			$this->data['subcategories'] = $this->request->post['affiliate_module'];
+		if (isset($this->request->post['sysaid_subcategories'])) {
+			$this->data['subcategories'] = $this->request->post['sysaid_subcategories'];
 		} elseif ($this->config->get('sysaid_subcategories')) { 
 			$this->data['subcategories'] = $this->config->get('sysaid_subcategories');
 		}	
@@ -74,7 +74,7 @@ class ControllerSysaidTicket extends Controller {
 	}
 	
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'module/affiliate')) {
+		if (!$this->user->hasPermission('modify', 'sysaid/ticket')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 		
