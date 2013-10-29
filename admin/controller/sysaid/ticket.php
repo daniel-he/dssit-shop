@@ -10,10 +10,10 @@ class ControllerSysaidTicket extends Controller {
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting('sysaid_subcategories', $this->request->post);		
+		  $this->model_setting_setting->editSetting('sysaid_subcategories', array("sysaid_subcategories" => array_values($this->request->post)));		
 					
 			$this->session->data['success'] = $this->language->get('text_success');
-						
+			
 			$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 				
@@ -58,8 +58,8 @@ class ControllerSysaidTicket extends Controller {
 		
 		$this->data['subcategories'] = array();
 		
-		if (isset($this->request->post['sysaid_subcategories'])) {
-			$this->data['subcategories'] = $this->request->post['sysaid_subcategories'];
+		if (isset($this->request->post)) {
+		  $this->data['subcategories'] = array_values($this->request->post);
 		} elseif ($this->config->get('sysaid_subcategories')) { 
 			$this->data['subcategories'] = $this->config->get('sysaid_subcategories');
 		}	
