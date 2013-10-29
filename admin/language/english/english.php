@@ -66,6 +66,7 @@ $_['button_add_reward']             = 'Add Reward Points';
 $_['button_add_route']              = 'Add Route';
 $_['button_add_rule' ]              = 'Add Rule';
 $_['button_add_module']             = 'Add Module';
+$_['button_add_subcategory']        = 'Add Sysaid Subcategory';
 $_['button_add_link']               = 'Add Link';
 $_['button_update_total']           = 'Update Totals';
 $_['button_approve']                = 'Approve';

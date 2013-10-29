@@ -3199,7 +3199,8 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (131, 0, 'service_center_pickup', 'service_center_pickup_sort_order', '2', 0),
 (132, 0, 'service_center_pickup', 'service_center_pickup_status', '1', 0),
 (133, 0, 'other', 'other_sort_order', '3', 0),
-(134, 0, 'other', 'other_status', '1', 0);
+(134, 0, 'other', 'other_status', '1', 0),
+(135, 0, 'sysaid', 'sysaid_subcategories', '', 1);
 
 -- --------------------------------------------------------
 
