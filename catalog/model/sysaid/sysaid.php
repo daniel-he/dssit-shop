@@ -59,7 +59,7 @@ class ModelSysaidSysaid extends Model {
     }
 
     $ticket = get_object_vars($sysaidApi->save($params));
-    $ticket = (isset($ticket["return"] ? $ticket["return"] : FALSE));
+    $ticket = (isset($ticket["return"]) ? $ticket["return"] : FALSE);
 
     $this->logout($sessId);
 

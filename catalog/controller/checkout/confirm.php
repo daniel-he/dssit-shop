@@ -20,13 +20,16 @@ class ControllerCheckoutConfirm extends Controller {
       $redirect = $this->url->link('checkout/checkout', '', 'SSL');
     }
 
-    $ticket['description'] = '<b>Account Holder\'s Information:</b></br>';
+    $ticket['description'] = 'Account Holder\'s Information:
+';
     foreach($payment_address as $key => $value) {
-      $ticket['description'] .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+      $ticket['description'] .= '     ';
       $ticket['description'] .= ($key . ': ');
-      $ticket['description'] .= ($value . '</br>');
+      $ticket['description'] .= ($value . '
+');
     }
-    $ticket['description'] .= '</br>';
+    $ticket['description'] .= '
+';
     
     // Validate if account has been set.	
     if (!isset($this->session->data['billingInfo']['account'])) {
@@ -48,14 +51,18 @@ class ControllerCheckoutConfirm extends Controller {
 	$redirect = $this->url->link('checkout/checkout', '', 'SSL');
       }
 
-      $ticket['description'] .= '<b>Delivery Information:</b></br>';
-      $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . '</br>');
+      $ticket['description'] .= 'Delivery Information:
+';
+      $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . '
+');
       foreach($shipping_address as $key => $value) {
-	$ticket['description'] .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+	$ticket['description'] .= '     ';
 	$ticket['description'] .= ($key . ': ');
-	$ticket['description'] .= ($value . '</br>');
+	$ticket['description'] .= ($value . '
+');
       }
-      $ticket['description'] .= '</br>';
+      $ticket['description'] .= '
+';
     } else {
       unset($this->session->data['shipping_method']);
       unset($this->session->data['shipping_methods']);
@@ -215,14 +222,19 @@ class ControllerCheckoutConfirm extends Controller {
       }
 
       foreach($product_data as $theprod) {
-	$ticket['description'] .= '</br>';
-	$ticket['description'] .= ('<b>' . $theprod['name'] . '</b>');
-	$ticket['description'] .= (' Quantity: ' . $theprod['quantity']);
-	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.</br>');
-	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . '</br>');
-	$ticket['description'] .= ('Model: ' . $theprod['model'] . '</br>');
+	$ticket['description'] .= '
+';
+	$ticket['description'] .= ($theprod['name'] . ' (');
+	$ticket['description'] .= ('Quantity: ' . $theprod['quantity']);
+	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.)
+');
+	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . '
+');
+	$ticket['description'] .= ('Model: ' . $theprod['model'] . '
+');
 	foreach($theprod['option'] as $theopt) {
-	  $ticket['description'] .= ('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $theopt['name'] . ': ' . $theopt['value'] . '</br>');
+	  $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . '
+');
 	}
       }  
 
