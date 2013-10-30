@@ -191,6 +191,15 @@ class ControllerCheckoutConfirm extends Controller {
 	}
       }
     
+      foreach($product_data as $theprod) {
+	$ticket['description'] .= '</br>';
+	$ticket['description'] .= ('<b>' . $theprod['name'] . '</b>');
+	$ticket['description'] .= (' $' .$theprod['total'] . '</br>');
+	foreach($theprod['option'] as $theopt) {
+	  $ticket['description'] .= ('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $theopt['name'] . ': ' . $theopt['value'] . '</br>');
+	}
+      }
+
       // Gift Voucher
       $voucher_data = array();
     
