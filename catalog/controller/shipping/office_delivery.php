@@ -109,7 +109,6 @@ class ControllerShippingOfficeDelivery extends Controller {
 			$this->session->data['shippingInfo']['firstname'] = trim($this->request->post['firstname']);
 			$this->session->data['shippingInfo']['lastname'] = trim($this->request->post['lastname']);
 			$this->session->data['shippingInfo']['email'] = trim($this->request->post['email']);
-			$this->session->data['shippingInfo']['company'] = trim($this->request->post['company']);
 			$this->session->data['shippingInfo']['address_1'] = $this->request->post['address_1'];
 			$this->session->data['shippingInfo']['building_id'] = $this->request->post['building_id'];
 			
