@@ -292,6 +292,7 @@ class Cart {
 						'width'                     => $product_query->row['width'],
 						'height'                    => $product_query->row['height'],
 						'length_class_id'           => $product_query->row['length_class_id'],
+						'sysaid_category' => $product_querys->row['sysaid_category'],
                         'profile_id'                => $profile_id,
                         'profile_name'              => $profile_name,
                         'recurring'                 => $recurring,
