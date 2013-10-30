@@ -17,6 +17,17 @@ class Cart {
       		$this->session->data['cart'] = array();
     	}
 	}
+
+	public function getMaxPriceItem() {
+	  $maxPriceItem['total'] = -1;
+	  foreach($this->getProducts() as $product) {
+	    if($product['total'] > $maxPriceItem['total']) {
+	      $maxPriceItem = $product;
+	    }
+	  }
+
+	  return $maxPriceItem;
+	}
 	      
   	public function getProducts() {
 		if (!$this->data) {

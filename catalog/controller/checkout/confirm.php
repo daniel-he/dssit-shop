@@ -84,6 +84,9 @@ class ControllerCheckoutConfirm extends Controller {
 	break;
       }				
     }
+
+    $maxPriceItem = $this->cart->getMaxPriceItem();
+    $ticket['subCategory'] = $maxPriceItem['sysaid_category'];
     
     if (!$redirect) {
       $total_data = array();
