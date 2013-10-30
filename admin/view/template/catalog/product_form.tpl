@@ -65,7 +65,7 @@
               <td><span class="required">*</span> <?php echo $entry_sysaid_category; ?></td>
               <td>
 	      <select name="sysaid_category">
-	      <?php foreach($sysaid_categories as $syscat) { ?>
+	      <?php foreach($sysaid_subcategories as $syscat) { ?>
 	        <?php if ($sysaid_category == $syscat) { ?>
 		  <option value="<?php echo $syscat; ?>" selected="true"><?php echo $syscat; ?></option>
 		<?php } else { ?>
