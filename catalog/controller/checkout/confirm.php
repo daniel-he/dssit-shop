@@ -156,8 +156,22 @@ class ControllerCheckoutConfirm extends Controller {
       $product_data = array();
       
       foreach ($this->cart->getProducts() as $product) {
-	$option_data = array();
+	$product_data[] = array(
+				'product_id' => $product['product_id'],
+				'name'       => $product['name'],
+				'model'      => $product['model'],
+				'option'     => $option_data,
+				'download'   => $product['download'],
+				'quantity'   => $product['quantity'],
+				'subtract'   => $product['subtract'],
+				'price'      => $product['price'],
+				'total'      => $product['total'],
+				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
+				'reward'     => $product['reward']
+				); 
 	
+	$option_data = array();
+	 
 	foreach ($product['option'] as $option) {
 	  if ($option['type'] != 'file') {
 	    $value = $option['option_value'];	
@@ -175,20 +189,6 @@ class ControllerCheckoutConfirm extends Controller {
 				 'type'                    => $option['type']
 				 );					
 	}
-	 
-	$product_data[] = array(
-				'product_id' => $product['product_id'],
-				'name'       => $product['name'],
-				'model'      => $product['model'],
-				'option'     => $option_data,
-				'download'   => $product['download'],
-				'quantity'   => $product['quantity'],
-				'subtract'   => $product['subtract'],
-				'price'      => $product['price'],
-				'total'      => $product['total'],
-				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
-				'reward'     => $product['reward']
-				); 
       }
     
       // Gift Voucher
@@ -213,7 +213,7 @@ class ControllerCheckoutConfirm extends Controller {
       $data['products'] = $product_data;
       $data['vouchers'] = $voucher_data;
       $data['totals'] = $total_data;
-      $data['comment'] = $this->session->data['comment'];
+      $data['comment'] = (isset($this->session->data['shippingInfo']['comment']) ? $this->session->data['shippingInfo']['comment'] : '');
       $data['total'] = $total;
     
       if (isset($this->request->cookie['tracking'])) {
@@ -350,7 +350,7 @@ class ControllerCheckoutConfirm extends Controller {
     
       $this->data['totals'] = $total_data;
     
-      $this->data['payment'] = $this->getChild('payment/' . $this->session->data['payment_method']['code']);
+      //$this->data['payment'] = $this->getChild('payment/' . $this->session->data['payment_method']['code']);
     } else {
       $this->data['redirect'] = $redirect;
     }			
