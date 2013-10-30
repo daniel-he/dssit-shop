@@ -224,6 +224,10 @@ class Customer {
   	public function getFax() {
 		return $this->fax;
   	}
+
+	public function getUid() {
+	       return $this->uid;
+	}
 	
   	public function getCustomerGroupId() {
 		return $this->customer_group_id;	

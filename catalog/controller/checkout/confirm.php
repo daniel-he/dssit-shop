@@ -7,6 +7,9 @@ class ControllerCheckoutConfirm extends Controller {
 		    'category' => 'Purchasing',
 		    'subCategory' => 'Other',
 		    'title' => 'Purchase for ' . $this->customer->getFirstName() . ' ' . $this->customer->getLastName() . ': ',
+		    'requestUser' => "AD3\\" . $this->customer->getUid(),
+		    'srType' => 'Request',
+		    'emailAccount' => $this->customer->getEmail(),
 		    'description' => 'Error: purchasing information not available.',
 		    'status' => 1
     );
