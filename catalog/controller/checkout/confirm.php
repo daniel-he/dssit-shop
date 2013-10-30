@@ -11,6 +11,28 @@ class ControllerCheckoutConfirm extends Controller {
 		    'status' => 1
     );
 
+        // Validate if payment address has been set.
+    if ($this->customer->isLogged() && isset($this->session->data['billingInfo'])) {
+      $payment_address = $this->session->data['billingInfo'];
+    }	
+    
+    if (empty($payment_address)) {
+      $redirect = $this->url->link('checkout/checkout', '', 'SSL');
+    }
+
+    $ticket['description'] = '<b>Account Holder\'s Information:</b></br>';
+    foreach($payment_address as $key => $value) {
+      $ticket['description'] .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+      $ticket['description'] .= ($key . ': ');
+      $ticket['description'] .= ($value . '</br>');
+    }
+    $ticket['description'] .= '</br>';
+    
+    // Validate if account has been set.	
+    if (!isset($this->session->data['billingInfo']['account'])) {
+      $redirect = $this->url->link('checkout/checkout', '', 'SSL');
+    }
+
     if ($this->cart->hasShipping()) {
       // Validate if shipping address has been set.
       if ($this->customer->isLogged() && isset($this->session->data['shippingInfo'])) {					
@@ -25,23 +47,18 @@ class ControllerCheckoutConfirm extends Controller {
       if (!isset($this->session->data['shipping_method'])) {
 	$redirect = $this->url->link('checkout/checkout', '', 'SSL');
       }
+
+      $ticket['description'] .= '<b>Delivery Information:</b></br>';
+      $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . '</br>');
+      foreach($shipping_address as $key => $value) {
+	$ticket['description'] .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+	$ticket['description'] .= ($key . ': ');
+	$ticket['description'] .= ($value . '</br>');
+      }
+      $ticket['description'] .= '</br>';
     } else {
       unset($this->session->data['shipping_method']);
       unset($this->session->data['shipping_methods']);
-    }
-    
-    // Validate if payment address has been set.
-    if ($this->customer->isLogged() && isset($this->session->data['billingInfo'])) {
-      $payment_address = $this->session->data['billingInfo'];
-    }	
-    
-    if (empty($payment_address)) {
-      $redirect = $this->url->link('checkout/checkout', '', 'SSL');
-    }			
-    
-    // Validate if account has been set.	
-    if (!isset($this->session->data['billingInfo']['account'])) {
-      $redirect = $this->url->link('checkout/checkout', '', 'SSL');
     }
     
     // Validate cart has products and has stock.	
@@ -156,22 +173,10 @@ class ControllerCheckoutConfirm extends Controller {
       $product_data = array();
       
       foreach ($this->cart->getProducts() as $product) {
-	$product_data[] = array(
-				'product_id' => $product['product_id'],
-				'name'       => $product['name'],
-				'model'      => $product['model'],
-				'option'     => $option_data,
-				'download'   => $product['download'],
-				'quantity'   => $product['quantity'],
-				'subtract'   => $product['subtract'],
-				'price'      => $product['price'],
-				'total'      => $product['total'],
-				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
-				'reward'     => $product['reward']
-				); 
-	
+
+
 	$option_data = array();
-	 
+	
 	foreach ($product['option'] as $option) {
 	  if ($option['type'] != 'file') {
 	    $value = $option['option_value'];	
@@ -189,16 +194,34 @@ class ControllerCheckoutConfirm extends Controller {
 				 'type'                    => $option['type']
 				 );					
 	}
+	 
+	$product_data[] = array(
+				'product_id' => $product['product_id'],
+				'name'       => $product['name'],
+				'model'      => $product['model'],
+				'option'     => $option_data,
+				'download'   => $product['download'],
+				'quantity'   => $product['quantity'],
+				'subtract'   => $product['subtract'],
+				'price'      => $product['price'],
+				'total'      => $product['total'],
+				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
+				'reward'     => $product['reward']
+				); 
+
       }
-    
+
       foreach($product_data as $theprod) {
 	$ticket['description'] .= '</br>';
 	$ticket['description'] .= ('<b>' . $theprod['name'] . '</b>');
-	$ticket['description'] .= (' $' .$theprod['total'] . '</br>');
+	$ticket['description'] .= (' Quantity: ' . $theprod['quantity']);
+	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.</br>');
+	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . '</br>');
+	$ticket['description'] .= ('Model: ' . $theprod['model'] . '</br>');
 	foreach($theprod['option'] as $theopt) {
 	  $ticket['description'] .= ('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $theopt['name'] . ': ' . $theopt['value'] . '</br>');
 	}
-      }
+      }  
 
       // Gift Voucher
       $voucher_data = array();
