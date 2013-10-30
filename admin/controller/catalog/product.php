@@ -722,7 +722,9 @@ class ControllerCatalogProduct extends Controller {
 					 'href'      => $this->url->link('catalog/product', 'token=' . $this->session->data['token'] . $url, 'SSL'),
 					 'separator' => ' :: '
 					 );
-									
+					
+    $this->data['sysaid_subcategories'] = $this->config->get('sysaid_subcategories');
+				
     if (!isset($this->request->get['product_id'])) {
       $this->data['action'] = $this->url->link('catalog/product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
     } else {
@@ -1316,10 +1318,6 @@ class ControllerCatalogProduct extends Controller {
 		
     if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
       $this->error['model'] = $this->language->get('error_model');
-    }
-		
-    if ((utf8_strlen($this->request->post['sysaid_category']) < 1) || (utf8_strlen($this->request->post['sysaid_category']) > 64)) {
-      $this->error['sysaid_category'] = $this->language->get('error_sysaid_category');
     }
 		
     if ($this->error && !isset($this->error['warning'])) {

@@ -63,7 +63,16 @@
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_sysaid_category; ?></td>
-              <td><input type="text" name="sysaid_category" value="<?php echo $sysaid_category; ?>" />
+              <td>
+	      <select name="sysaid_category">
+	      <?php foreach($sysaid_categories as $syscat) { ?>
+	        <?php if ($sysaid_category == $syscat) { ?>
+		  <option value="<?php echo $syscat; ?>" selected="true"><?php echo $syscat; ?></option>
+		<?php } else { ?>
+		  <option value="<?php echo $syscat; ?>"><?php echo $syscat; ?></option>
+		<?php } ?>
+	      <?php } ?>
+	      </select>
                 <?php if ($error_sysaid_category) { ?>
                 <span class="error"><?php echo $error_sysaid_category; ?></span>
                 <?php } ?></td>
