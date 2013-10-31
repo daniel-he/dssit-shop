@@ -692,27 +692,6 @@ INSERT INTO `oc_category_to_store` (`category_id`, `store_id`) VALUES
 -- Table structure for table `oc_country`
 --
 
-DROP TABLE IF EXISTS `oc_building`;
-CREATE TABLE `oc_building` (
-  `building_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`building_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `oc_country`
---
-
-INSERT INTO `oc_building` (`building_id`, `name`, `status`) VALUES
-(1, 'Young', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `oc_country`
---
-
 DROP TABLE IF EXISTS `oc_country`;
 CREATE TABLE `oc_country` (
   `country_id` int(11) NOT NULL AUTO_INCREMENT,
