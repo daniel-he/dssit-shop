@@ -12,18 +12,14 @@
    <td><input type="text" name="email" value="<?php echo $email; ?>" class="large-field" /></td>
    </tr>
   <tr>
-    <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-    <td><input type="text" name="address_1" value="<?php echo $address_1; ?>" class="large-field" /></td>
-  </tr>
-  <tr>
-    <td><span class="required">*</span> <?php echo $entry_building; ?></td>
-    <td><select name="building_id" class="large-field">
+    <td><span class="required">*</span> <?php echo $entry_service_center; ?></td>
+    <td><select name="service_center" class="large-field">
         <option value=""><?php echo $text_select; ?></option>
-        <?php foreach ($buildings as $building) { ?>
-        <?php if ($building['building_id'] == $building_id) { ?>
-        <option value="<?php echo $building['building_id']; ?>" selected="selected"><?php echo $building['name']; ?></option>
+        <?php foreach ($service_centers as $theserv) { ?>
+        <?php if ($theserv == $service_center) { ?>
+        <option value="<?php echo $theserv; ?>" selected="selected"><?php echo $theserv; ?></option>
         <?php } else { ?>
-        <option value="<?php echo $building['building_id']; ?>"><?php echo $building['name']; ?></option>
+        <option value="<?php echo $theserv; ?>"><?php echo $theserv; ?></option>
         <?php } ?>
         <?php } ?>
       </select></td>
