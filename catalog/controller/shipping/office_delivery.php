@@ -39,21 +39,19 @@ class ControllerShippingOfficeDelivery extends Controller {
 			$this->data['company'] = '';
 		}
 		
-		if (isset($this->session->data['shippingInfo']['address_1'])) {
-			$this->data['address_1'] = $this->session->data['shippingInfo']['address_1'];			
+		if (isset($this->session->data['shippingInfo']['Room Number'])) {
+			$this->data['address_1'] = $this->session->data['shippingInfo']['Room Number'];			
 		} else {
 			$this->data['address_1'] = '';
 		}
 
-		if (isset($this->session->data['shippingInfo']['building_id'])) {
-			$this->data['building_id'] = $this->session->data['shippingInfo']['building_id'];		
+		if (isset($this->session->data['shippingInfo']['Building'])) {
+			$this->data['Building'] = $this->session->data['shippingInfo']['Building'];		
 		} else {
-			$this->data['building_id'] = '';
+			$this->data['Building'] = '';
 		}
 					
-		$this->load->model('localisation/building');
-		
-		$this->data['buildings'] = $this->model_localisation_building->getBuildings();
+		$this->data['buildings'] = $this->config->get('sysaid_config_buildings');
 		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/shipping/office_delivery.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/shipping/office_delivery.tpl';
@@ -96,11 +94,9 @@ class ControllerShippingOfficeDelivery extends Controller {
 				$json['error']['address_1'] = $this->language->get('error_address_1');
 			}
 			
-			$this->load->model('localisation/building');
-			
-			$building_info = $this->model_localisation_building->getBuilding($this->request->post['building_id']);
+			building_info = $this->config->get('sysaid_config_buildings');
 	
-			if ($this->request->post['building_id'] == '') {
+			if ($this->request->post['building'] == '') {
 				$json['error']['building'] = $this->language->get('error_building');
 			}
 		}
@@ -109,20 +105,8 @@ class ControllerShippingOfficeDelivery extends Controller {
 			$this->session->data['shippingInfo']['firstname'] = trim($this->request->post['firstname']);
 			$this->session->data['shippingInfo']['lastname'] = trim($this->request->post['lastname']);
 			$this->session->data['shippingInfo']['email'] = trim($this->request->post['email']);
-			$this->session->data['shippingInfo']['address_1'] = $this->request->post['address_1'];
-			$this->session->data['shippingInfo']['building_id'] = $this->request->post['building_id'];
-			
-			$this->load->model('localisation/building');
-			
-			$building_info = $this->model_localisation_building->getBuilding($this->request->post['building_id']);
-			
-			if ($building_info) {
-				$this->session->data['shippingInfo']['building'] = $building_info['name'];	
-			} else {
-				$this->session->data['shippingInfo']['building'] = '';
-			}
-			
-			$this->session->data['shippingInfo']['building_id'] = $this->request->post['building_id'];
+			$this->session->data['shippingInfo']['Room Number'] = $this->request->post['address_1'];
+			$this->session->data['shippingInfo']['Building'] = $this->request->post['building'];
 		}
 		
 		$this->response->setOutput(json_encode($json));		

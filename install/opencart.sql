@@ -3200,7 +3200,9 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (132, 0, 'service_center_pickup', 'service_center_pickup_status', '1', 0),
 (133, 0, 'other', 'other_sort_order', '3', 0),
 (134, 0, 'other', 'other_status', '1', 0),
-(135, 0, 'sysaid_subcategories', 'sysaid_subcategories', 'a:5:{i:0;s:8:"Computer";i:1;s:28:"Computer Replacement Program";i:2;s:5:"Other";i:3;s:7:"Printer";i:4;s:8:"Software";}', 1);
+(135, 0, 'sysaid_subcategories', 'sysaid_subcategories', 'a:5:{i:0;s:8:"Computer";i:1;s:28:"Computer Replacement Program";i:2;s:5:"Other";i:3;s:7:"Printer";i:4;s:8:"Software";}', 1),
+(136, 0, 'sysaid_config', 'sysaid_config_buildings', 'a:5:{i:0;s:5:"Young";i:1;s:30:"Social Sciences and Humanities";i:2;s:4:"Kerr";i:3;s:8:"Cousteau";i:4;s:13:"Research Park";}', 1),
+(137, 0, 'sysaid_config', 'sysaid_config_service_centers', 'a:4:{i:0;s:9:"118 Young";i:1;s:8:"178 Kerr";i:2;s:16:"130 and 131 SS&H";i:3;s:22:"267 Cousteau, Room 137";}', 1);
 
 -- --------------------------------------------------------
 
