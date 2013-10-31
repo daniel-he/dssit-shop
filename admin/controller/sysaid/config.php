@@ -1,5 +1,5 @@
 <?php
-class ControllerSysaidTicket extends Controller {
+class ControllerSysaidConfig extends Controller {
 	private $error = array(); 
 	
 	public function index() {   
