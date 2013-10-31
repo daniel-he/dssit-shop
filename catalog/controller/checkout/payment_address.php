@@ -20,35 +20,35 @@ class ControllerCheckoutPaymentAddress extends Controller {
     $this->billingInfo = (isset($this->session->data['billingInfo']) ? $this->session->data['billingInfo'] : array());
 
     //Default Values
-    if (isset($this->billingInfo['firstname'])) {
-      $this->data['customer_firstname'] = $this->billingInfo['firstname'];
+    if (isset($this->billingInfo['First Name'])) {
+      $this->data['customer_firstname'] = $this->billingInfo['First Name'];
     } else {
       $this->data['customer_firstname'] = $this->customer->getFirstName();
     }
-    if (isset($this->billingInfo['lastname'])) {
-      $this->data['customer_lastname'] = $this->billingInfo['lastname'];
+    if (isset($this->billingInfo['Last Name'])) {
+      $this->data['customer_lastname'] = $this->billingInfo['Last Name'];
     } else {
       $this->data['customer_lastname'] = $this->customer->getLastName();
     }
-    if (isset($this->billingInfo['email'])) {
-      $this->data['customer_email'] = $this->billingInfo['email'];
+    if (isset($this->billingInfo['Email'])) {
+      $this->data['customer_email'] = $this->billingInfo['Email'];
     } else {
       $this->data['customer_email'] = $this->customer->getEmail();
     }
-    if (isset($this->billingInfo['telephone'])) {
-      $this->data['customer_telephone'] = $this->billingInfo['telephone'];
+    if (isset($this->billingInfo['Phone Number'])) {
+      $this->data['customer_telephone'] = $this->billingInfo['Phone Number'];
     } else {
       $this->data['customer_telephone'] = $this->customer->getTelephone();
     }
-    if (isset($this->billingInfo['address_1'])) {
-      $this->data['address_1'] = $this->billingInfo['address_1'];
+    if (isset($this->billingInfo['Room Number'])) {
+      $this->data['address_1'] = $this->billingInfo['Room Number'];
     } else {
       $this->data['address_1'] = '';
     }
-    if (isset($this->billingInfo['building_id'])) {
-      $this->data['building_id'] = $this->billingInfo['building_id'];
+    if (isset($this->billingInfo['Building'])) {
+      $this->data['building'] = $this->billingInfo['Building'];
     } else {
-      $this->data['building_id'] = '';
+      $this->data['building'] = '';
     }
 
     $this->data['button_continue'] = $this->language->get('button_continue');
@@ -64,7 +64,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
     }
 		
     if ($customer_group_info) {
-      $this->data['company_id_required'] = $customer_group_info['company_id_required'];
+      $this->data['company_id_required'] = FALSE;//$customer_group_info['company_id_required'];
     } else {
       $this->data['company_id_required'] = '';
     }
@@ -81,9 +81,7 @@ class ControllerCheckoutPaymentAddress extends Controller {
       $this->data['tax_id_required'] = '';
     }
 		
-    $this->load->model('localisation/building');
-		
-    $this->data['buildings'] = $this->model_localisation_building->getBuildings();
+    $this->data['buildings'] = $this->config->get('sysaid_config_buildings');
 	
     if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_address.tpl')) {
       $this->template = $this->config->get('config_template') . '/template/checkout/payment_address.tpl';
@@ -166,12 +164,12 @@ class ControllerCheckoutPaymentAddress extends Controller {
     }
 
     // Store values in the order class
-    $this->session->data['billingInfo']['firstname'] = $this->request->post['firstname'];
-    $this->session->data['billingInfo']['lastname'] = $this->request->post['lastname'];
-    $this->session->data['billingInfo']['email'] = $this->request->post['email'];
-    $this->session->data['billingInfo']['telephone'] = $this->request->post['telephone'];
-    $this->session->data['billingInfo']['address_1'] = $this->request->post['address_1'];
-    $this->session->data['billingInfo']['building_id'] = $this->request->post['building_id'];
+    $this->session->data['billingInfo']['First Name'] = $this->request->post['firstname'];
+    $this->session->data['billingInfo']['Last Name'] = $this->request->post['lastname'];
+    $this->session->data['billingInfo']['Email'] = $this->request->post['email'];
+    $this->session->data['billingInfo']['Phone Number'] = $this->request->post['telephone'];
+    $this->session->data['billingInfo']['Room Number'] = $this->request->post['address_1'];
+    $this->session->data['billingInfo']['Building'] = $this->request->post['building'];
 		
     $this->response->setOutput(json_encode($json));
   }

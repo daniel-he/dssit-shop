@@ -15,20 +15,20 @@ class ControllerShippingOfficeDelivery extends Controller {
 	
 		$this->data['button_continue'] = $this->language->get('button_continue');
 					
-		if (isset($this->session->data['shippingInfo']['firstname'])) {
-			$this->data['firstname'] = $this->session->data['shippingInfo']['firstname'];
+		if (isset($this->session->data['shippingInfo']['First Name'])) {
+			$this->data['firstname'] = $this->session->data['shippingInfo']['First Name'];
 		} else {
 		  $this->data['firstname'] = $this->customer->getFirstName();
 		}
 
-		if (isset($this->session->data['shippingInfo']['lastname'])) {
-			$this->data['lastname'] = $this->session->data['shippingInfo']['lastname'];
+		if (isset($this->session->data['shippingInfo']['Last Name'])) {
+			$this->data['lastname'] = $this->session->data['shippingInfo']['Last Name'];
 		} else {
 		  $this->data['lastname'] = $this->customer->getLastName();
 		}
 		
-		if (isset($this->session->data['shippingInfo']['email'])) {
-			$this->data['email'] = $this->session->data['shippingInfo']['email'];
+		if (isset($this->session->data['shippingInfo']['Email'])) {
+			$this->data['email'] = $this->session->data['shippingInfo']['Email'];
 		} else {
 		  $this->data['email'] = $this->customer->getEmail();
 		}
@@ -102,9 +102,9 @@ class ControllerShippingOfficeDelivery extends Controller {
 		}
 		
 		if (!$json) {
-			$this->session->data['shippingInfo']['firstname'] = trim($this->request->post['firstname']);
-			$this->session->data['shippingInfo']['lastname'] = trim($this->request->post['lastname']);
-			$this->session->data['shippingInfo']['email'] = trim($this->request->post['email']);
+			$this->session->data['shippingInfo']['First Name'] = trim($this->request->post['firstname']);
+			$this->session->data['shippingInfo']['Last Name'] = trim($this->request->post['lastname']);
+			$this->session->data['shippingInfo']['Email'] = trim($this->request->post['email']);
 			$this->session->data['shippingInfo']['Room Number'] = $this->request->post['address_1'];
 			$this->session->data['shippingInfo']['Building'] = $this->request->post['building'];
 		}

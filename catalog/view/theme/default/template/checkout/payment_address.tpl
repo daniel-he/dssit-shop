@@ -40,13 +40,13 @@
     </tr>
     <tr>
       <td><span class="required">*</span> <?php echo $entry_building; ?></td>
-      <td><select name="building_id" class="large-field">
+      <td><select name="building" class="large-field">
           <option value=""><?php echo $text_select; ?></option>
-          <?php foreach ($buildings as $building) { ?>
-          <?php if ($building['building_id'] == $building_id) { ?>
-          <option value="<?php echo $building['building_id']; ?>" selected="selected"><?php echo $building['name']; ?></option>
+          <?php foreach ($buildings as $thebuilding) { ?>
+          <?php if ($thebuilding == $building) { ?>
+          <option value="<?php echo $thebuilding; ?>" selected="selected"><?php echo $thebuilding; ?></option>
           <?php } else { ?>
-          <option value="<?php echo $building['building_id']; ?>"><?php echo $building['name']; ?></option>
+          <option value="<?php echo $thebuilding; ?>"><?php echo $thebuilding; ?></option>
           <?php } ?>
           <?php } ?>
         </select></td>
