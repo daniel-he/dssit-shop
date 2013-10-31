@@ -94,7 +94,7 @@ class ControllerShippingOfficeDelivery extends Controller {
 				$json['error']['address_1'] = $this->language->get('error_address_1');
 			}
 			
-			building_info = $this->config->get('sysaid_config_buildings');
+			$building_info = $this->config->get('sysaid_config_buildings');
 	
 			if ($this->request->post['building'] == '') {
 				$json['error']['building'] = $this->language->get('error_building');
