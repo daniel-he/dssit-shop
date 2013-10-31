@@ -7,9 +7,10 @@ class ControllerCheckoutConfirm extends Controller {
 		    'category' => 'Purchasing',
 		    'subCategory' => 'Other',
 		    'title' => 'Purchase for ' . $this->customer->getFirstName() . ' ' . $this->customer->getLastName() . ': ',
-		    'requestUser' => "AD3\\" . $this->customer->getUid(),
-		    'srType' => 'Request',
-		    'emailAccount' => $this->customer->getEmail(),
+		    'requestUser' => $this->customer->getUid(),
+		    'submitUser' => $this->customer->getUid(),
+		    'custList2' => 2,
+		    'assignedTo' => 'none',
 		    'description' => 'Error: purchasing information not available.',
 		    'status' => 1
     );
@@ -97,6 +98,7 @@ class ControllerCheckoutConfirm extends Controller {
 
     $maxPriceItem = $this->cart->getMaxPriceItem();
     $ticket['subCategory'] = $maxPriceItem['sysaid_category'];
+    $ticket['title'] .= $maxPriceItem['name'];
     
     if (!$redirect) {
       $total_data = array();
