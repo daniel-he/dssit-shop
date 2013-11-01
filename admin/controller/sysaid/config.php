@@ -16,7 +16,7 @@ class ControllerSysaidConfig extends Controller {
 		  $all_service_centers = array();
 		  foreach ($this->request->post as $key => $val) {
 		    if (preg_match('service_center', $val)) {
-		      all_service_centers[] = $val;
+		      $all_service_centers[] = $val;
 		    } elseif (preg_match('building', $val)) {
 		      $all_buildings[] = $val;
 		    }
