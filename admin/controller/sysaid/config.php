@@ -10,8 +10,19 @@ class ControllerSysaidConfig extends Controller {
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-		  //$this->model_setting_setting->editSetting('sysaid_config', array("sysaid_config_service_centers" => array_values($this->request->post), "sysaid_config_buildings" => array_values($this->request->post)));	
-		  var_dump($this->request->post);	
+		  //sort posted data into building and service center
+		  //based on keys
+		  $all_buildings = array();
+		  $all_service_centers = array();
+		  foreach ($this->request->post as $key => $val) {
+		    if (preg_match('service_center', $val)) {
+		      all_service_centers[] = $val;
+		    } elseif (preg_match('building', $val)) {
+		      $all_buildings[] = $val;
+		    }
+		  }
+
+		  $this->model_setting_setting->editSetting('sysaid_config', array("sysaid_config_service_centers" => $all_service_centers, "sysaid_config_buildings" => $all_buildings));	
 					
 			$this->session->data['success'] = $this->language->get('text_success');
 			
@@ -62,7 +73,7 @@ class ControllerSysaidConfig extends Controller {
 		$this->data['service_centers'] = array();
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-		  $this->data['service_centers'] = array_values($this->request->post);
+		  $this->data['service_centers'] = $all_service_centers;
 		} elseif ($this->config->get('sysaid_config_service_centers')) { 
 			$this->data['service_centers'] = $this->config->get('sysaid_config_service_centers');
 		}
@@ -70,7 +81,7 @@ class ControllerSysaidConfig extends Controller {
 		$this->data['buildings'] = array();
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-		  $this->data['buildings'] = array_values($this->request->post);
+		  $this->data['buildings'] = $all_buildings;
 		} elseif ($this->config->get('sysaid_config_buildings')) { 
 			$this->data['buildings'] = $this->config->get('sysaid_config_buildings');
 		}
