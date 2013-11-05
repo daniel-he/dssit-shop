@@ -375,8 +375,9 @@ $('#button-shipping-address').live('click', function() {
 						$('#confirm .checkout-content').slideDown('slow');
 						
 						$('#shipping-address .checkout-heading a').remove();
-						
-						$('#shipping-address .checkout-heading').append('<a><?php echo $text_modify; ?></a>');							
+						$('#shipping-method .checkout-heading a').remove();
+						$('#payment-address .checkout-heading a').remove();
+						$('#payment-method .checkout-heading a').remove();
 						
 						$.ajax({
 							url: 'index.php?route=shipping/'+code,
