@@ -55,6 +55,9 @@ class ModelCatalogProduct extends Model {
 				'date_added'       => $query->row['date_added'],
 				'date_modified'    => $query->row['date_modified'],
 				'viewed'           => $query->row['viewed']
+				'sysaid_category'  => $query->row['sysaid_category']
+				'supplier'         => $query->row['supplier']
+				'product_link'     => (isset($query->row['product_link']) ? $query->row['product_link'] : NULL);
 			);
 		} else {
 			return false;
