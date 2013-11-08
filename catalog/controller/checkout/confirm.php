@@ -416,6 +416,13 @@ class ControllerCheckoutConfirm extends Controller {
     $this->load->model('sysaid/sysaid');
     $this->data['ticket_no'] = $this->model_sysaid_sysaid->makeTicket($ticket);
 
+    //Clean Up Our Mess
+    $this->cart->clear();
+    unset($this->session->data['shippingInfo']);
+    unset($this->session->data['billingInfo']);
+    unset($this->session->data['shipping_method']);
+    unset($this->session->data['payment_method']);
+
     $this->response->setOutput($this->render());
   }
 }
