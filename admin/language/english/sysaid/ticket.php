@@ -10,5 +10,5 @@ $_['text_success']        = 'Success: You have modified sysaid ticket parameters
 $_['entry_subcategory']   = 'Valid Purchasing Subcategories:';
 
 // Error
-$_['error_permission']    = 'Warning: You do not have permission to modify module affiliate!';
+$_['error_permission']    = 'Warning: You do not have permission to modify sysaid ticket parameters!';
 ?>
