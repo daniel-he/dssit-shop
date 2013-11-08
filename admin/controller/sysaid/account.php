@@ -1,5 +1,5 @@
 <?php
-class ControllerSysaidTicket extends Controller {
+class ControllerSysaidAccount extends Controller {
 	private $error = array(); 
 	
 	public function index() {   
@@ -19,6 +19,7 @@ class ControllerSysaidTicket extends Controller {
 				
 		$this->data['heading_title'] = $this->language->get('heading_title');
 		
+		$this->data['entry_account'] = $this->language->get('entry_account');
 		$this->data['entry_username'] = $this->language->get('entry_username');
 		$this->data['entry_password'] = $this->language->get('entry_password');
 		
@@ -58,7 +59,7 @@ class ControllerSysaidTicket extends Controller {
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 		  $this->data['sysaid_user'] = $this->request->post["sysaid_user"];
 		  $this->data['sysaid_password'] = $this->request->post["sysaid_password"];
-		} elseif ($this->config->get('sysaid_account')) { 
+		} else { 
 		  $this->data['sysaid_user'] = $this->config->get('sysaid_user');
 	  	  $this->data['sysaid_password'] = $this->config->get('sysaid_password');
 		}
