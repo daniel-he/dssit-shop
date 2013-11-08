@@ -8,7 +8,7 @@ class ModelSysaidSysaid extends Model {
   protected function login() {
     $sysaidApi = new SoapClient(SYSAID_WSDL, array('classmap' => array('apiServiceRequest' => 'ApiServiceRequest')));
 
-    $params = array("accountId" => SYSAID_ACCOUNT, "userName" => "your_user", "password" => "your_pass");
+    $params = array("accountId" => SYSAID_ACCOUNT, "userName" => $this->config->get("sysaid_username"), "password" => $this->config->get("sysaid_username"));
 
     $sessId = get_object_vars($sysaidApi->login($params));
     $sessId = $sessId["return"];

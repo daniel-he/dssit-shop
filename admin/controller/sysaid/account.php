@@ -10,10 +10,10 @@ class ControllerSysaidAccount extends Controller {
 		$this->load->model('setting/setting');
 				
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-		  $this->model_setting_setting->editSetting('sysaid_account', array("sysaid_username" => $this->request->post["sysaid-user"], "sysaid-password" => $this->request->post["sysaid-password"]));		
+		  $this->model_setting_setting->editSetting('sysaid_account', array("sysaid_username" => $this->request->post["sysaid-user"], "sysaid_password" => $this->request->post["sysaid-password"]));		
 					
 			$this->session->data['success'] = $this->language->get('text_success');
-			
+
 			$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
 		}
 				
@@ -57,10 +57,10 @@ class ControllerSysaidAccount extends Controller {
 		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
 		
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
-		  $this->data['sysaid_user'] = $this->request->post["sysaid_user"];
-		  $this->data['sysaid_password'] = $this->request->post["sysaid_password"];
+		  $this->data['sysaid_user'] = $this->request->post["sysaid-user"];
+		  $this->data['sysaid_password'] = $this->request->post["sysaid-password"];
 		} else { 
-		  $this->data['sysaid_user'] = $this->config->get('sysaid_user');
+		  $this->data['sysaid_user'] = $this->config->get('sysaid_username');
 	  	  $this->data['sysaid_password'] = $this->config->get('sysaid_password');
 		}
 		
