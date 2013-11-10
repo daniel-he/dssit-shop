@@ -222,17 +222,23 @@ class ControllerCheckoutConfirm extends Controller {
 				'total'      => $product['total'],
 				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
 				'reward'     => $product['reward']
+				'supplier'   => $product['supplier']
 				); 
 
       }
 
+
+      $supplier_totals = array();
       foreach($product_data as $theprod) {
+        //Construct the ticket description.
 	$ticket['description'] .= '
 ';
 	$ticket['description'] .= ($theprod['name'] . ' (');
 	$ticket['description'] .= ('Quantity: ' . $theprod['quantity']);
 	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.)
 ');
+	$ticket['description'] .= ('Supplier: ' . $theprod['supplier'] . '
+')
 	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . '
 ');
 	$ticket['description'] .= ('Model: ' . $theprod['model'] . '
@@ -241,7 +247,23 @@ class ControllerCheckoutConfirm extends Controller {
 	  $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . '
 ');
 	}
-      }  
+
+	//Calculate total cost for each supplier.
+	if(isset($supplier_totals[$theprod['supplier'])) {
+	  $supplier_totals[$theprod['supplier']] += $theprod['total'];
+	} else {
+	  $supplier_totals[$theprod['supplier']] = $theprod['total'];	  
+	}
+      }
+
+      //Add Supplier Subtotals to Ticket Description
+      $ticket['description'] .= '
+Total for each supplier:
+';
+      foreach($supplier_totals as $supplier => $subtotal) {
+        $ticket['description'] .= $supplier . ': ' . $subtotal . '
+';
+      }
 
       // Gift Voucher
       $voucher_data = array();
