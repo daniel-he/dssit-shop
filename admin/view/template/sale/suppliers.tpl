@@ -18,7 +18,7 @@
         <table id="supplier" class="list">
           <thead>
             <tr>
-              <td class="left"><?php echo $entry_supplier; ?></td>
+              <td class="left"><?php echo $entry_suppliers; ?></td>
               <td></td>
             </tr>
           </thead>
