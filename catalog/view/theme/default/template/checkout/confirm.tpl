@@ -3,7 +3,7 @@
   <table>
     <thead>
       <tr>
-        <td colspan="5"><b>The Sysaid ticket number associated with your order is <a href="https://sysaid.dss.ucdavis.edu/SREdit.jsp?id=<?php echo $data['ticket_no']; ?>"><?php echo $data['ticket_no']; ?></a></b></td>
+        <td colspan="5"><b>The Sysaid ticket number associated with your order is <a href="https://sysaid.dss.ucdavis.edu/SREdit.jsp?id=<?php echo $ticket_no; ?>"><?php echo $ticket_no; ?></a></b></td>
       </tr>
       <tr>
         <td class="name"><?php echo $column_name; ?></td>

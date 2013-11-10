@@ -221,7 +221,7 @@ class ControllerCheckoutConfirm extends Controller {
 				'price'      => $product['price'],
 				'total'      => $product['total'],
 				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
-				'reward'     => $product['reward']
+				'reward'     => $product['reward'],
 				'supplier'   => $product['supplier']
 				); 
 
@@ -238,7 +238,7 @@ class ControllerCheckoutConfirm extends Controller {
 	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.)
 ');
 	$ticket['description'] .= ('Supplier: ' . $theprod['supplier'] . '
-')
+');
 	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . '
 ');
 	$ticket['description'] .= ('Model: ' . $theprod['model'] . '
@@ -249,7 +249,7 @@ class ControllerCheckoutConfirm extends Controller {
 	}
 
 	//Calculate total cost for each supplier.
-	if(isset($supplier_totals[$theprod['supplier'])) {
+	if(isset($supplier_totals[$theprod['supplier']])) {
 	  $supplier_totals[$theprod['supplier']] += $theprod['total'];
 	} else {
 	  $supplier_totals[$theprod['supplier']] = $theprod['total'];	  
