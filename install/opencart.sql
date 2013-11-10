@@ -3186,7 +3186,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `group`, `key`, `value`, `se
 (137, 0, 'sysaid_config', 'sysaid_config_service_centers', 'a:4:{i:0;s:9:"118 Young";i:1;s:8:"178 Kerr";i:2;s:16:"130 and 131 SS&H";i:3;s:22:"267 Cousteau, Room 137";}', 1),
 (138, 0, 'sysaid_account', 'sysaid_username', '', 0),
 (139, 0, 'sysaid_account', 'sysaid_password', '', 0),
-(140, 0, 'product_suppliers', 'product_suppliers', 'a:1:{i:0;s:4:"DEMO";', 1);
+(140, 0, 'sale_suppliers', 'sale_suppliers', 'a:4:{i:0;s:5:"CDW-g";i:1;s:4:"Dell";i:2;s:4:"DEMO";i:3;s:18:"Software @ UCDavis";}', 1);
 
 -- --------------------------------------------------------
 
