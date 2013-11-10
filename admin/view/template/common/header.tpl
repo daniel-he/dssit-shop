@@ -138,6 +138,7 @@ $(document).ready(function(){
       <li id="sale"><a class="top"><?php echo $text_sale; ?></a>
         <ul>
           <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
+          <li><a href="<?php echo $suppliers; ?>"><?php echo $text_suppliers; ?></a></li>
           <li><a href="<?php echo $recurring_profile; ?>"><?php echo $text_recurring_profile; ?></a></li>
           <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
           <li><a class="parent"><?php echo $text_customer; ?></a>

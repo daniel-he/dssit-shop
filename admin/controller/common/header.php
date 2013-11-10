@@ -90,6 +90,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_shipping'] = $this->language->get('text_shipping');
 		$this->data['text_setting'] = $this->language->get('text_setting');
 		$this->data['text_stock_status'] = $this->language->get('text_stock_status');
+		$this->data['text_suppliers'] = $this->language->get('text_suppliers');
 		$this->data['text_system'] = $this->language->get('text_system');
 		$this->data['text_sysaid'] = $this->language->get('text_sysaid');
 		$this->data['text_sysaid_account'] = $this->language->get('text_sysaid_account');
@@ -187,6 +188,7 @@ class ControllerCommonHeader extends Controller {
 			$this->data['setting'] = $this->url->link('setting/store', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['store'] = HTTP_CATALOG;
 			$this->data['stock_status'] = $this->url->link('localisation/stock_status', 'token=' . $this->session->data['token'], 'SSL');
+			$this->data['suppliers'] = $this->url->link('sale/suppliers', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['sysaid_account'] = $this->url->link('sysaid/account', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['sysaid_config'] = $this->url->link('sysaid/config', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['sysaid_ticket'] = $this->url->link('sysaid/ticket', 'token=' . $this->session->data['token'], 'SSL');
