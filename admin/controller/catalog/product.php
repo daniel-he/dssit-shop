@@ -546,6 +546,8 @@ class ControllerCatalogProduct extends Controller {
     $this->data['entry_keyword'] = $this->language->get('entry_keyword');
     $this->data['entry_model'] = $this->language->get('entry_model');
     $this->data['entry_sysaid_category'] = $this->language->get('entry_sysaid_category');
+    $this->data['entry_supplier'] = $this->language->get('entry_supplier');
+    $this->data['entry_product_link'] = $this->language->get('entry_product_link');
     $this->data['entry_sku'] = $this->language->get('entry_sku');
     $this->data['entry_upc'] = $this->language->get('entry_upc');
     $this->data['entry_ean'] = $this->language->get('entry_ean');
@@ -669,6 +671,18 @@ class ControllerCatalogProduct extends Controller {
       $this->data['error_sysaid_category'] = '';
     }		
      	
+    if (isset($this->error['supplier'])) {
+      $this->data['error_supplier'] = $this->error['supplier'];
+    } else {
+      $this->data['error_supplier'] = '';
+    }		
+     	
+    if (isset($this->error['product_link'])) {
+      $this->data['error_product_link'] = $this->error['product_link'];
+    } else {
+      $this->data['error_product_link'] = '';
+    }		
+     	
     if (isset($this->error['date_available'])) {
       $this->data['error_date_available'] = $this->error['date_available'];
     } else {
@@ -725,6 +739,8 @@ class ControllerCatalogProduct extends Controller {
 					
     $this->data['sysaid_subcategories'] = $this->config->get('sysaid_subcategories');
 				
+    $this->data['suppliers'] = $this->config->get('sale_suppliers');
+				
     if (!isset($this->request->get['product_id'])) {
       $this->data['action'] = $this->url->link('catalog/product/insert', 'token=' . $this->session->data['token'] . $url, 'SSL');
     } else {
@@ -765,6 +781,22 @@ class ControllerCatalogProduct extends Controller {
       $this->data['sysaid_category'] = $product_info['sysaid_category'];
     } else {
       $this->data['sysaid_category'] = 'Other';
+    }
+
+    if (isset($this->request->post['supplier'])) {
+      $this->data['supplier'] = $this->request->post['supplier'];
+    } elseif (!empty($product_info)) {
+      $this->data['supplier'] = $product_info['supplier'];
+    } else {
+      $this->data['supplier'] = '';
+    }
+
+    if (isset($this->request->post['product_link'])) {
+      $this->data['product_link'] = $this->request->post['product_link'];
+    } elseif (!empty($product_info)) {
+      $this->data['product_link'] = $product_info['product_link'];
+    } else {
+      $this->data['product_link'] = '';
     }
 
     if (isset($this->request->post['sku'])) {
@@ -1318,6 +1350,14 @@ class ControllerCatalogProduct extends Controller {
 		
     if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
       $this->error['model'] = $this->language->get('error_model');
+    }
+		
+    if (utf8_strlen($this->request->post['supplier']) < 1) {
+      $this->error['supplier'] = $this->language->get('error_supplier');
+    }
+		
+    if (utf8_strlen($this->request->post['product_link']) > 255) {
+      $this->error['product_link'] = $this->language->get('error_product_link');
     }
 		
     if ($this->error && !isset($this->error['warning'])) {

@@ -78,6 +78,29 @@
                 <?php } ?></td>
             </tr>
             <tr>
+              <td><span class="required">*</span> <?php echo $entry_supplier; ?></td>
+              <td>
+	      <select name="supplier">
+	      <?php foreach($suppliers as $supp) { ?>
+	        <?php if ($supplier == $supp) { ?>
+		  <option value="<?php echo $supp; ?>" selected="true"><?php echo $supp; ?></option>
+		<?php } else { ?>
+		  <option value="<?php echo $supp; ?>"><?php echo $supp; ?></option>
+		<?php } ?>
+	      <?php } ?>
+	      </select>
+                <?php if ($error_supplier) { ?>
+                <span class="error"><?php echo $error_supplier; ?></span>
+                <?php } ?></td>
+            </tr>
+            <tr>
+              <td><span class="required">*</span> <?php echo $entry_product_link; ?></td>
+              <td><input type="text" name="product_link" value="<?php echo $product_link; ?>" />
+                <?php if ($error_model) { ?>
+                <span class="error"><?php echo $error_model; ?></span>
+                <?php } ?></td>
+            </tr>
+            <tr>
               <td><?php echo $entry_sku; ?></td>
               <td><input type="text" name="sku" value="<?php echo $sku; ?>" /></td>
             </tr>
