@@ -94,10 +94,10 @@
                 <?php } ?></td>
             </tr>
             <tr>
-              <td><span class="required">*</span> <?php echo $entry_product_link; ?></td>
+              <td><?php echo $entry_product_link; ?></td>
               <td><input type="text" name="product_link" value="<?php echo $product_link; ?>" />
-                <?php if ($error_model) { ?>
-                <span class="error"><?php echo $error_model; ?></span>
+                <?php if ($error_product_link) { ?>
+                <span class="error"><?php echo $error_product_link; ?></span>
                 <?php } ?></td>
             </tr>
             <tr>
