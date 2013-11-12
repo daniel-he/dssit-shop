@@ -2,6 +2,9 @@
 class ControllerCheckoutConfirm extends Controller { 
   public function index() {
     $redirect = '';
+
+    $newline = '
+'; //Only way to make sysaid recognize the newline...
     // This initializes at least the mandatory ticket creation fields.
     $ticket = array(
 		    'category' => 'Purchasing',
@@ -24,16 +27,13 @@ class ControllerCheckoutConfirm extends Controller {
       $redirect = $this->url->link('checkout/checkout', '', 'SSL');
     }
 
-    $ticket['description'] = 'Account Holder\'s Information:
-';
+    $ticket['description'] = 'Account Holder\'s Information:' . $newline;
     foreach($payment_address as $key => $value) {
       $ticket['description'] .= '     ';
       $ticket['description'] .= ($key . ': ');
-      $ticket['description'] .= ($value . '
-');
+      $ticket['description'] .= ($value . $newline);
     }
-    $ticket['description'] .= '
-';
+    $ticket['description'] .= $newline;
     
     // Validate if account has been set.	
     if (!isset($this->session->data['billingInfo']['account'])) {
@@ -55,18 +55,14 @@ class ControllerCheckoutConfirm extends Controller {
 	$redirect = $this->url->link('checkout/checkout', '', 'SSL');
       }
 
-      $ticket['description'] .= 'Delivery Information:
-';
-      $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . '
-');
+      $ticket['description'] .= 'Delivery Information:' . $newline;
+      $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . $newline);
       foreach($shipping_address as $key => $value) {
 	$ticket['description'] .= '     ';
 	$ticket['description'] .= ($key . ': ');
-	$ticket['description'] .= ($value . '
-');
+	$ticket['description'] .= ($value . $newline);
       }
-      $ticket['description'] .= '
-';
+      $ticket['description'] .= $newline;
     } else {
       unset($this->session->data['shipping_method']);
       unset($this->session->data['shipping_methods']);
@@ -96,6 +92,7 @@ class ControllerCheckoutConfirm extends Controller {
       }				
     }
 
+    //Get the max price item for setting the ticket title and subcategory.
     $maxPriceItem = $this->cart->getMaxPriceItem();
     $ticket['subCategory'] = $maxPriceItem['sysaid_category'];
     $ticket['title'] .= $maxPriceItem['name'];
@@ -231,21 +228,16 @@ class ControllerCheckoutConfirm extends Controller {
       $supplier_totals = array();
       foreach($product_data as $theprod) {
         //Construct the ticket description.
-	$ticket['description'] .= '
-';
+	$ticket['description'] .= $newline;
 	$ticket['description'] .= ($theprod['name'] . ' (');
 	$ticket['description'] .= ('Quantity: ' . $theprod['quantity']);
 	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.)
 ');
-	$ticket['description'] .= ('Supplier: ' . $theprod['supplier'] . '
-');
-	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . '
-');
-	$ticket['description'] .= ('Model: ' . $theprod['model'] . '
-');
+	$ticket['description'] .= ('Supplier: ' . $theprod['supplier'] . $newline);
+	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . $newline);
+	$ticket['description'] .= ('Model: ' . $theprod['model'] . $newline);
 	foreach($theprod['option'] as $theopt) {
-	  $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . '
-');
+	  $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . $newline);
 	}
 
 	//Calculate total cost for each supplier.
@@ -258,11 +250,9 @@ class ControllerCheckoutConfirm extends Controller {
 
       //Add Supplier Subtotals to Ticket Description
       $ticket['description'] .= '
-Total for each supplier:
-';
+Total for each supplier:' . $newline;
       foreach($supplier_totals as $supplier => $subtotal) {
-        $ticket['description'] .= $supplier . ': ' . $subtotal . '
-';
+        $ticket['description'] .= $supplier . ': ' . $subtotal . $newline;
       }
 
       // Gift Voucher
