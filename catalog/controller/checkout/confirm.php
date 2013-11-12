@@ -231,10 +231,9 @@ class ControllerCheckoutConfirm extends Controller {
 	$ticket['description'] .= $newline;
 	$ticket['description'] .= ($theprod['name'] . ' (');
 	$ticket['description'] .= ('Quantity: ' . $theprod['quantity']);
-	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each.)
-');
+	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each plus tax.)' . $newline);
 	$ticket['description'] .= ('Supplier: ' . $theprod['supplier'] . $newline);
-	$ticket['description'] .= ('Total Price: $' . $theprod['total'] . $newline);
+	$ticket['description'] .= ('Total Price: $' . ($theprod['total'] + $theprod['tax']) . $newline);
 	$ticket['description'] .= ('Model: ' . $theprod['model'] . $newline);
 	foreach($theprod['option'] as $theopt) {
 	  $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . $newline);
@@ -242,9 +241,9 @@ class ControllerCheckoutConfirm extends Controller {
 
 	//Calculate total cost for each supplier.
 	if(isset($supplier_totals[$theprod['supplier']])) {
-	  $supplier_totals[$theprod['supplier']] += $theprod['total'];
+	  $supplier_totals[$theprod['supplier']] += ($theprod['total'] + $theprod['tax']);
 	} else {
-	  $supplier_totals[$theprod['supplier']] = $theprod['total'];	  
+	  $supplier_totals[$theprod['supplier']] = $theprod['total'] + $theprod['tax'];	  
 	}
       }
 
