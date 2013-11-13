@@ -314,14 +314,14 @@ $('#button-shipping-address').live('click', function() {
 		},	
 		complete: function() {
 			$('#button-shipping-address').attr('disabled', false);
-			$('.wait').remove();
-		},			
+		},
 		success: function(json) {
 			$('.warning, .error').remove();
 			
 			if (json['redirect']) {
 				location = json['redirect'];
 			} else if (json['error']) {
+			        $('.wait').remove();
 				if (json['error']['warning']) {
 					$('#shipping-address .checkout-content').prepend('<div class="warning" style="display: none;">' + json['error']['warning'] + '<img src="catalog/view/theme/default/image/close.png" alt="" class="close" /></div>');
 					
@@ -368,6 +368,7 @@ $('#button-shipping-address').live('click', function() {
 					url: 'index.php?route=checkout/confirm',
 					dataType: 'html',
 					success: function(html) {
+						$('.wait').remove();
 						$('#confirm .checkout-content').html(html);
 						
 						$('#shipping-address .checkout-content').slideUp('slow');
