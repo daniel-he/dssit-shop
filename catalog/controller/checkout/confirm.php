@@ -191,7 +191,7 @@ class ControllerCheckoutConfirm extends Controller {
       foreach(array_keys($product_data) as $thesupp) {
   	$ticket['description'] .= $newline;
 	$ticket['description'] .= ('Items from ' . $thesupp);
-        foreach($product_data as $theprod) {
+        foreach($product_data[$thesupp] as $theprod) {
           //Construct the ticket description.
   	  $ticket['description'] .= $newline;
   	  $ticket['description'] .= ($theprod['name'] . ' (');
@@ -204,10 +204,10 @@ class ControllerCheckoutConfirm extends Controller {
 	  }
 
 	  //Calculate total cost for each supplier.
-	  if(isset($supplier_totals[$theprod['supplier']])) {
-	    $supplier_totals[$theprod['supplier']] += ($theprod['total'] + $theprod['tax']);
+	  if(isset($supplier_totals[$thesupp])) {
+	    $supplier_totals[$thesupp] += ($theprod['total'] + $theprod['tax']);
 	  } else {
-	    $supplier_totals[$theprod['supplier']] = $theprod['total'] + $theprod['tax'];	  
+	    $supplier_totals[$thesupp] = $theprod['total'] + $theprod['tax'];	  
 	  }
         }
       }
@@ -217,6 +217,12 @@ class ControllerCheckoutConfirm extends Controller {
 Total for each supplier:' . $newline;
       foreach($supplier_totals as $supplier => $subtotal) {
         $ticket['description'] .= $supplier . ': ' . $subtotal . $newline;
+      }
+
+      //Put total_data into ticket.
+      foreach($total_data as $total) {
+        $ticket .= $total['title'] . ': ';
+        $ticket .= $total['text'] . $newline;
       }
 
       // Gift Voucher
