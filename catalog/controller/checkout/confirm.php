@@ -143,44 +143,6 @@ class ControllerCheckoutConfirm extends Controller {
       } else {
 	$data['store_url'] = HTTP_SERVER;	
       }
-      
-      if ($this->customer->isLogged()) {
-	$data['customer_id'] = $this->customer->getId();
-	$data['customer_group_id'] = $this->customer->getCustomerGroupId();
-	$data['firstname'] = $this->customer->getFirstName();
-	$data['lastname'] = $this->customer->getLastName();
-	$data['email'] = $this->customer->getEmail();
-	$data['telephone'] = $this->customer->getTelephone();
-	$data['fax'] = $this->customer->getFax();
-	
-	$payment_address = $this->session->data['billingInfo'];
-      }
-      
-      foreach ($payment_address as $key => $val) {
-        $data['payment_' . $key] = $val;
-      }
-
-      if ($this->cart->hasShipping()) {
-	if ($this->customer->isLogged()) {
-	  $shipping_address = $this->session->data['shippingInfo'];
-	}			
-      
-	foreach ($shipping_address as $key => $val) {
-	  $data['shipping_' . $key] = $val;
-	}
-      
-	if (isset($this->session->data['shipping_method']['title'])) {
-	  $data['shipping_method'] = $this->session->data['shipping_method']['title'];
-	} else {
-	  $data['shipping_method'] = '';
-	}
-      
-	if (isset($this->session->data['shipping_method']['code'])) {
-	  $data['shipping_code'] = $this->session->data['shipping_method']['code'];
-	} else {
-	  $data['shipping_code'] = '';
-	}
-      }
 
       $product_data = array();
       
@@ -207,7 +169,7 @@ class ControllerCheckoutConfirm extends Controller {
 				 );					
 	}
 	 
-	$product_data[] = array(
+	$product_data[$product['supplier']][] = array(
 				'product_id' => $product['product_id'],
 				'name'       => $product['name'],
 				'model'      => $product['model'],
@@ -226,25 +188,28 @@ class ControllerCheckoutConfirm extends Controller {
 
 
       $supplier_totals = array();
-      foreach($product_data as $theprod) {
-        //Construct the ticket description.
-	$ticket['description'] .= $newline;
-	$ticket['description'] .= ($theprod['name'] . ' (');
-	$ticket['description'] .= ('Quantity: ' . $theprod['quantity']);
-	$ticket['description'] .= (' @ $' .$theprod['price'] . ' each plus tax.)' . $newline);
-	$ticket['description'] .= ('Supplier: ' . $theprod['supplier'] . $newline);
-	$ticket['description'] .= ('Total Price: $' . ($theprod['total'] + $theprod['tax']) . $newline);
-	$ticket['description'] .= ('Model: ' . $theprod['model'] . $newline);
-	foreach($theprod['option'] as $theopt) {
-	  $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . $newline);
-	}
+      foreach(array_keys($product_data) as $thesupp) {
+  	$ticket['description'] .= $newline;
+	$ticket['description'] .= ('Items from ' . $thesupp);
+        foreach($product_data as $theprod) {
+          //Construct the ticket description.
+  	  $ticket['description'] .= $newline;
+  	  $ticket['description'] .= ($theprod['name'] . ' (');
+	  $ticket['description'] .= ('Quantity: ' . $theprod['quantity']);
+	  $ticket['description'] .= (' @ $' .$theprod['price'] . ' each plus tax.)' . $newline);
+	  $ticket['description'] .= ('Total Price: $' . ($theprod['total'] + $theprod['tax']) . $newline);
+	  $ticket['description'] .= ('Model: ' . $theprod['model'] . $newline);
+	  foreach($theprod['option'] as $theopt) {
+	    $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . $newline);
+	  }
 
-	//Calculate total cost for each supplier.
-	if(isset($supplier_totals[$theprod['supplier']])) {
-	  $supplier_totals[$theprod['supplier']] += ($theprod['total'] + $theprod['tax']);
-	} else {
-	  $supplier_totals[$theprod['supplier']] = $theprod['total'] + $theprod['tax'];	  
-	}
+	  //Calculate total cost for each supplier.
+	  if(isset($supplier_totals[$theprod['supplier']])) {
+	    $supplier_totals[$theprod['supplier']] += ($theprod['total'] + $theprod['tax']);
+	  } else {
+	    $supplier_totals[$theprod['supplier']] = $theprod['total'] + $theprod['tax'];	  
+	  }
+        }
       }
 
       //Add Supplier Subtotals to Ticket Description
