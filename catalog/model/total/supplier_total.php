@@ -5,6 +5,8 @@ class ModelTotalSupplierTotal extends Model {
 		
 		$supplier_totals = array();
 		foreach($this->cart->getProducts() as $product) {
+		        $product['tax'] = $this->tax->getTax($product['price'], $product['tax_class_id']);
+
 		        if(isset($supplier_totals[$product['supplier']])) {
 			        $supplier_totals[$product['supplier']] += $product['total'] + $product['tax'];
 			} else {
@@ -13,12 +15,12 @@ class ModelTotalSupplierTotal extends Model {
 		}
 		
 		foreach($supplier_totals as $supplier => $supplier_total) {
-		        $total_data[] = array( 
+		        $total_data[$supplier] = array( 
 			        'code'       => 'supplier_total',
 			        'title'      => $this->language->get('text_supplier_total') . $supplier,
 			        'text'       => $this->currency->format($supplier_total),
 			        'value'      => $supplier_total,
-			        'sort_order' => $this->config->get('supplier_total_sort_order')
+			        'sort_order' => (!is_null($this->config->get('supplier_total_sort_order')) ? $this->config->get('supplier_total_sort_order') : 0)
 		);
 		}
 	}

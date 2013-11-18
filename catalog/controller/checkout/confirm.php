@@ -54,7 +54,8 @@ class ControllerCheckoutConfirm extends Controller {
       if (!isset($this->session->data['shipping_method'])) {
 	$redirect = $this->url->link('checkout/checkout', '', 'SSL');
       }
-
+      
+      //Put Delivery Information Into Sysaid Ticket
       $ticket['description'] .= 'Delivery Information:' . $newline;
       $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . $newline);
       foreach($shipping_address as $key => $value) {
@@ -207,6 +208,7 @@ class ControllerCheckoutConfirm extends Controller {
       //Add Supplier Subtotals to Ticket Description
       $supplier_totals = array();
       $this->load->model('total/supplier_total');
+      $this->model_total_supplier_total->getTotal($supplier_totals);
       $ticket['description'] .= $newline . 'Total for each supplier:' . $newline;
       foreach($supplier_totals as $supplier_total) {
         $ticket['description'] .= $supplier_total['title'] . ': ';
@@ -215,6 +217,7 @@ class ControllerCheckoutConfirm extends Controller {
       $ticket['description'] .= $newline;
 
       //Put total_data into ticket.
+      $ticket['description'] .= 'Totals: ' . $newline;
       foreach($total_data as $total) {
         $ticket['description'] .= $total['title'] . ': ';
         $ticket['description'] .= $total['text'] . $newline;
