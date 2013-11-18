@@ -187,7 +187,6 @@ class ControllerCheckoutConfirm extends Controller {
       }
 
 
-      $supplier_totals = array();
       foreach(array_keys($product_data) as $thesupp) {
   	$ticket['description'] .= $newline;
 	$ticket['description'] .= ('Items from ' . $thesupp);
@@ -202,21 +201,15 @@ class ControllerCheckoutConfirm extends Controller {
 	  foreach($theprod['option'] as $theopt) {
 	    $ticket['description'] .= ('     ' . $theopt['name'] . ': ' . $theopt['value'] . $newline);
 	  }
-
-	  //Calculate total cost for each supplier.
-	  if(isset($supplier_totals[$thesupp])) {
-	    $supplier_totals[$thesupp] += ($theprod['total'] + $theprod['tax']);
-	  } else {
-	    $supplier_totals[$thesupp] = $theprod['total'] + $theprod['tax'];	  
-	  }
         }
       }
 
       //Add Supplier Subtotals to Ticket Description
-      $ticket['description'] .= '
-Total for each supplier:' . $newline;
-      foreach($supplier_totals as $supplier => $subtotal) {
-        $ticket['description'] .= $supplier . ': ' . $subtotal . $newline;
+      $supplier_totals = array();
+      $this->model->load('total/supplier_total');
+      $ticket['description'] .= $newline . 'Total for each supplier:' . $newline;
+      foreach($supplier_totals as $supplier_total) {
+        $ticket['description'] .= $supplier_total['title'] . ': ' . $supplier_total['text'] . $newline;
       }
 
       //Put total_data into ticket.
