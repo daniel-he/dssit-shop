@@ -221,8 +221,8 @@ Total for each supplier:' . $newline;
 
       //Put total_data into ticket.
       foreach($total_data as $total) {
-        $ticket .= $total['title'] . ': ';
-        $ticket .= $total['text'] . $newline;
+        $ticket['description'] .= $total['title'] . ': ';
+        $ticket['description'] .= $total['text'] . $newline;
       }
 
       // Gift Voucher
