@@ -1,25 +1,26 @@
 <?php
-class ModelTotalSubTotal extends Model {
+class ModelTotalSupplierTotal extends Model {
 	public function getTotal(&$total_data, &$total, &$taxes) {
-		$this->language->load('total/sub_total');
+		$this->language->load('total/supplier_total');
 		
-		$sub_total = $this->cart->getSubTotal();
-		
-		if (isset($this->session->data['vouchers']) && $this->session->data['vouchers']) {
-			foreach ($this->session->data['vouchers'] as $voucher) {
-				$sub_total += $voucher['amount'];
+		$supplier_totals = array();
+		foreach($this->cart->getProducts() as $product) {
+		        if(isset($supplier_totals[$product['supplier']])) {
+			        $supplier_totals[$product['supplier]] += $product['total'] + $product['tax'];
+			} else {
+			        $supplier_totals[$product['supplier]] = $product['total'] + $product['tax'];
 			}
 		}
 		
-		$total_data[] = array( 
-			'code'       => 'sub_total',
-			'title'      => $this->language->get('text_sub_total'),
-			'text'       => $this->currency->format($sub_total),
-			'value'      => $sub_total,
-			'sort_order' => $this->config->get('sub_total_sort_order')
+		foreach($supplier_totals as $supplier => $supplier_total) {
+		        $total_data[] = array( 
+			        'code'       => 'supplier_total',
+			        'title'      => $this->language->get('text_supplier_total') . $supplier,
+			        'text'       => $this->currency->format($supplier_total),
+			        'value'      => $supplier_total,
+			        'sort_order' => $this->config->get('supplier_total_sort_order')
 		);
-		
-		$total += $sub_total;
+		}
 	}
 }
 ?>

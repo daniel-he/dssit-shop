@@ -1,3 +1,3 @@
 <?php
-$_['text_sub_total'] = 'Sub-Total';
+$_['text_supplier_total'] = 'Total for items ordered from ';
 ?>

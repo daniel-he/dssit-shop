@@ -14,12 +14,13 @@
       <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
+      <?php echo $disclaimer; ?>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <table class="form">
           <tr>
             <td><?php echo $entry_status; ?></td>
-            <td><select name="sub_total_status">
-                <?php if ($sub_total_status) { ?>
+            <td><select name="supplier_total_status">
+                <?php if ($supplier_total_status) { ?>
                 <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
                 <option value="0"><?php echo $text_disabled; ?></option>
                 <?php } else { ?>
@@ -30,7 +31,7 @@
           </tr>
           <tr>
             <td><?php echo $entry_sort_order; ?></td>
-            <td><input type="text" name="sub_total_sort_order" value="<?php echo $sub_total_sort_order; ?>" size="1" /></td>
+            <td><input type="text" name="supplier_total_sort_order" value="<?php echo $supplier_total_sort_order; ?>" size="1" /></td>
           </tr>
         </table>
       </form>
