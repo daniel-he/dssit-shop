@@ -401,7 +401,7 @@ class Cart {
 	        //returns an array of subtotals, by supplier.
 	        $supplier_totals = array();
 
-		foreach($this->cart->getProducts() as $product) {
+		foreach($this->getProducts() as $product) {
 		        $product['tax'] = $this->tax->getTax($product['price'], $product['tax_class_id']);
 
 		        if(isset($supplier_totals[$product['supplier']])) {

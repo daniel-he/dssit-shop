@@ -107,7 +107,7 @@ class ModelTotalCoupon extends Model {
 						  if(isset($supplier_subtotal[$product['supplier']])) {	
 						          $supplier_subtotal[$product['supplier']] = $product['total'];
 						  } else {
-						          $supplier_subtotal[$product['supplier']} += $product['total'];
+						          $supplier_subtotal[$product['supplier']] += $product['total'];
 						  }
 						}
 					}					
