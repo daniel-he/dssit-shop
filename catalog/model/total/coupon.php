@@ -98,7 +98,7 @@ class ModelTotalCoupon extends Model {
 				$discount_total = array();
 				
 				if (!$coupon_info['product']) {
-					$supplier_subtotal = $this->cart->getSupplierSubotals();
+					$supplier_subtotal = $this->cart->getSupplierSubtotals();
 				} else {
 				        $supplier_subtotal = array();
 				
