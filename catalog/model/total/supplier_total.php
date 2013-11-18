@@ -1,19 +1,22 @@
 <?php
 class ModelTotalSupplierTotal extends Model {
 	public function getTotal(&$total_data, &$total=NULL, &$taxes=NULL) {
+	        //gets an array of the cost of the items from each supplier
+		//takes into account coupons. Does NOT take into account vouchers
+		//or shipping. The shipping logic for coupons is written, but needs
+		//uncommented, and shipping cost needs added here.
+
 		$this->language->load('total/supplier_total');
 		
-		$supplier_totals = array();
-		foreach($this->cart->getProducts() as $product) {
-		        $product['tax'] = $this->tax->getTax($product['price'], $product['tax_class_id']);
+		$supplier_totals = $this->cart->getSupplierSubtotals();
 
-		        if(isset($supplier_totals[$product['supplier']])) {
-			        $supplier_totals[$product['supplier']] += $product['total'] + $product['tax'];
-			} else {
-			        $supplier_totals[$product['supplier']] = $product['total'] + $product['tax'];
-			}
-		}
+		$this->load->model('total/coupon');
+		$discount_totals = $this->model_total_coupon->getSupplierDiscount();
 		
+		foreach($discount_totals as $supplier => $discount_total) {
+		        $supplier_totals[$supplier] = $supplier_totals[$supplier] - $discount_total;
+ 		}
+
 		foreach($supplier_totals as $supplier => $supplier_total) {
 		        $total_data[$supplier] = array( 
 			        'code'       => 'supplier_total',
