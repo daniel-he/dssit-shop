@@ -6,9 +6,9 @@ class ModelTotalSupplierTotal extends Model {
 		$supplier_totals = array();
 		foreach($this->cart->getProducts() as $product) {
 		        if(isset($supplier_totals[$product['supplier']])) {
-			        $supplier_totals[$product['supplier]] += $product['total'] + $product['tax'];
+			        $supplier_totals[$product['supplier']] += $product['total'] + $product['tax'];
 			} else {
-			        $supplier_totals[$product['supplier]] = $product['total'] + $product['tax'];
+			        $supplier_totals[$product['supplier']] = $product['total'] + $product['tax'];
 			}
 		}
 		

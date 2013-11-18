@@ -206,11 +206,13 @@ class ControllerCheckoutConfirm extends Controller {
 
       //Add Supplier Subtotals to Ticket Description
       $supplier_totals = array();
-      $this->model->load('total/supplier_total');
+      $this->load->model('total/supplier_total');
       $ticket['description'] .= $newline . 'Total for each supplier:' . $newline;
       foreach($supplier_totals as $supplier_total) {
-        $ticket['description'] .= $supplier_total['title'] . ': ' . $supplier_total['text'] . $newline;
+        $ticket['description'] .= $supplier_total['title'] . ': ';
+	$ticket['description'] .= $supplier_total['text'] . $newline;
       }
+      $ticket['description'] .= $newline;
 
       //Put total_data into ticket.
       foreach($total_data as $total) {
