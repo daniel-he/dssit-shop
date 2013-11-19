@@ -75,7 +75,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_product_purchased'] = $this->language->get('text_report_product_purchased');
 		$this->data['text_report_customer_online'] = $this->language->get('text_report_customer_online');
 		$this->data['text_report_customer_order'] = $this->language->get('text_report_customer_order');
-		$this->data['text_report_customer_reward'] = $this->language->get('text_report_customer_reward');
 		$this->data['text_report_customer_credit'] = $this->language->get('text_report_customer_credit');
 		$this->data['text_report_affiliate_commission'] = $this->language->get('text_report_affiliate_commission');
 		$this->data['text_report_sale_return'] = $this->language->get('text_report_sale_return');
@@ -108,21 +107,6 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_weight_class'] = $this->language->get('text_weight_class');
 		$this->data['text_length_class'] = $this->language->get('text_length_class');
 		$this->data['text_zone'] = $this->language->get('text_zone');
-        $this->data['text_openbay_extension'] = $this->language->get('text_openbay_extension');
-        $this->data['text_openbay_dashboard'] = $this->language->get('text_openbay_dashboard');
-        $this->data['text_openbay_orders'] = $this->language->get('text_openbay_orders');
-        $this->data['text_openbay_items'] = $this->language->get('text_openbay_items');
-        $this->data['text_openbay_ebay'] = $this->language->get('text_openbay_ebay');
-        $this->data['text_openbay_amazon'] = $this->language->get('text_openbay_amazon');
-        $this->data['text_openbay_amazonus'] = $this->language->get('text_openbay_amazonus');
-        $this->data['text_openbay_play'] = $this->language->get('text_openbay_play');
-        $this->data['text_openbay_settings'] = $this->language->get('text_openbay_settings');
-        $this->data['text_openbay_links'] = $this->language->get('text_openbay_links');
-        $this->data['text_openbay_report_price'] = $this->language->get('text_openbay_report_price');
-        $this->data['text_openbay_order_import'] = $this->language->get('text_openbay_order_import');
-		
-		$this->data['text_paypal_express'] = $this->language->get('text_paypal_manage');
-		$this->data['text_paypal_express_search'] = $this->language->get('text_paypal_search');
 		$this->data['text_recurring_profile'] = $this->language->get('text_recurring_profile');
 
 		if (!$this->user->isLogged() || !isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
@@ -176,7 +160,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['report_product_purchased'] = $this->url->link('report/product_purchased', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_online'] = $this->url->link('report/customer_online', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_order'] = $this->url->link('report/customer_order', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['report_customer_reward'] = $this->url->link('report/customer_reward', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_customer_credit'] = $this->url->link('report/customer_credit', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['report_affiliate_commission'] = $this->url->link('report/affiliate_commission', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['review'] = $this->url->link('catalog/review', 'token=' . $this->session->data['token'], 'SSL');
@@ -203,32 +186,6 @@ class ControllerCommonHeader extends Controller {
 			$this->data['length_class'] = $this->url->link('localisation/length_class', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['zone'] = $this->url->link('localisation/zone', 'token=' . $this->session->data['token'], 'SSL');
 
-            $this->data['openbay_link_extension']           = $this->url->link('extension/openbay', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_orders']              = $this->url->link('extension/openbay/orderList', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_items']               = $this->url->link('extension/openbay/itemList', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_ebay']                = $this->url->link('openbay/openbay', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_ebay_settings']       = $this->url->link('openbay/openbay/settings', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_ebay_links']          = $this->url->link('openbay/openbay/viewItemLinks', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_ebay_orderimport']    = $this->url->link('openbay/openbay/viewOrderImport', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_amazon']              = $this->url->link('openbay/amazon', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_amazon_settings']     = $this->url->link('openbay/amazon/settings', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_amazon_links']        = $this->url->link('openbay/amazon/itemLinks', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_amazonus']            = $this->url->link('openbay/amazonus', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_amazonus_settings']   = $this->url->link('openbay/amazonus/settings', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_amazonus_links']      = $this->url->link('openbay/amazonus/itemLinks', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_play']                = $this->url->link('openbay/play', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_play_settings']       = $this->url->link('openbay/play/settings', 'token=' . $this->session->data['token'], 'SSL');
-            $this->data['openbay_link_play_report_price']   = $this->url->link('play/product/pricingReport', 'token=' . $this->session->data['token'], 'SSL');
-
-            $this->data['openbay_markets'] = array(
-                'ebay' => $this->config->get('openbay_status'),
-                'amazon' => $this->config->get('amazon_status'),
-                'amazonus' => $this->config->get('amazonus_status'),
-                'play' => $this->config->get('play_status')
-            );
-
-			$this->data['paypal_express'] = $this->url->link('payment/pp_express', 'token=' . $this->session->data['token'], 'SSL');
-			$this->data['paypal_express_search'] = $this->url->link('payment/pp_express/search', 'token=' . $this->session->data['token'], 'SSL');
 			$this->data['recurring_profile'] = $this->url->link('sale/recurring', 'token=' . $this->session->data['token'], 'SSL');
 
 			$this->data['stores'] = array();
