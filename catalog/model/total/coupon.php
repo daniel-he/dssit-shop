@@ -105,9 +105,9 @@ class ModelTotalCoupon extends Model {
 					foreach ($this->cart->getProducts() as $product) {
 						if (in_array($product['product_id'], $coupon_info['product'])) {
 						  if(isset($supplier_subtotal[$product['supplier']])) {	
-						          $supplier_subtotal[$product['supplier']] = $product['total'];
-						  } else {
 						          $supplier_subtotal[$product['supplier']] += $product['total'];
+						  } else {
+						          $supplier_subtotal[$product['supplier']] = $product['total'];
 						  }
 						}
 					}					
