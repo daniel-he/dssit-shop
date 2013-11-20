@@ -15,7 +15,7 @@ body, td, th, input, textarea, select, a {
 }
 h1, .welcome {
 	color: #636E75;
-	font: Verdana;
+	font: Lucida Sans;
 	margin-top: 0px;
 	margin-bottom: 20px;
 	font-size: 32px;
@@ -33,7 +33,7 @@ p {
 	margin-bottom: 20px;
 }
 a, a:visited, a b {
-	color: #38B0E3;
+	color: #002855;
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -162,7 +162,7 @@ label {
 	margin-bottom: 3px;
 }
 #header #cart .heading a {
-	color: #38B0E3;
+	color: #002855;
 	text-decoration: none;
 }
 #header #cart .heading a span {
@@ -307,7 +307,7 @@ label {
 	float: left;
 	display: block;
 	padding: 0px 0px 0px 7px;
-	color: #38B0E3;
+	color: #002855;
 	text-decoration: none;
 	font-size: 12px;
 }
@@ -317,7 +317,7 @@ label {
 }
 /* menu */
 #menu {
-	background: #585858;
+	background: #002855;
 	border-bottom: 1px solid #000000;
 	height: 37px;
 	margin-bottom: 15px;
@@ -355,7 +355,7 @@ label {
 	position: relative;
 }
 #menu > ul > li:hover > a {
-	background: #000000;
+	background: #335379;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -562,7 +562,7 @@ a.button, input.button {
 	cursor: pointer;
 	color: #FFFFFF;
 	line-height: 12px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Lucida Sans, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	font-weight: bold;
 	background: url('../image/button.png') repeat-x;
@@ -695,7 +695,7 @@ a.button:hover, input.button:hover {
 	border: 1px solid #E7E7E7;
 }
 .box-product .name a {
-	color: #38B0E3;
+	color: #002855;
 	font-weight: bold;
 	text-decoration: none;
 	display: block;
@@ -888,7 +888,7 @@ ul.box-filter > li ul {
 	margin-bottom: 3px;
 }
 .product-list .name a {
-	color: #38B0E3;
+	color: #002855;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -963,7 +963,7 @@ ul.box-filter > li ul {
 	border: 1px solid #E7E7E7;
 }
 .product-grid .name a {
-	color: #38B0E3;
+	color: #002855;
 	font-weight: bold;
 	text-decoration: none;
 	display: block;
@@ -1055,7 +1055,7 @@ ul.box-filter > li ul {
 	color: #4D4D4D;
 }
 .product-info .description span {
-	color: #38B0E3;
+	color: #002855;
 }
 .product-info .description a {
 	color: #4D4D4D;
@@ -1142,7 +1142,7 @@ ul.box-filter > li ul {
 	line-height: 20px;
 }
 .product-info .review > div > span {
-	color: #38B0E3;
+	color: #002855;
 }
 .product-info .review .share {
 	overflow: auto;

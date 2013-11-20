@@ -34,7 +34,7 @@
           <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="2"></td>
+              <td colspan="1"></td>
               <td class="left"><a onclick="addSupplier();" class="button"><?php echo $button_add_supplier; ?></a></td>
             </tr>
           </tfoot>
