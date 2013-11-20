@@ -34,7 +34,7 @@
           <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="2"></td>
+              <td colspan="1"></td>
               <td class="left"><a onclick="addService_Center();" class="button"><?php echo $button_add_service_center; ?></a></td>
             </tr>
           </tfoot>
@@ -58,7 +58,7 @@
           <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="2"></td>
+              <td colspan="1"></td>
               <td class="left"><a onclick="addBuilding();" class="button"><?php echo $button_add_building; ?></a></td>
             </tr>
           </tfoot>

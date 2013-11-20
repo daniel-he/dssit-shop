@@ -34,7 +34,7 @@
           <?php } ?>
           <tfoot>
             <tr>
-              <td colspan="2"></td>
+              <td colspan="1"></td>
               <td class="left"><a onclick="addSubcategory();" class="button"><?php echo $button_add_subcategory; ?></a></td>
             </tr>
           </tfoot>
