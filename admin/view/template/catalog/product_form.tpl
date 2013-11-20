@@ -14,7 +14,7 @@
       <div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a href="<?php echo $cancel; ?>" class="button"><?php echo $button_cancel; ?></a></div>
     </div>
     <div class="content">
-      <div id="tabs" class="htabs"><a href="#tab-general"><?php echo $tab_general; ?></a><a href="#tab-data"><?php echo $tab_data; ?></a><a href="#tab-links"><?php echo $tab_links; ?></a><a href="#tab-attribute"><?php echo $tab_attribute; ?></a><a href="#tab-option"><?php echo $tab_option; ?></a><a href="#tab-profile"><?php echo $tab_profile; ?></a><a href="#tab-discount"><?php echo $tab_discount; ?></a><a href="#tab-special"><?php echo $tab_special; ?></a><a href="#tab-image"><?php echo $tab_image; ?></a><a href="#tab-reward"><?php echo $tab_reward; ?></a><a href="#tab-design"><?php echo $tab_design; ?></a></div>
+      <div id="tabs" class="htabs"><a href="#tab-general"><?php echo $tab_general; ?></a><a href="#tab-data"><?php echo $tab_data; ?></a><a href="#tab-links"><?php echo $tab_links; ?></a><a href="#tab-attribute"><?php echo $tab_attribute; ?></a><a href="#tab-option"><?php echo $tab_option; ?></a><a href="#tab-profile"><?php echo $tab_profile; ?></a><a href="#tab-discount"><?php echo $tab_discount; ?></a><a href="#tab-special"><?php echo $tab_special; ?></a><a href="#tab-image"><?php echo $tab_image; ?></a><a href="#tab-design"><?php echo $tab_design; ?></a></div>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
         <div id="tab-general">
           <div id="languages" class="htabs">
@@ -724,30 +724,6 @@
                 <td class="left"><a onclick="addImage();" class="button"><?php echo $button_add_image; ?></a></td>
               </tr>
             </tfoot>
-          </table>
-        </div>
-        <div id="tab-reward">
-          <table class="form">
-            <tr>
-              <td><?php echo $entry_points; ?></td>
-              <td><input type="text" name="points" value="<?php echo $points; ?>" /></td>
-            </tr>
-          </table>
-          <table class="list">
-            <thead>
-              <tr>
-                <td class="left"><?php echo $entry_customer_group; ?></td>
-                <td class="right"><?php echo $entry_reward; ?></td>
-              </tr>
-            </thead>
-            <?php foreach ($customer_groups as $customer_group) { ?>
-            <tbody>
-              <tr>
-                <td class="left"><?php echo $customer_group['name']; ?></td>
-                <td class="right"><input type="text" name="product_reward[<?php echo $customer_group['customer_group_id']; ?>][points]" value="<?php echo isset($product_reward[$customer_group['customer_group_id']]) ? $product_reward[$customer_group['customer_group_id']]['points'] : ''; ?>" /></td>
-              </tr>
-            </tbody>
-            <?php } ?>
           </table>
         </div>
         <div id="tab-design">
