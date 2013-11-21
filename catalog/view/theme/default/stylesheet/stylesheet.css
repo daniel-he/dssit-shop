@@ -14,7 +14,7 @@ body, td, th, input, textarea, select, a {
 	font-size: 12px;
 }
 h1, .welcome {
-	color: #636E75;
+	color: #002855;
 	font: Lucida Sans;
 	margin-top: 0px;
 	margin-bottom: 20px;
@@ -294,7 +294,7 @@ label {
 	z-index: 5;
 	width: 298px;
 	text-align: right;
-	color: #999999;
+	color: #002855;
 }
 #header .links {
 	position: absolute;
@@ -511,7 +511,7 @@ table.radio tr td:first-child input {
 	margin-top: 1px;
 }
 table.radio tr.highlight:hover td {
-	background: #F1FFDD;
+	background: #E5E9EF;
 	cursor: pointer;
 }
 .pagination {
