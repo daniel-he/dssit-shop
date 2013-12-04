@@ -12,9 +12,9 @@ class ControllerSysaidAccount extends Controller {
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 		  $this->model_setting_setting->editSetting('sysaid_account', array("sysaid_username" => $this->request->post["sysaid-user"], "sysaid_password" => $this->request->post["sysaid-password"]));		
 					
-			$this->session->data['success'] = $this->language->get('text_success');
-
-			$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->data['success'] = $this->language->get('text_success');
+		} else {
+		  $this->data['success'] = false;
 		}
 				
 		$this->data['heading_title'] = $this->language->get('heading_title');

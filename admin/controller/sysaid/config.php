@@ -24,9 +24,9 @@ class ControllerSysaidConfig extends Controller {
 
 		  $this->model_setting_setting->editSetting('sysaid_config', array("sysaid_config_service_centers" => $all_service_centers, "sysaid_config_buildings" => $all_buildings));	
 					
-			$this->session->data['success'] = $this->language->get('text_success');
-			
-			$this->redirect($this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->data['success'] = $this->language->get('text_success');
+		} else {
+		  $this->data['success'] = false;
 		}
 				
 		$this->data['heading_title'] = $this->language->get('heading_title');
