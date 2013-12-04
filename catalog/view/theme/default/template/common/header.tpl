@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<?php
-// force CAS authentication
-phpCAS::forceAuthentication();
-?>
 <html dir="<?php echo $direction; ?>" lang="<?php echo $lang; ?>">
 <head>
 <meta charset="UTF-8" />
