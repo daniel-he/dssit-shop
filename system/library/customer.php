@@ -16,8 +16,6 @@ class Customer {
 		$this->session = $registry->get('session');
 		$this->load = $registry->get('load');
 
-		phpCAS::forceAuthentication();
-				
 		if (isset($this->session->data['uid'])) { 
 		  $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE uid = '" . phpCAS::getUser() . "' AND status = '1'");
 			
