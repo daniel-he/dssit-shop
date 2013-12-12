@@ -2,6 +2,9 @@
 class ControllerCheckoutConfirm extends Controller { 
   public function index() {
     $redirect = '';
+    $order = array();
+
+    $order['comment'] = "";
 
     $newline = '
 '; //Only way to make sysaid recognize the newline...
@@ -18,6 +21,13 @@ class ControllerCheckoutConfirm extends Controller {
 		    'status' => 1
     );
 
+    $order['customer_id'] = $this->getId();
+    $order['customer_group_id'] = $this->customer->getCustomerGroupId();
+    $order['firstname'] = $this->customer->getFirstName();
+    $order['lastname'] = $this->customer->getLastName()
+    $order['email'] = $this->customer->getEmail();
+    $order['telephone'] = $this->customer->getTelephone();
+
         // Validate if payment address has been set.
     if ($this->customer->isLogged() && isset($this->session->data['billingInfo'])) {
       $payment_address = $this->session->data['billingInfo'];
@@ -26,6 +36,11 @@ class ControllerCheckoutConfirm extends Controller {
     if (empty($payment_address)) {
       $redirect = $this->url->link('checkout/checkout', '', 'SSL');
     }
+
+    $order['payment_firstname'] = $payment_address['First Name'];
+    $order['payment_lastname'] = $payment_address['Last Name'];
+    $order['payment_address_1'] = $payment_address['Room Number'];
+    $order['payment_address_2'] = $payment_address['Building'];
 
     $ticket['description'] = 'Account Holder\'s Information:' . $newline;
     foreach($payment_address as $key => $value) {
@@ -39,6 +54,8 @@ class ControllerCheckoutConfirm extends Controller {
     if (!isset($this->session->data['billingInfo']['account'])) {
       $redirect = $this->url->link('checkout/checkout', '', 'SSL');
     }
+
+    $order['payment_info'] = $this->session->data['billingInfo']['account'];
 
     if ($this->cart->hasShipping()) {
       // Validate if shipping address has been set.
@@ -58,16 +75,23 @@ class ControllerCheckoutConfirm extends Controller {
       //Put Delivery Information Into Sysaid Ticket
       $ticket['description'] .= 'Delivery Information:' . $newline;
       $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . $newline);
+      $ship_adr = ""
       foreach($shipping_address as $key => $value) {
-	$ticket['description'] .= '     ';
-	$ticket['description'] .= ($key . ': ');
-	$ticket['description'] .= ($value . $newline);
+	$ship_adr .= '     ';
+	$ship_adr .= ($key . ': ');
+	$ship_adr .= ($value . $newline);
       }
+      $ticket['description'] .= $ship_adr;
       $ticket['description'] .= $newline;
     } else {
       unset($this->session->data['shipping_method']);
       unset($this->session->data['shipping_methods']);
     }
+
+    $order['shipping_firstname'] = (isset($shipping_address['First Name']) ? $shipping_address['First Name'] : $payment_address['First Name']);
+    $order['shipping_lastname'] = (isset($shipping_address['Last Name']) ? $shipping_address['Last Name'] : $payment_address['Last Name']);
+    $order['shipping_address'] = $ship_adr;
+    $order['shipping_method'] = $this->session->data['shipping_method']['title'];
     
     // Validate cart has products and has stock.	
     if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
@@ -136,13 +160,13 @@ class ControllerCheckoutConfirm extends Controller {
       $data = array();
       
       $data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
-      $data['store_id'] = $this->config->get('config_store_id');
-      $data['store_name'] = $this->config->get('config_name');
+      $order['store_id'] = $this->config->get('config_store_id');
+      $order['store_name'] = $this->config->get('config_name');
       
-      if ($data['store_id']) {
-	$data['store_url'] = $this->config->get('config_url');		
+      if ($order['store_id']) {
+	$order['store_url'] = $this->config->get('config_url');		
       } else {
-	$data['store_url'] = HTTP_SERVER;	
+	$order['store_url'] = HTTP_SERVER;	
       }
 
       $product_data = array();
@@ -171,6 +195,21 @@ class ControllerCheckoutConfirm extends Controller {
 	}
 	 
 	$product_data[$product['supplier']][] = array(
+				'product_id' => $product['product_id'],
+				'name'       => $product['name'],
+				'model'      => $product['model'],
+				'option'     => $option_data,
+				'download'   => $product['download'],
+				'quantity'   => $product['quantity'],
+				'subtract'   => $product['subtract'],
+				'price'      => $product['price'],
+				'total'      => $product['total'],
+				'tax'        => $this->tax->getTax($product['price'], $product['tax_class_id']),
+				'reward'     => $product['reward'],
+				'supplier'   => $product['supplier']
+				); 
+
+	 $all_products[] = array(
 				'product_id' => $product['product_id'],
 				'name'       => $product['name'],
 				'model'      => $product['model'],
@@ -222,6 +261,8 @@ class ControllerCheckoutConfirm extends Controller {
         $ticket['description'] .= $total['title'] . ': ';
         $ticket['description'] .= $total['text'] . $newline;
       }
+      $order['totals'] = $total_data;
+      $order['total'] = $total;
 
       // Gift Voucher
       $voucher_data = array();
@@ -244,6 +285,8 @@ class ControllerCheckoutConfirm extends Controller {
     
       $data['products'] = $product_data;
       $data['vouchers'] = $voucher_data;
+      $order['products'] = $all_products;
+      $order['vouchers'] = $voucher_data;
       $data['totals'] = $total_data;
       $data['comment'] = (isset($this->session->data['shippingInfo']['comment']) ? $this->session->data['shippingInfo']['comment'] : '');
       $data['total'] = $total;
@@ -255,46 +298,35 @@ class ControllerCheckoutConfirm extends Controller {
 	$subtotal = $this->cart->getSubTotal();
       
 	if ($affiliate_info) {
-	  $data['affiliate_id'] = $affiliate_info['affiliate_id']; 
-	  $data['commission'] = ($subtotal / 100) * $affiliate_info['commission']; 
+	  $order['affiliate_id'] = $affiliate_info['affiliate_id']; 
 	} else {
-	  $data['affiliate_id'] = 0;
-	  $data['commission'] = 0;
+	  $order['affiliate_id'] = 0;
 	}
       } else {
-	$data['affiliate_id'] = 0;
-	$data['commission'] = 0;
+	$order['affiliate_id'] = 0;
       }
     
-      $data['language_id'] = $this->config->get('config_language_id');
-      $data['currency_id'] = $this->currency->getId();
-      $data['currency_code'] = $this->currency->getCode();
-      $data['currency_value'] = $this->currency->getValue($this->currency->getCode());
-      $data['ip'] = $this->request->server['REMOTE_ADDR'];
+      $order['ip'] = $this->request->server['REMOTE_ADDR'];
     
       if (!empty($this->request->server['HTTP_X_FORWARDED_FOR'])) {
-	$data['forwarded_ip'] = $this->request->server['HTTP_X_FORWARDED_FOR'];	
+	$order['forwarded_ip'] = $this->request->server['HTTP_X_FORWARDED_FOR'];	
       } elseif(!empty($this->request->server['HTTP_CLIENT_IP'])) {
-	$data['forwarded_ip'] = $this->request->server['HTTP_CLIENT_IP'];	
+	$order['forwarded_ip'] = $this->request->server['HTTP_CLIENT_IP'];	
       } else {
-	$data['forwarded_ip'] = '';
+	$order['forwarded_ip'] = '';
       }
     
       if (isset($this->request->server['HTTP_USER_AGENT'])) {
-	$data['user_agent'] = $this->request->server['HTTP_USER_AGENT'];	
+	$order['user_agent'] = $this->request->server['HTTP_USER_AGENT'];	
       } else {
-	$data['user_agent'] = '';
+	$order['user_agent'] = '';
       }
     
       if (isset($this->request->server['HTTP_ACCEPT_LANGUAGE'])) {
-	$data['accept_language'] = $this->request->server['HTTP_ACCEPT_LANGUAGE'];	
+	$order['accept_language'] = $this->request->server['HTTP_ACCEPT_LANGUAGE'];	
       } else {
-	$data['accept_language'] = '';
+	$order['accept_language'] = '';
       }
-    
-      /*$this->load->model('checkout/order');
-    
-	$this->session->data['order_id'] = $this->model_checkout_order->addOrder($data);*/
     
       $this->data['column_name'] = $this->language->get('column_name');
       $this->data['column_model'] = $this->language->get('column_model');
@@ -395,6 +427,11 @@ class ControllerCheckoutConfirm extends Controller {
   
     $this->load->model('sysaid/sysaid');
     $this->data['ticket_no'] = $this->model_sysaid_sysaid->makeTicket($ticket);
+    $order['sysaid_no'] = $this->data['ticket_no'];
+
+    $this->load->model('checkout/order');
+    
+    $this->session->data['order_id'] = $this->model_checkout_order->addOrder($order);
 
     //Clean Up Our Mess
     $this->cart->clear();

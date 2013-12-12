@@ -1,7 +1,9 @@
 <?php
 class ModelCheckoutOrder extends Model {	
 	public function addOrder($data) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET invoice_prefix = '" . $this->db->escape($data['invoice_prefix']) . 
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET " . 
+"sysaid_no = '" . (int)$data['sysaid_no'] . 
+(isset($data['opp_no']) ? ("', opp_no = '" . (int)$data['opp_no']) : "") . 
 "', store_id = '" . (int)$data['store_id'] . 
 "', store_name = '" . $this->db->escape($data['store_name']) . 
 "', store_url = '" . $this->db->escape($data['store_url']) . 
@@ -11,45 +13,18 @@ class ModelCheckoutOrder extends Model {
 "', lastname = '" . $this->db->escape($data['lastname']) . 
 "', email = '" . $this->db->escape($data['email']) . 
 "', telephone = '" . $this->db->escape($data['telephone']) . 
-"', fax = '" . $this->db->escape($data['fax']) . 
 "', payment_firstname = '" . $this->db->escape($data['payment_firstname']) . 
 "', payment_lastname = '" . $this->db->escape($data['payment_lastname']) . 
-"', payment_company = '" . $this->db->escape($data['payment_company']) . 
-"', payment_company_id = '" . $this->db->escape($data['payment_company_id']) . 
-"', payment_tax_id = '" . $this->db->escape($data['payment_tax_id']) . 
 "', payment_address_1 = '" . $this->db->escape($data['payment_address_1']) . 
 "', payment_address_2 = '" . $this->db->escape($data['payment_address_2']) . 
-"', payment_city = '" . $this->db->escape($data['payment_city']) . 
-"', payment_postcode = '" . $this->db->escape($data['payment_postcode']) . 
-"', payment_country = '" . $this->db->escape($data['payment_country']) . 
-"', payment_country_id = '" . (int)$data['payment_country_id'] . 
-"', payment_zone = '" . $this->db->escape($data['payment_zone']) . 
-"', payment_zone_id = '" . (int)$data['payment_zone_id'] . 
-"', payment_address_format = '" . $this->db->escape($data['payment_address_format']) . 
-"', payment_method = '" . $this->db->escape($data['payment_method']) . 
-"', payment_code = '" . $this->db->escape($data['payment_code']) . 
+"', payment_info = '" . $this->db->escape($data['payment_info']) . 
 "', shipping_firstname = '" . $this->db->escape($data['shipping_firstname']) . 
 "', shipping_lastname = '" . $this->db->escape($data['shipping_lastname']) . 
-"', shipping_company = '" . $this->db->escape($data['shipping_company']) . 
-"', shipping_address_1 = '" . $this->db->escape($data['shipping_address_1']) . 
-"', shipping_address_2 = '" . $this->db->escape($data['shipping_address_2']) . 
-"', shipping_city = '" . $this->db->escape($data['shipping_city']) . 
-"', shipping_postcode = '" . $this->db->escape($data['shipping_postcode']) . 
-"', shipping_country = '" . $this->db->escape($data['shipping_country']) . 
-"', shipping_country_id = '" . (int)$data['shipping_country_id'] . 
-"', shipping_zone = '" . $this->db->escape($data['shipping_zone']) . 
-"', shipping_zone_id = '" . (int)$data['shipping_zone_id'] . 
-"', shipping_address_format = '" . $this->db->escape($data['shipping_address_format']) . 
+"', shipping_address = '" . $this->db->escape($data['shipping_address']) . 
 "', shipping_method = '" . $this->db->escape($data['shipping_method']) . 
-"', shipping_code = '" . $this->db->escape($data['shipping_code']) . 
 "', comment = '" . $this->db->escape($data['comment']) . 
 "', total = '" . (float)$data['total'] . 
 "', affiliate_id = '" . (int)$data['affiliate_id'] . 
-"', commission = '" . (float)$data['commission'] . 
-"', language_id = '" . (int)$data['language_id'] . 
-"', currency_id = '" . (int)$data['currency_id'] . 
-"', currency_code = '" . $this->db->escape($data['currency_code']) . 
-"', currency_value = '" . (float)$data['currency_value'] . 
 "', ip = '" . $this->db->escape($data['ip']) . 
 "', forwarded_ip = '" .  $this->db->escape($data['forwarded_ip']) . 
 "', user_agent = '" . $this->db->escape($data['user_agent']) . 
@@ -59,7 +34,7 @@ class ModelCheckoutOrder extends Model {
 		$order_id = $this->db->getLastId();
 
 		foreach ($data['products'] as $product) { 
-			$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$product['product_id'] . "', name = '" . $this->db->escape($product['name']) . "', model = '" . $this->db->escape($product['model']) . "', quantity = '" . (int)$product['quantity'] . "', price = '" . (float)$product['price'] . "', total = '" . (float)$product['total'] . "', tax = '" . (float)$product['tax'] . "', reward = '" . (int)$product['reward'] . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$product['product_id'] . "', name = '" . $this->db->escape($product['name']) . "', model = '" . $this->db->escape($product['model']) . "', quantity = '" . (int)$product['quantity'] . "', price = '" . (float)$product['price'] . "', total = '" . (float)$product['total'] . "', tax = '" . (float)$product['tax'] . "'");
  
 			$order_product_id = $this->db->getLastId();
 
@@ -87,60 +62,10 @@ class ModelCheckoutOrder extends Model {
 		$order_query = $this->db->query("SELECT *, (SELECT os.name FROM `" . DB_PREFIX . "order_status` os WHERE os.order_status_id = o.order_status_id AND os.language_id = o.language_id) AS order_status FROM `" . DB_PREFIX . "order` o WHERE o.order_id = '" . (int)$order_id . "'");
 			
 		if ($order_query->num_rows) {
-			$country_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE country_id = '" . (int)$order_query->row['payment_country_id'] . "'");
-			
-			if ($country_query->num_rows) {
-				$payment_iso_code_2 = $country_query->row['iso_code_2'];
-				$payment_iso_code_3 = $country_query->row['iso_code_3'];
-			} else {
-				$payment_iso_code_2 = '';
-				$payment_iso_code_3 = '';				
-			}
-			
-			$zone_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE zone_id = '" . (int)$order_query->row['payment_zone_id'] . "'");
-			
-			if ($zone_query->num_rows) {
-				$payment_zone_code = $zone_query->row['code'];
-			} else {
-				$payment_zone_code = '';
-			}			
-			
-			$country_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "country` WHERE country_id = '" . (int)$order_query->row['shipping_country_id'] . "'");
-			
-			if ($country_query->num_rows) {
-				$shipping_iso_code_2 = $country_query->row['iso_code_2'];
-				$shipping_iso_code_3 = $country_query->row['iso_code_3'];
-			} else {
-				$shipping_iso_code_2 = '';
-				$shipping_iso_code_3 = '';				
-			}
-			
-			$zone_query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "zone` WHERE zone_id = '" . (int)$order_query->row['shipping_zone_id'] . "'");
-			
-			if ($zone_query->num_rows) {
-				$shipping_zone_code = $zone_query->row['code'];
-			} else {
-				$shipping_zone_code = '';
-			}
-			
-			$this->load->model('localisation/language');
-			
-			$language_info = $this->model_localisation_language->getLanguage($order_query->row['language_id']);
-			
-			if ($language_info) {
-				$language_code = $language_info['code'];
-				$language_filename = $language_info['filename'];
-				$language_directory = $language_info['directory'];
-			} else {
-				$language_code = '';
-				$language_filename = '';
-				$language_directory = '';
-			}
-		 			
 			return array(
 				'order_id'                => $order_query->row['order_id'],
-				'invoice_no'              => $order_query->row['invoice_no'],
-				'invoice_prefix'          => $order_query->row['invoice_prefix'],
+				'sysaid_no'               => $order_query->row['sysaid_no'],
+				'opp_no'                  => $order_query->row['opp_no'],
 				'store_id'                => $order_query->row['store_id'],
 				'store_name'              => $order_query->row['store_name'],
 				'store_url'               => $order_query->row['store_url'],				
@@ -148,55 +73,21 @@ class ModelCheckoutOrder extends Model {
 				'firstname'               => $order_query->row['firstname'],
 				'lastname'                => $order_query->row['lastname'],
 				'telephone'               => $order_query->row['telephone'],
-				'fax'                     => $order_query->row['fax'],
 				'email'                   => $order_query->row['email'],
 				'payment_firstname'       => $order_query->row['payment_firstname'],
 				'payment_lastname'        => $order_query->row['payment_lastname'],				
-				'payment_company'         => $order_query->row['payment_company'],
-				'payment_company_id'      => $order_query->row['payment_company_id'],
-				'payment_tax_id'          => $order_query->row['payment_tax_id'],
 				'payment_address_1'       => $order_query->row['payment_address_1'],
 				'payment_address_2'       => $order_query->row['payment_address_2'],
-				'payment_postcode'        => $order_query->row['payment_postcode'],
-				'payment_city'            => $order_query->row['payment_city'],
-				'payment_zone_id'         => $order_query->row['payment_zone_id'],
-				'payment_zone'            => $order_query->row['payment_zone'],
-				'payment_zone_code'       => $payment_zone_code,
-				'payment_country_id'      => $order_query->row['payment_country_id'],
-				'payment_country'         => $order_query->row['payment_country'],	
-				'payment_iso_code_2'      => $payment_iso_code_2,
-				'payment_iso_code_3'      => $payment_iso_code_3,
-				'payment_address_format'  => $order_query->row['payment_address_format'],
 				'payment_method'          => $order_query->row['payment_method'],
-				'payment_code'            => $order_query->row['payment_code'],
+				'payment_info'          => $order_query->row['payment_info'],
 				'shipping_firstname'      => $order_query->row['shipping_firstname'],
 				'shipping_lastname'       => $order_query->row['shipping_lastname'],				
-				'shipping_company'        => $order_query->row['shipping_company'],
-				'shipping_address_1'      => $order_query->row['shipping_address_1'],
-				'shipping_address_2'      => $order_query->row['shipping_address_2'],
-				'shipping_postcode'       => $order_query->row['shipping_postcode'],
-				'shipping_city'           => $order_query->row['shipping_city'],
-				'shipping_zone_id'        => $order_query->row['shipping_zone_id'],
-				'shipping_zone'           => $order_query->row['shipping_zone'],
-				'shipping_zone_code'      => $shipping_zone_code,
-				'shipping_country_id'     => $order_query->row['shipping_country_id'],
-				'shipping_country'        => $order_query->row['shipping_country'],	
-				'shipping_iso_code_2'     => $shipping_iso_code_2,
-				'shipping_iso_code_3'     => $shipping_iso_code_3,
-				'shipping_address_format' => $order_query->row['shipping_address_format'],
+				'shipping_address'      => $order_query->row['shipping_address'],
 				'shipping_method'         => $order_query->row['shipping_method'],
-				'shipping_code'           => $order_query->row['shipping_code'],
 				'comment'                 => $order_query->row['comment'],
 				'total'                   => $order_query->row['total'],
 				'order_status_id'         => $order_query->row['order_status_id'],
 				'order_status'            => $order_query->row['order_status'],
-				'language_id'             => $order_query->row['language_id'],
-				'language_code'           => $language_code,
-				'language_filename'       => $language_filename,
-				'language_directory'      => $language_directory,
-				'currency_id'             => $order_query->row['currency_id'],
-				'currency_code'           => $order_query->row['currency_code'],
-				'currency_value'          => $order_query->row['currency_value'],
 				'ip'                      => $order_query->row['ip'],
 				'forwarded_ip'            => $order_query->row['forwarded_ip'], 
 				'user_agent'              => $order_query->row['user_agent'],	
