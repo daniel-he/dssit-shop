@@ -89,14 +89,14 @@ class ModelTotalCoupon extends Model {
 	}
 
 	public function getSupplierDiscount() {
+		$discount_total = array();
+
 		if (isset($this->session->data['coupon'])) {
 			$this->load->model('checkout/coupon');
 			 
 			$coupon_info = $this->model_checkout_coupon->getCoupon($this->session->data['coupon']);
-			
+
 			if ($coupon_info) {
-				$discount_total = array();
-				
 				if (!$coupon_info['product']) {
 					$supplier_subtotal = $this->cart->getSupplierSubtotals();
 				} else {
@@ -157,25 +157,6 @@ class ModelTotalCoupon extends Model {
 					        $discount_total[$product['supplier']] = $discount;
 					}
 				}
-				
-				/*if ($coupon_info['shipping'] && isset($this->session->data['shipping_method'])) {
-				$ship_discount = 0;
-					if (!empty($this->session->data['shipping_method']['tax_class_id'])) {
-						$tax_rates = $this->tax->getRates($this->session->data['shipping_method']['cost'], $this->session->data['shipping_method']['tax_class_id']);
-						
-						foreach ($tax_rates as $tax_rate) {
-							if ($tax_rate['type'] == 'P') {
-								$ship_discount += $tax_rate['amount'];
-							}
-						}
-					}
-					
-					if(isset($discount_total[$product['supplier']])) {
-					        $discount_total[$product['supplier']] += $ship_discount;
-					} else {
-					        $discount_total[$product['supplier']] = $ship_discount;
-					}
-				}*/
 			}
 		}
 

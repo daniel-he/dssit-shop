@@ -21,10 +21,10 @@ class ControllerCheckoutConfirm extends Controller {
 		    'status' => 1
     );
 
-    $order['customer_id'] = $this->getId();
+    $order['customer_id'] = $this->customer->getId();
     $order['customer_group_id'] = $this->customer->getCustomerGroupId();
     $order['firstname'] = $this->customer->getFirstName();
-    $order['lastname'] = $this->customer->getLastName()
+    $order['lastname'] = $this->customer->getLastName();
     $order['email'] = $this->customer->getEmail();
     $order['telephone'] = $this->customer->getTelephone();
 
@@ -75,7 +75,7 @@ class ControllerCheckoutConfirm extends Controller {
       //Put Delivery Information Into Sysaid Ticket
       $ticket['description'] .= 'Delivery Information:' . $newline;
       $ticket['description'] .= ('Delivery Method: ' . $this->session->data['shipping_method']['title'] . $newline);
-      $ship_adr = ""
+      $ship_adr = "";
       foreach($shipping_address as $key => $value) {
 	$ship_adr .= '     ';
 	$ship_adr .= ($key . ': ');
