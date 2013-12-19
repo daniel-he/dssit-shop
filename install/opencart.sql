@@ -1989,7 +1989,6 @@ CREATE TABLE `oc_order` (
   `telephone` varchar(32),
   `payment_firstname` varchar(32) NOT NULL,
   `payment_lastname` varchar(32) NOT NULL,
-  `payment_tax_id` varchar(32) NOT NULL,    
   `payment_address_1` varchar(128) NOT NULL,
   `payment_address_2` varchar(128) NOT NULL,
   `payment_info` text NOT NULL,
