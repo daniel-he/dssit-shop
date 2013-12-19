@@ -109,7 +109,7 @@ class ControllerAccountOrder extends Controller {
 				'status'     => $result['status'],
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'products'   => ($product_total + $voucher_total),
-				'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'total'      => $this->currency->format($result['total'], $this->config->get('currency_code'), $this->config->get('currency_value')),
 				'href'       => $this->url->link('account/order/info', 'order_id=' . $result['order_id'], 'SSL'),
 				'reorder'    => $this->url->link('account/order', 'order_id=' . $result['order_id'], 'SSL')
 			);
@@ -224,81 +224,41 @@ class ControllerAccountOrder extends Controller {
 			$this->data['button_return'] = $this->language->get('button_return');
       		$this->data['button_continue'] = $this->language->get('button_continue');
 		
-			if ($order_info['invoice_no']) {
-				$this->data['invoice_no'] = $order_info['invoice_prefix'] . $order_info['invoice_no'];
-			} else {
-				$this->data['invoice_no'] = '';
-			}
-			
 			$this->data['order_id'] = $this->request->get['order_id'];
 			$this->data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));
 			
-			if ($order_info['payment_address_format']) {
-      			$format = $order_info['payment_address_format'];
-    		} else {
-				$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-			}
+				$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}';
 		
     		$find = array(
 	  			'{firstname}',
 	  			'{lastname}',
-	  			'{company}',
       			'{address_1}',
       			'{address_2}',
-     			'{city}',
-      			'{postcode}',
-      			'{zone}',
-				'{zone_code}',
-      			'{country}'
 			);
 	
 			$replace = array(
 	  			'firstname' => $order_info['payment_firstname'],
 	  			'lastname'  => $order_info['payment_lastname'],
-	  			'company'   => $order_info['payment_company'],
       			'address_1' => $order_info['payment_address_1'],
       			'address_2' => $order_info['payment_address_2'],
-      			'city'      => $order_info['payment_city'],
-      			'postcode'  => $order_info['payment_postcode'],
-      			'zone'      => $order_info['payment_zone'],
-				'zone_code' => $order_info['payment_zone_code'],
-      			'country'   => $order_info['payment_country']  
 			);
 			
 			$this->data['payment_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
       		$this->data['payment_method'] = $order_info['payment_method'];
-			
-			if ($order_info['shipping_address_format']) {
-      			$format = $order_info['shipping_address_format'];
-    		} else {
-				$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-			}
+
+				$format = '{firstname} {lastname}' . "\n" . '{address}';
 		
     		$find = array(
 	  			'{firstname}',
 	  			'{lastname}',
-	  			'{company}',
-      			'{address_1}',
-      			'{address_2}',
-     			'{city}',
-      			'{postcode}',
-      			'{zone}',
-				'{zone_code}',
-      			'{country}'
+      			'{address}',
 			);
 	
 			$replace = array(
 	  			'firstname' => $order_info['shipping_firstname'],
 	  			'lastname'  => $order_info['shipping_lastname'],
-	  			'company'   => $order_info['shipping_company'],
-      			'address_1' => $order_info['shipping_address_1'],
-      			'address_2' => $order_info['shipping_address_2'],
-      			'city'      => $order_info['shipping_city'],
-      			'postcode'  => $order_info['shipping_postcode'],
-      			'zone'      => $order_info['shipping_zone'],
-				'zone_code' => $order_info['shipping_zone_code'],
-      			'country'   => $order_info['shipping_country']  
+      			'address' => $order_info['shipping_address'],
 			);
 
 			$this->data['shipping_address'] = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));

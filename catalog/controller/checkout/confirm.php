@@ -154,12 +154,14 @@ class ControllerCheckoutConfirm extends Controller {
       }
       
       array_multisort($sort_order, SORT_ASC, $total_data);
+
+      $order['totals'] = $total_data;
+      $order['total'] = $total;
       
       $this->language->load('checkout/checkout');
       
       $data = array();
       
-      $data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
       $order['store_id'] = $this->config->get('config_store_id');
       $order['store_name'] = $this->config->get('config_name');
       
@@ -261,8 +263,6 @@ class ControllerCheckoutConfirm extends Controller {
         $ticket['description'] .= $total['title'] . ': ';
         $ticket['description'] .= $total['text'] . $newline;
       }
-      $order['totals'] = $total_data;
-      $order['total'] = $total;
 
       // Gift Voucher
       $voucher_data = array();

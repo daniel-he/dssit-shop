@@ -1998,7 +1998,7 @@ CREATE TABLE `oc_order` (
   `shipping_method` varchar(128) NOT NULL,
   `comment` text,
   `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `order_status_id` int(11) NOT NULL DEFAULT '0',
+  `order_status_id` int(11) NOT NULL DEFAULT '1',
   `affiliate_id` int(11),
   `ip` varchar(40) NOT NULL,
   `forwarded_ip` varchar(40) NOT NULL,
@@ -2205,20 +2205,21 @@ CREATE TABLE `oc_order_status` (
 --
 
 INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
-(2, 1, 'Processing'),
-(3, 1, 'Shipped'),
-(7, 1, 'Canceled'),
+(1, 1, 'Entered Into Sysaid'),
+(2, 1, 'Pending'),
+(3, 1, 'Processing'),
+(4, 1, 'Shipped'),
 (5, 1, 'Complete'),
+(7, 1, 'Canceled'),
 (8, 1, 'Denied'),
 (9, 1, 'Canceled Reversal'),
 (10, 1, 'Failed'),
 (11, 1, 'Refunded'),
 (12, 1, 'Reversed'),
 (13, 1, 'Chargeback'),
-(1, 1, 'Pending'),
+(14, 1, 'Expired'),
 (16, 1, 'Voided'),
-(15, 1, 'Processed'),
-(14, 1, 'Expired');
+(15, 1, 'Processed');
 
 -- --------------------------------------------------------
 
