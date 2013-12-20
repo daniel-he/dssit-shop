@@ -182,17 +182,11 @@ class ControllerCommonHome extends Controller {
 				'customer'   => $result['customer'],
 				'status'     => $result['status'],
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'total'      => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'total'      => $this->currency->format($result['total'], $this->config->get('config_currency')),
 				'action'     => $action
 			);
 		}
 
-		if ($this->config->get('config_currency_auto')) {
-			$this->load->model('localisation/currency');
-		
-			$this->model_localisation_currency->updateCurrencies();
-		}
-		
 		$this->template = 'common/home.tpl';
 		$this->children = array(
 			'common/header',
