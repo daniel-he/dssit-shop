@@ -129,12 +129,6 @@
             <td><?php echo $text_lastname; ?></td>
             <td><?php echo $payment_lastname; ?></td>
           </tr>
-          <?php if ($payment_company) { ?>
-          <tr>
-            <td><?php echo $text_company; ?></td>
-            <td><?php echo $payment_company; ?></td>
-          </tr>
-          <?php } ?>
           <tr>
             <td><?php echo $text_address_1; ?></td>
             <td><?php echo $payment_address_1; ?></td>
@@ -146,7 +140,6 @@
           </tr>
           <?php } ?>
         </table>
-		<?php echo $payment_action; ?>
       </div>
       <?php if ($shipping_method) { ?>
       <div id="tab-shipping" class="vtabs-content">

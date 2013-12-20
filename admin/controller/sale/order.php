@@ -1354,9 +1354,8 @@ class ControllerSaleOrder extends Controller {
 			$this->data['heading_title'] = $this->language->get('heading_title');
 			
             $this->data['text_name'] = $this->language->get('text_name');
+	    	        $this->data['text_address'] = $this->language->get('text_address');
 			$this->data['text_order_id'] = $this->language->get('text_order_id');
-			$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
-			$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 			$this->data['text_store_name'] = $this->language->get('text_store_name');
 			$this->data['text_store_url'] = $this->language->get('text_store_url');		
 			$this->data['text_customer'] = $this->language->get('text_customer');
@@ -1493,7 +1492,7 @@ class ControllerSaleOrder extends Controller {
 			}
 
 			$this->data['email'] = $order_info['email'];
-			$this->data['telephone'] = $order_info['telephone'];
+			$this->data['telephone'] = (isset($order_info['telephone']) ? $order_info['telephone'] : '');
 			$this->data['comment'] = nl2br($order_info['comment']);
 			$this->data['shipping_method'] = $order_info['shipping_method'];
 			$this->data['total'] = $this->currency->format($order_info['total'], $this->config->get('currency_code'));

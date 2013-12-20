@@ -4,7 +4,6 @@ $_['heading_title']                           = 'Orders';
 
 // Text
 
-$_['text_amazon_order_id']                    = 'Amazon Order ID:';
 $_['text_name']                               = 'Name:';
 $_['text_success']                            = 'Success: You have modified orders!';
 $_['text_order_id']                           = 'Order ID:';
@@ -16,7 +15,6 @@ $_['text_customer']                           = 'Customer:';
 $_['text_customer_group']                     = 'Customer Group:';
 $_['text_email']                              = 'E-Mail:';
 $_['text_telephone']                          = 'Telephone:';
-$_['text_fax']                                = 'Fax:';
 $_['text_shipping_method']                    = 'Shipping Method:';
 $_['text_payment_method']                     = 'Payment Method:';
 $_['text_total']                              = 'Total:';
@@ -36,13 +34,9 @@ $_['text_lastname']                           = 'Last Name:';
 $_['text_company']                            = 'Company:';
 $_['text_company_id']                         = 'Company ID:';
 $_['text_tax_id']                             = 'Tax ID:';
+$_['text_address']                            = 'Address:'
 $_['text_address_1']                          = 'Address 1:';
 $_['text_address_2']                          = 'Address 2:';
-$_['text_postcode']                           = 'Postcode:';
-$_['text_city']                               = 'City:';
-$_['text_zone']                               = 'Region / State:';
-$_['text_zone_code']                          = 'Region / State Code:';
-$_['text_country']                            = 'Country:';
 $_['text_download']                           = 'Order Downloads';
 $_['text_invoice']                            = 'Invoice';
 $_['text_to']                                 = 'To';
