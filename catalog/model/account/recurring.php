@@ -23,7 +23,7 @@ class ModelAccountRecurring extends Model {
     );
 
     public function getProfile($id){
-        $result = $this->db->query("SELECT `or`.*,`o`.`payment_method`,`o`.`payment_code`,`o`.`currency_code` FROM `" . DB_PREFIX . "order_recurring` `or` LEFT JOIN `" . DB_PREFIX . "order` `o` ON `or`.`order_id` = `o`.`order_id` WHERE `or`.`order_recurring_id` = '".(int)$id."' AND `o`.`customer_id` = '".(int)$this->customer->getId()."' LIMIT 1");
+        $result = $this->db->query("SELECT `or`.*,`o`.`payment_method`,`o`.`payment_code` FROM `" . DB_PREFIX . "order_recurring` `or` LEFT JOIN `" . DB_PREFIX . "order` `o` ON `or`.`order_id` = `o`.`order_id` WHERE `or`.`order_recurring_id` = '".(int)$id."' AND `o`.`customer_id` = '".(int)$this->customer->getId()."' LIMIT 1");
 
         if($result->num_rows > 0){
             $profile = $result->row;
@@ -55,7 +55,7 @@ class ModelAccountRecurring extends Model {
 
             foreach($results->rows as $transaction){
 
-                $transaction['amount'] = $this->currency->format($transaction['amount'], $profile['currency_code'], 1);
+                $transaction['amount'] = $this->currency->format($transaction['amount'], $this->config->get('currency_code'), 1);
 
                 $transactions[] = $transaction;
             }
@@ -75,7 +75,7 @@ class ModelAccountRecurring extends Model {
             $limit = 1;
         }
 
-        $result = $this->db->query("SELECT `or`.*,`o`.`payment_method`,`o`.`currency_id`,`o`.`currency_value` FROM `" . DB_PREFIX . "order_recurring` `or` LEFT JOIN `" . DB_PREFIX . "order` `o` ON `or`.`order_id` = `o`.`order_id` WHERE `o`.`customer_id` = '".(int)$this->customer->getId()."' ORDER BY `o`.`order_id` DESC LIMIT " . (int)$start . "," . (int)$limit);
+        $result = $this->db->query("SELECT `or`.*,`o`.`payment_method` FROM `" . DB_PREFIX . "order_recurring` `or` LEFT JOIN `" . DB_PREFIX . "order` `o` ON `or`.`order_id` = `o`.`order_id` WHERE `o`.`customer_id` = '".(int)$this->customer->getId()."' ORDER BY `o`.`order_id` DESC LIMIT " . (int)$start . "," . (int)$limit);
 
         if($result->num_rows > 0){
             $profiles = array();
