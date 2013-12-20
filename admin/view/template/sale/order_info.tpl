@@ -255,10 +255,6 @@
             </td>
           </tr>
           <tr>
-            <td><?php echo $entry_notify; ?></td>
-            <td><input type="checkbox" name="notify" value="1" /></td>
-          </tr>
-          <tr>
             <td><?php echo $entry_comment; ?></td>
             <td><textarea name="comment" cols="40" rows="8" style="width: 99%"></textarea>
               <div style="margin-top: 10px; text-align: right;"><a id="button-history" class="button"><?php echo $button_add_history; ?></a></div></td>

@@ -1309,31 +1309,6 @@ class ControllerSaleOrder extends Controller {
 	  		return false;
 		}
   	}
-	
-	public function country() {
-		$json = array();
-		
-		$this->load->model('localisation/country');
-
-    	$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
-		
-		if ($country_info) {
-			$this->load->model('localisation/zone');
-
-			$json = array(
-				'country_id'        => $country_info['country_id'],
-				'name'              => $country_info['name'],
-				'iso_code_2'        => $country_info['iso_code_2'],
-				'iso_code_3'        => $country_info['iso_code_3'],
-				'address_format'    => $country_info['address_format'],
-				'postcode_required' => $country_info['postcode_required'],
-				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            => $country_info['status']		
-			);
-		}
-		
-		$this->response->setOutput(json_encode($json));
-	}
 		
 	public function info() {
 		$this->load->model('sale/order');
@@ -2052,16 +2027,12 @@ class ControllerSaleOrder extends Controller {
 		$this->data['text_invoice'] = $this->language->get('text_invoice');
 
 		$this->data['text_order_id'] = $this->language->get('text_order_id');
-		$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
 		$this->data['text_invoice_date'] = $this->language->get('text_invoice_date');
 		$this->data['text_date_added'] = $this->language->get('text_date_added');
 		$this->data['text_telephone'] = $this->language->get('text_telephone');
-		$this->data['text_fax'] = $this->language->get('text_fax');
 		$this->data['text_to'] = $this->language->get('text_to');
-		$this->data['text_company_id'] = $this->language->get('text_company_id');
 		$this->data['text_tax_id'] = $this->language->get('text_tax_id');		
 		$this->data['text_ship_to'] = $this->language->get('text_ship_to');
-		$this->data['text_payment_method'] = $this->language->get('text_payment_method');
 		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
 
 		$this->data['column_product'] = $this->language->get('column_product');
@@ -2095,84 +2066,44 @@ class ControllerSaleOrder extends Controller {
 					$store_address = $store_info['config_address'];
 					$store_email = $store_info['config_email'];
 					$store_telephone = $store_info['config_telephone'];
-					$store_fax = $store_info['config_fax'];
 				} else {
 					$store_address = $this->config->get('config_address');
 					$store_email = $this->config->get('config_email');
 					$store_telephone = $this->config->get('config_telephone');
-					$store_fax = $this->config->get('config_fax');
 				}
 				
-				if ($order_info['invoice_no']) {
-					$invoice_no = $order_info['invoice_prefix'] . $order_info['invoice_no'];
-				} else {
-					$invoice_no = '';
-				}
-				
-				if ($order_info['shipping_address_format']) {
-					$format = $order_info['shipping_address_format'];
-				} else {
-					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-				}
+					$format = '{firstname} {lastname}' . "\n" . '{address}';
 
 				$find = array(
 					'{firstname}',
 					'{lastname}',
-					'{company}',
-					'{address_1}',
-					'{address_2}',
-					'{city}',
-					'{postcode}',
-					'{zone}',
-					'{zone_code}',
-					'{country}'
+					'{address}'
 				);
 
 				$replace = array(
 					'firstname' => $order_info['shipping_firstname'],
 					'lastname'  => $order_info['shipping_lastname'],
-					'company'   => $order_info['shipping_company'],
-					'address_1' => $order_info['shipping_address_1'],
-					'address_2' => $order_info['shipping_address_2'],
-					'city'      => $order_info['shipping_city'],
-					'postcode'  => $order_info['shipping_postcode'],
-					'zone'      => $order_info['shipping_zone'],
-					'zone_code' => $order_info['shipping_zone_code'],
-					'country'   => $order_info['shipping_country']
+					'address' => $order_info['shipping_address']
 				);
 
 				$shipping_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
 
-				if ($order_info['payment_address_format']) {
-					$format = $order_info['payment_address_format'];
-				} else {
-					$format = '{firstname} {lastname}' . "\n" . '{company}' . "\n" . '{address_1}' . "\n" . '{address_2}' . "\n" . '{city} {postcode}' . "\n" . '{zone}' . "\n" . '{country}';
-				}
+					$format = '{firstname} {lastname}' . "\n" . '{address_1} {address_2}' . "\n" . '{payment_info}';
 
 				$find = array(
 					'{firstname}',
 					'{lastname}',
-					'{company}',
 					'{address_1}',
 					'{address_2}',
-					'{city}',
-					'{postcode}',
-					'{zone}',
-					'{zone_code}',
-					'{country}'
+					'{payment_info}'
 				);
 
 				$replace = array(
 					'firstname' => $order_info['payment_firstname'],
 					'lastname'  => $order_info['payment_lastname'],
-					'company'   => $order_info['payment_company'],
 					'address_1' => $order_info['payment_address_1'],
 					'address_2' => $order_info['payment_address_2'],
-					'city'      => $order_info['payment_city'],
-					'postcode'  => $order_info['payment_postcode'],
-					'zone'      => $order_info['payment_zone'],
-					'zone_code' => $order_info['payment_zone_code'],
-					'country'   => $order_info['payment_country']
+					'payment_info'   => $order_info['payment_info']
 				);
 
 				$payment_address = str_replace(array("\r\n", "\r", "\n"), '<br />', preg_replace(array("/\s\s+/", "/\r\r+/", "/\n\n+/"), '<br />', trim(str_replace($find, $replace, $format))));
@@ -2204,8 +2135,8 @@ class ControllerSaleOrder extends Controller {
 						'model'    => $product['model'],
 						'option'   => $option_data,
 						'quantity' => $product['quantity'],
-						'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $order_info['currency_code'], $order_info['currency_value']),
-						'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $order_info['currency_code'], $order_info['currency_value'])
+						'price'    => $this->currency->format($product['price'] + ($this->config->get('config_tax') ? $product['tax'] : 0), $this->config->get('config_currency')),
+						'total'    => $this->currency->format($product['total'] + ($this->config->get('config_tax') ? ($product['tax'] * $product['quantity']) : 0), $this->config->get('config_currency'))
 					);
 				}
 				
@@ -2216,7 +2147,7 @@ class ControllerSaleOrder extends Controller {
 				foreach ($vouchers as $voucher) {
 					$voucher_data[] = array(
 						'description' => $voucher['description'],
-						'amount'      => $this->currency->format($voucher['amount'], $order_info['currency_code'], $order_info['currency_value'])			
+						'amount'      => $this->currency->format($voucher['amount'], $this->config->get('config_currency'))			
 					);
 				}
 					
@@ -2224,22 +2155,17 @@ class ControllerSaleOrder extends Controller {
 
 				$this->data['orders'][] = array(
 					'order_id'	         => $order_id,
-					'invoice_no'         => $invoice_no,
 					'date_added'         => date($this->language->get('date_format_short'), strtotime($order_info['date_added'])),
 					'store_name'         => $order_info['store_name'],
 					'store_url'          => rtrim($order_info['store_url'], '/'),
 					'store_address'      => nl2br($store_address),
 					'store_email'        => $store_email,
 					'store_telephone'    => $store_telephone,
-					'store_fax'          => $store_fax,
 					'email'              => $order_info['email'],
 					'telephone'          => $order_info['telephone'],
 					'shipping_address'   => $shipping_address,
 					'shipping_method'    => $order_info['shipping_method'],
 					'payment_address'    => $payment_address,
-					'payment_company_id' => $order_info['payment_company_id'],
-					'payment_tax_id'     => $order_info['payment_tax_id'],
-					'payment_method'     => $order_info['payment_method'],
 					'product'            => $product_data,
 					'voucher'            => $voucher_data,
 					'total'              => $total_data,

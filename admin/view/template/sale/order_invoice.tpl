@@ -15,9 +15,6 @@
       <td><?php echo $order['store_name']; ?><br />
         <?php echo $order['store_address']; ?><br />
         <?php echo $text_telephone; ?> <?php echo $order['store_telephone']; ?><br />
-        <?php if ($order['store_fax']) { ?>
-        <?php echo $text_fax; ?> <?php echo $order['store_fax']; ?><br />
-        <?php } ?>
         <?php echo $order['store_email']; ?><br />
         <?php echo $order['store_url']; ?></td>
       <td align="right" valign="top"><table>
@@ -25,12 +22,6 @@
             <td><b><?php echo $text_date_added; ?></b></td>
             <td><?php echo $order['date_added']; ?></td>
           </tr>
-          <?php if ($order['invoice_no']) { ?>
-          <tr>
-            <td><b><?php echo $text_invoice_no; ?></b></td>
-            <td><?php echo $order['invoice_no']; ?></td>
-          </tr>
-          <?php } ?>
           <tr>
             <td><b><?php echo $text_order_id; ?></b></td>
             <td><?php echo $order['order_id']; ?></td>
@@ -57,15 +48,6 @@
       <td><?php echo $order['payment_address']; ?><br/>
         <?php echo $order['email']; ?><br/>
         <?php echo $order['telephone']; ?>
-        <?php if ($order['payment_company_id']) { ?>
-        <br/>
-        <br/>
-        <?php echo $text_company_id; ?> <?php echo $order['payment_company_id']; ?>
-        <?php } ?>
-        <?php if ($order['payment_tax_id']) { ?>
-        <br/>
-        <?php echo $text_tax_id; ?> <?php echo $order['payment_tax_id']; ?>
-        <?php } ?></td>
       <td><?php echo $order['shipping_address']; ?></td>
     </tr>
   </table>
