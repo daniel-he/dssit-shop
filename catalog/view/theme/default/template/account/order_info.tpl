@@ -5,7 +5,10 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
-  <h1><?php echo $heading_title; ?></h1>
+  <h1><?php echo $heading_title; ?></h1></ br>
+  <?php  if ($sysaid_no != 0) { ?>
+  <?php echo $text_ticket; ?><a href="<?php echo $sysaid_url; ?>"><?php echo $sysaid_no; ?></a>
+  <?php } ?>
   <table class="list">
     <thead>
       <tr>

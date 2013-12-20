@@ -201,7 +201,6 @@ class ControllerAccountOrder extends Controller {
       		$this->data['heading_title'] = $this->language->get('text_order');
 			
 			$this->data['text_order_detail'] = $this->language->get('text_order_detail');
-			$this->data['text_invoice_no'] = $this->language->get('text_invoice_no');
     		$this->data['text_order_id'] = $this->language->get('text_order_id');
 			$this->data['text_date_added'] = $this->language->get('text_date_added');
       		$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
@@ -228,6 +227,15 @@ class ControllerAccountOrder extends Controller {
 			$this->data['date_added'] = date($this->language->get('date_format_short'), strtotime($order_info['date_added']));
 			
 				$format = '{firstname} {lastname}' . "\n" . '{address_1} {address_2}';
+
+		$this->data['sysaid_no'] = $order_info['sysaid_no'];
+		
+		if ($this->data['sysaid_no'] != 0) {
+			$this->data['sysaid_url'] = SYSAID_HOST . "/SREdit.jsp?id=" . $this->data['sysaid_no'];
+			$this->data['text_ticket'] = $this->language->get('text_ticket');
+
+			
+		}
 		
     		$find = array(
 	  			'{firstname}',
