@@ -504,7 +504,6 @@ class ControllerSaleOrder extends Controller {
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
-		$this->data['entry_telephone'] = $this->language->get('entry_payment_info');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_comment'] = $this->language->get('entry_comment');	
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
@@ -524,6 +523,7 @@ class ControllerSaleOrder extends Controller {
 		$this->data['entry_amount'] = $this->language->get('entry_amount');
 		$this->data['entry_shipping'] = $this->language->get('entry_shipping');
 		$this->data['entry_payment'] = $this->language->get('entry_payment');
+		$this->data['entry_payment_info'] = $this->language->get('entry_payment_info');
 		$this->data['entry_voucher'] = $this->language->get('entry_voucher');
 		$this->data['entry_coupon'] = $this->language->get('entry_coupon');
 
