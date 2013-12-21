@@ -332,7 +332,7 @@ class ControllerSaleOrder extends Controller {
 				'order_id'      => $result['order_id'],
 				'customer'      => $result['customer'],
 				'status'        => $result['status'],
-				'total'         => $this->currency->format($result['total'], $result['currency_code'], $result['currency_value']),
+				'total'         => $this->currency->format($result['total'], $this->config->get('config_currency')),
 				'date_added'    => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
 				'date_modified' => date($this->language->get('date_format_short'), strtotime($result['date_modified'])),
 				'selected'      => isset($this->request->post['selected']) && in_array($result['order_id'], $this->request->post['selected']),
@@ -504,6 +504,7 @@ class ControllerSaleOrder extends Controller {
 		$this->data['entry_lastname'] = $this->language->get('entry_lastname');
 		$this->data['entry_email'] = $this->language->get('entry_email');
 		$this->data['entry_telephone'] = $this->language->get('entry_telephone');
+		$this->data['entry_telephone'] = $this->language->get('entry_payment_info');
 		$this->data['entry_order_status'] = $this->language->get('entry_order_status');
 		$this->data['entry_comment'] = $this->language->get('entry_comment');	
 		$this->data['entry_affiliate'] = $this->language->get('entry_affiliate');
@@ -599,7 +600,7 @@ class ControllerSaleOrder extends Controller {
 		if (isset($this->error['payment_info'])) {
 			$this->data['error_payment_info'] = $this->error['payment_info'];
 		} else {
-			$this->data['error_payment_method'] = '';
+			$this->data['error_payment_info'] = '';
 		}
 
  		if (isset($this->error['shipping_firstname'])) {
@@ -1001,6 +1002,10 @@ class ControllerSaleOrder extends Controller {
 
     	if ((utf8_strlen($this->request->post['payment_address_1']) < 3) || (utf8_strlen($this->request->post['payment_address_1']) > 128)) {
       		$this->error['payment_address_1'] = $this->language->get('error_address_1');
+    	}	
+		
+    	if ((utf8_strlen($this->request->post['payment_address_2']) < 3) || (utf8_strlen($this->request->post['payment_address_2']) > 128)) {
+      		$this->error['payment_address_2'] = $this->language->get('error_address_2');
     	}	
 		
     	if ($this->request->post['payment_info'] == '') {

@@ -73,9 +73,6 @@
             <tr>
               <td><?php echo $entry_telephone; ?></td>
               <td><input type="text" name="telephone" value="<?php echo $telephone; ?>" />
-                <?php if ($error_telephone) { ?>
-                <span class="error"><?php echo $error_telephone; ?></span>
-                <?php } ?></td>
             </tr>
           </table>
         </div>
@@ -103,14 +100,14 @@
                 <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $entry_address_2; ?></td>
+              <td><span class="required">*</span> <?php echo $entry_address_2; ?></td>
               <td><input type="text" name="payment_address_2" value="<?php echo $payment_address_2; ?>" />
                 <?php if ($error_payment_address_2) { ?>
                 <span class="error"><?php echo $error_payment_address_2; ?></span>
                 <?php } ?></td>
             </tr>
             <tr>
-              <td><?php echo $entry_payment_info; ?></td>
+              <td><span class="required">*</span> <?php echo $entry_payment_info; ?></td>
               <td><input type="text" name="payment_info" value="<?php echo $payment_info; ?>" />
                 <?php if ($error_payment_info) { ?>
                 <span class="error"><?php echo $error_payment_info; ?></span>
@@ -136,16 +133,9 @@
             </tr>
             <tr>
               <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>
-              <td><input type="text" name="shipping_address_1" value="<?php echo $shipping_address_1; ?>" />
-                <?php if ($error_shipping_address_1) { ?>
-                <span class="error"><?php echo $error_shipping_address_1; ?></span>
-                <?php } ?></td>
-            </tr>
-            <tr>
-              <td><?php echo $entry_address_2; ?></td>
-              <td><input type="text" name="shipping_address_2" value="<?php echo $shipping_address_2; ?>" />
-                <?php if ($error_shipping_address_1) { ?>
-                <span class="error"><?php echo $error_shipping_address_1; ?></span>
+              <td><textarea rows="5" cols="40" name="shipping_address"><?php echo $shipping_address; ?></textarea>
+                <?php if ($error_shipping_address) { ?>
+                <span class="error"><?php echo $error_shipping_address; ?></span>
                 <?php } ?></td>
             </tr>
           </table>
@@ -405,20 +395,6 @@
                   <span class="error"><?php echo $error_shipping_method; ?></span>
                   <?php } ?></td>
               </tr>
-              <tr>
-                <td class="left"><?php echo $entry_payment; ?></td>
-                <td class="left"><select name="payment">
-                    <option value=""><?php echo $text_select; ?></option>
-                    <?php if ($payment_code) { ?>
-                    <option value="<?php echo $payment_code; ?>" selected="selected"><?php echo $payment_method; ?></option>
-                    <?php } ?>
-                  </select>
-                  <input type="hidden" name="payment_method" value="<?php echo $payment_method; ?>" />
-                  <input type="hidden" name="payment_code" value="<?php echo $payment_code; ?>" />
-                  <?php if ($error_payment_method) { ?>
-                  <span class="error"><?php echo $error_payment_method; ?></span>
-                  <?php } ?></td>
-              </tr>             
               <tr>
                 <td class="left"><?php echo $entry_coupon; ?></td>
                 <td class="left"><input type="text" name="coupon" value="" /></td>
