@@ -12,8 +12,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
     $this->data['entry_email'] = $this->language->get('entry_email');
     $this->data['entry_telephone'] = $this->language->get('entry_telephone');
     $this->data['entry_department'] = $this->language->get('entry_department');
-    $this->data['entry_company_id'] = $this->language->get('entry_company_id');
-    $this->data['entry_tax_id'] = $this->language->get('entry_tax_id');			
     $this->data['entry_address_1'] = $this->language->get('entry_address_1');
     $this->data['entry_building'] = $this->language->get('entry_building');
 
@@ -57,30 +55,6 @@ class ControllerCheckoutPaymentAddress extends Controller {
     
     $customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->customer->getCustomerGroupId());
     
-    if ($customer_group_info) {
-      $this->data['company_id_display'] = $customer_group_info['company_id_display'];
-    } else {
-      $this->data['company_id_display'] = '';
-    }
-		
-    if ($customer_group_info) {
-      $this->data['company_id_required'] = FALSE;//$customer_group_info['company_id_required'];
-    } else {
-      $this->data['company_id_required'] = '';
-    }
-				
-    if ($customer_group_info) {
-      $this->data['tax_id_display'] = $customer_group_info['tax_id_display'];
-    } else {
-      $this->data['tax_id_display'] = '';
-    }
-    
-    if ($customer_group_info) {
-      $this->data['tax_id_required'] = $customer_group_info['tax_id_required'];
-    } else {
-      $this->data['tax_id_required'] = '';
-    }
-		
     $this->data['buildings'] = $this->config->get('sysaid_config_buildings');
 	
     if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/checkout/payment_address.tpl')) {
@@ -139,28 +113,10 @@ class ControllerCheckoutPaymentAddress extends Controller {
 				
       $customer_group_info = $this->model_account_customer_group->getCustomerGroup($this->customer->getCustomerGroupId());
 					
-      if ($customer_group_info) {	
-	// Company ID
-	if ($customer_group_info['company_id_display'] && $customer_group_info['company_id_required'] && empty($this->request->post['company_id'])) {
-	  $json['error']['company_id'] = $this->language->get('error_company_id');
-	}
-					
-	// Tax ID
-	if ($customer_group_info['tax_id_display'] && $customer_group_info['tax_id_required'] && empty($this->request->post['tax_id'])) {
-	  $json['error']['tax_id'] = $this->language->get('error_tax_id');
-	}						
-      }
-					
       if ((utf8_strlen($this->request->post['address_1']) < 3) || (utf8_strlen($this->request->post['address_1']) > 128)) {
 	$json['error']['address_1'] = $this->language->get('error_address_1');
       }
 					 
-      // VAT Validation
-      $this->load->helper('vat');
-			
-      if ($this->config->get('config_vat') && !empty($this->request->post['tax_id']) && (vat_validation($country_info['iso_code_2'], $this->request->post['tax_id']) == 'invalid')) {
-	$json['error']['tax_id'] = $this->language->get('error_vat');
-      }						
     }
 
     // Store values in the order class
