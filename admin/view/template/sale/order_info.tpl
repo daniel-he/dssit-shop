@@ -139,6 +139,12 @@
             <td><?php echo $payment_address_2; ?></td>
           </tr>
           <?php } ?>
+          <?php if ($payment_info) { ?>
+          <tr>
+            <td><?php echo $text_payment_info; ?></td>
+            <td><?php echo $payment_info; ?></td>
+          </tr>
+          <?php } ?>
         </table>
       </div>
       <?php if ($shipping_method) { ?>

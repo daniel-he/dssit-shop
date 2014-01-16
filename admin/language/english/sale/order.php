@@ -17,6 +17,7 @@ $_['text_email']                              = 'E-Mail:';
 $_['text_telephone']                          = 'Telephone:';
 $_['text_shipping_method']                    = 'Shipping Method:';
 $_['text_payment_method']                     = 'Payment Method:';
+$_['text_payment_info']                       = 'Payment Info:';
 $_['text_total']                              = 'Total:';
 $_['text_reward']                             = 'Reward Points:';
 $_['text_order_status']                       = 'Order Status:';

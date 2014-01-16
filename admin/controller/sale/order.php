@@ -1096,6 +1096,7 @@ class ControllerSaleOrder extends Controller {
 			$this->data['text_email'] = $this->language->get('text_email');
 			$this->data['text_telephone'] = $this->language->get('text_telephone');
 			$this->data['text_total'] = $this->language->get('text_total');
+			$this->data['text_payment_info'] = $this->language->get('text_payment_info');
 			$this->data['text_order_status'] = $this->language->get('text_order_status');
 			$this->data['text_comment'] = $this->language->get('text_comment');
 			$this->data['text_affiliate'] = $this->language->get('text_affiliate');
@@ -1269,6 +1270,7 @@ class ControllerSaleOrder extends Controller {
 			$this->data['payment_lastname'] = $order_info['payment_lastname'];
 			$this->data['payment_address_1'] = $order_info['payment_address_1'];
 			$this->data['payment_address_2'] = $order_info['payment_address_2'];
+			$this->data['payment_info'] = $order_info['payment_info'];
 			$this->data['shipping_firstname'] = $order_info['shipping_firstname'];
 			$this->data['shipping_lastname'] = $order_info['shipping_lastname'];
 			$this->data['shipping_address'] = $order_info['shipping_address'];
