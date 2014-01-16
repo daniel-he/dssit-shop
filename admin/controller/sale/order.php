@@ -866,7 +866,7 @@ class ControllerSaleOrder extends Controller {
     	} elseif (!empty($order_info)) { 
 			$this->data['payment_info'] = $order_info['payment_info'];
 		} else {
-      		$this->data['payment_method'] = '';
+      		$this->data['payment_info'] = '';
     	}		
 			
     	if (isset($this->request->post['shipping_firstname'])) {
