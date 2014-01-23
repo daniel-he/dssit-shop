@@ -138,6 +138,26 @@
                 <span class="error"><?php echo $error_shipping_address; ?></span>
                 <?php } ?></td>
             </tr>
+	    <tr>
+<?php if ($shipping_methods) { ?>
+<td><?php echo $text_shipping_method; ?></td>
+<table class="radio">
+  <?php foreach ($shipping_methods as $shipping_method) { ?>
+  <?php if (!$shipping_method['error']) { ?>
+  <?php foreach ($shipping_method['quote'] as $quote) { ?>
+  <tr class="highlight">
+    <td><?php if ($quote['code'] == $code || !$code) { ?>
+      <?php $code = $quote['code']; ?>
+      <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
+      <?php } else { ?>
+      <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
+      <?php } ?></td>
+    <td><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
+    <td style="text-align: right;"><label for="<?php echo $quote['code']; ?>"><?php echo $quote['text']; ?></label></td>
+  </tr>
+  <?php } ?>
+  <?php } ?>
+  	    </tr>
           </table>
         </div>
         <div id="tab-product" class="vtabs-content">

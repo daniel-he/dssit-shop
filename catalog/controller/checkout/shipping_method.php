@@ -47,7 +47,7 @@ class ControllerCheckoutShippingMethod extends Controller {
       $this->data['error_warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));
     } else {
       $this->data['error_warning'] = '';
-    }	
+    }
     
     if (isset($this->session->data['shipping_methods'])) {
       $this->data['shipping_methods'] = $this->session->data['shipping_methods']; 
