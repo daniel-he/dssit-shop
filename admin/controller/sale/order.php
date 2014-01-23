@@ -898,16 +898,16 @@ class ControllerSaleOrder extends Controller {
     
 	$this->load->model('setting/extension');
     
-	$results = $this->model_setting_extension->getExtensions('shipping');
+	$results = $this->model_setting_extension->getInstalled('shipping');
     
 	foreach ($results as $result) {
-      		if ($this->config->get($result['code'] . '_status')) {
-		   $this->load->model('shipping/' . $result['code']);
+      		if ($this->config->get($result . '_status')) {
+		   $this->load->model('shipping/' . $result);
 	
-		   $quote = $this->{'model_shipping_' . $result['code']}->getQuote(array()); 
+		   $quote = $this->{'model_shipping_' . $result}->getQuote(array()); 
 	
 		    if ($quote) {
-	  	       $quote_data[$result['code']] = array( 
+	  	       $quote_data[$result] = array( 
 	    	       'title'      => $quote['title'],
 	    	       'quote'      => $quote['quote'], 
 	    	       'sort_order' => $quote['sort_order'],
@@ -1080,7 +1080,7 @@ class ControllerSaleOrder extends Controller {
 			if (!$this->request->post['shipping_method']) {
 				$this->error['shipping_method'] = $this->language->get('error_shipping');
 			} else {
-			  $method = explode('.', $this->request->post['shipping_method'];
+			  $method = explode('.', $this->request->post['shipping_method']);
 			  $this->request->post['shipping_method'] = $method[0];
 			}	
 		}
