@@ -146,8 +146,8 @@
   <?php if (!$shipping_method['error']) { ?>
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
   <tr class="highlight">
-    <td><?php if ($quote['code'] == $code || !$code) { ?>
-      <?php $code = $quote['code']; ?>
+    <td><?php if ($quote['code'] == $shipping_code || !$shipping_code) { ?>
+      <?php $shipping_code = $quote['code']; ?>
       <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
       <?php } else { ?>
       <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
