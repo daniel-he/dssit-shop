@@ -7,6 +7,7 @@ $_['text_module']         = 'Modules';
 $_['text_success']        = 'Success: You have modified account information!';
 
 // Entry
+$_['entry_account']    = 'Enter your sysaid account information:';
 $_['entry_username']   = 'Sysaid Username:';
 $_['entry_password']   = 'Sysaid Password:';
 
