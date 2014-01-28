@@ -141,21 +141,22 @@
 <?php if ($shipping_methods) { ?>
 <tr>
 <td><?php echo $text_shipping_method; ?></td>
+<td>
 <select>
   <?php foreach ($shipping_methods as $shipping_method) { ?>
   <?php if (!$shipping_method['error']) { ?>
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
-    <td><?php if ($quote['code'] == $shipping_code || !$shipping_code) { ?>
+    <?php if ($quote['code'] == $shipping_code || !$shipping_code) { ?>
       <?php $shipping_code = $quote['code']; ?>
       <option name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" selected><?php echo $quote['code']; ?></option>
       <?php } else { ?>
       <option name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" /><?php echo $quote['code']; ?></option>
-      <?php } ?></td>
-</td>
-  <?php } ?>
-</tr>
+      <?php } ?>
   <?php } ?>
   <?php } ?>
+  <?php } ?>
+  </select>
+  </tr>
   <?php } ?>
           </table>
         </div>
