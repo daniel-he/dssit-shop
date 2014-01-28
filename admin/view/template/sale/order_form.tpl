@@ -138,26 +138,25 @@
                 <span class="error"><?php echo $error_shipping_address; ?></span>
                 <?php } ?></td>
             </tr>
-	    <tr>
 <?php if ($shipping_methods) { ?>
+<tr>
 <td><?php echo $text_shipping_method; ?></td>
-<table class="radio">
+<select>
   <?php foreach ($shipping_methods as $shipping_method) { ?>
   <?php if (!$shipping_method['error']) { ?>
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
-  <tr class="highlight">
     <td><?php if ($quote['code'] == $shipping_code || !$shipping_code) { ?>
       <?php $shipping_code = $quote['code']; ?>
-      <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
+      <option name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" selected><?php echo $quote['code']; ?></option>
       <?php } else { ?>
-      <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
+      <option name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" /><?php echo $quote['code']; ?></option>
       <?php } ?></td>
-    <td><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
-    <td style="text-align: right;"><label for="<?php echo $quote['code']; ?>"><?php echo $quote['text']; ?></label></td>
-  </tr>
+</td>
+  <?php } ?>
+</tr>
   <?php } ?>
   <?php } ?>
-  	    </tr>
+  <?php } ?>
           </table>
         </div>
         <div id="tab-product" class="vtabs-content">
