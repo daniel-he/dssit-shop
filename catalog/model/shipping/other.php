@@ -9,7 +9,8 @@ class ModelShippingOther extends Model {
     
     $quote_data['other'] = array(
       'code'         => 'other.other',
-      'title'        => $this->language->get('text_description'),
+      'title'        => $this->language->get('text_title'),
+      'description'  => $this->language->get('text_description'),
       'cost'         => $this->config->get('other_cost'),
       'tax_class_id' => $this->config->get('other_tax_class_id'),
       'text'         => $this->currency->format(0)

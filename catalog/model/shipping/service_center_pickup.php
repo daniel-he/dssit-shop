@@ -9,7 +9,8 @@ class ModelShippingServiceCenterPickup extends Model {
     
     $quote_data['service_center_pickup'] = array(
       'code'         => 'service_center_pickup.service_center_pickup',
-      'title'        => $this->language->get('text_description'),
+      'title'        => $this->language->get('text_title'),
+      'description'  => $this->language->get('text_description'),
       'cost'         => $this->config->get('service_center_pickup_cost'),
       'tax_class_id' => $this->config->get('service_center_pickup_tax_class_id'),
       'text'         => $this->currency->format(0)
