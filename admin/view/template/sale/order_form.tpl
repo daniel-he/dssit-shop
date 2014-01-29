@@ -148,9 +148,9 @@
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
     <?php if ($quote['title'] == $shipping_title || !$shipping_title) { ?>
       <?php $shipping_title = $quote['title']; ?>
-      <option name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['title']; ?>" selected><?php echo $quote['code']; ?></option>
+      <option name="shipping_method" value="<?php echo $quote['title']; ?>" id="<?php echo $quote['title']; ?>" selected><?php echo $quote['title']; ?></option>
       <?php } else { ?>
-      <option name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" /><?php echo $quote['title']; ?></option>
+      <option name="shipping_method" value="<?php echo $quote['title']; ?>" id="<?php echo $quote['title']; ?>" /><?php echo $quote['title']; ?></option>
       <?php } ?>
   <?php } ?>
   <?php } ?>
