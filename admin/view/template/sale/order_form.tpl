@@ -142,7 +142,7 @@
 <tr>
 <td><?php echo $text_shipping_method; ?></td>
 <td>
-<select>
+<select name="shipping_method">
   <?php foreach ($shipping_methods as $shipping_method) { ?>
   <?php if (!$shipping_method['error']) { ?>
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
@@ -157,6 +157,9 @@
   <?php } ?>
   </select>
   </tr>
+  <?php if ($error_shipping_method) { ?><tr>
+  <span class="error"><?php echo $error_shipping_method; ?></span>
+  </tr><?php } ?></td>
   <?php } ?>
           </table>
         </div>
@@ -401,18 +404,6 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="left"><?php echo $entry_shipping; ?></td>
-                <td class="left"><select name="shipping">
-                    <option value=""><?php echo $text_select; ?></option>
-                    <?php if ($shipping_title) { ?>
-                    <option value="<?php echo $shipping_title; ?>" selected="selected"><?php echo $shipping_title; ?></option>
-                    <?php } ?>
-                  </select>
-                  <?php if ($error_shipping_method) { ?>
-                  <span class="error"><?php echo $error_shipping_method; ?></span>
-                  <?php } ?></td>
-              </tr>
               <tr>
                 <td class="left"><?php echo $entry_coupon; ?></td>
                 <td class="left"><input type="text" name="coupon" value="" /></td>
