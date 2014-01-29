@@ -14,4 +14,8 @@ $_['entry_sort_order'] = 'Sort Order:';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify Service Center Pickup!';
+
+//Order Form Text
+$_['text_title']       = 'Service Center Pickup';
+$_['text_description'] = 'Service Center Pickup: ';
 ?>

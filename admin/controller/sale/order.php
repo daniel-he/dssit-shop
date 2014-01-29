@@ -908,7 +908,6 @@ class ControllerSaleOrder extends Controller {
 		    if ($quote) {
 	  	       $quote_data[$result] = array( 
 	    	       'title'      => $quote['title'],
-		       'description'=> $quote['description'],
 	    	       'quote'      => $quote['quote'], 
 	    	       'sort_order' => $quote['sort_order'],
 	    	       'error'      => $quote['error']

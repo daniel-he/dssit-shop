@@ -13,4 +13,8 @@ $_['entry_sort_order'] = 'Sort Order:';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify Other delivery method!';
+
+//Order Form Text
+$_['text_title']       = 'Other';
+$_['text_description'] = 'Other: ';
 ?>
