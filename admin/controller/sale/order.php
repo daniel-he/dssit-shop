@@ -930,11 +930,11 @@ class ControllerSaleOrder extends Controller {
 	$this->data['text_shipping_method'] = $this->language->get('text_shipping_method');
 
     	if (isset($this->request->post['shipping_method'])) {
-      		$this->data['shipping_code'] = $this->request->post['shipping_method'];
+      		$this->data['shipping_title'] = $this->request->post['shipping_method'];
     	} elseif (!empty($order_info)) { 
-			$this->data['shipping_code'] = $order_info['shipping_method'];
+			$this->data['shipping_title'] = $order_info['shipping_method'];
 	} else {
-      		$this->data['shipping_code'] = '';
+      		$this->data['shipping_title'] = '';
     	}
 
 		if (isset($this->request->post['order_product'])) {
