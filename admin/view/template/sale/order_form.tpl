@@ -405,12 +405,10 @@
                 <td class="left"><?php echo $entry_shipping; ?></td>
                 <td class="left"><select name="shipping">
                     <option value=""><?php echo $text_select; ?></option>
-                    <?php if ($shipping_code) { ?>
-                    <option value="<?php echo $shipping_code; ?>" selected="selected"><?php echo $shipping_method; ?></option>
+                    <?php if ($shipping_title) { ?>
+                    <option value="<?php echo $shipping_title; ?>" selected="selected"><?php echo $shipping_title; ?></option>
                     <?php } ?>
                   </select>
-                  <input type="hidden" name="shipping_method" value="<?php echo $shipping_method; ?>" />
-                  <input type="hidden" name="shipping_code" value="<?php echo $shipping_code; ?>" />
                   <?php if ($error_shipping_method) { ?>
                   <span class="error"><?php echo $error_shipping_method; ?></span>
                   <?php } ?></td>
