@@ -45,6 +45,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_feed'] = $this->language->get('text_feed');
 		$this->data['text_filter'] = $this->language->get('text_filter');
 		$this->data['text_front'] = $this->language->get('text_front');
+		$this->data['text_gitwiki'] = $this->language->get('text_gitwiki');
 		$this->data['text_dashboard'] = $this->language->get('text_dashboard');
 		$this->data['text_help'] = $this->language->get('text_help');
 		$this->data['text_information'] = $this->language->get('text_information');
