@@ -67,13 +67,11 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_report_sale_order'] = $this->language->get('text_report_sale_order');
 		$this->data['text_report_sale_tax'] = $this->language->get('text_report_sale_tax');
 		$this->data['text_report_sale_shipping'] = $this->language->get('text_report_sale_shipping');
-		$this->data['text_report_sale_return'] = $this->language->get('text_report_sale_return');
 		$this->data['text_report_sale_coupon'] = $this->language->get('text_report_sale_coupon');
 		$this->data['text_report_product_viewed'] = $this->language->get('text_report_product_viewed');
 		$this->data['text_report_product_purchased'] = $this->language->get('text_report_product_purchased');
 		$this->data['text_report_customer_online'] = $this->language->get('text_report_customer_online');
 		$this->data['text_report_customer_order'] = $this->language->get('text_report_customer_order');
-		$this->data['text_report_customer_credit'] = $this->language->get('text_report_customer_credit');
 		$this->data['text_report_sale_return'] = $this->language->get('text_report_sale_return');
 		$this->data['text_report_product_viewed'] = $this->language->get('text_report_product_viewed');
 		$this->data['text_report_customer_order'] = $this->language->get('text_report_customer_order');
