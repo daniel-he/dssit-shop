@@ -105,7 +105,7 @@ class ControllerCommonHeader extends Controller {
 		$this->data['text_length_class'] = $this->language->get('text_length_class');
 		$this->data['text_recurring_profile'] = $this->language->get('text_recurring_profile');
 
-		if (!$this->user->isLogged() || !isset($this->request->get['token']) || !isset($this->session->data['token']) || ($this->request->get['token'] != $this->session->data['token'])) {
+		if (!$this->user->isLogged()) {
 			$this->data['logged'] = '';
 			
 			$this->data['home'] = $this->url->link('common/login', '', 'SSL');

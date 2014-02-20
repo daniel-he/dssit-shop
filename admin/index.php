@@ -22,6 +22,34 @@ require_once(DIR_SYSTEM . 'library/user.php');
 require_once(DIR_SYSTEM . 'library/weight.php');
 require_once(DIR_SYSTEM . 'library/length.php');
 
+/**
+* Cas 2.0 client
+*
+* PHP Version 5
+*
+* @package PhpCAS
+* @author Joachim Fritschi <jfritschi@freenet.de>
+* @author Adam Franco <afranco@middlebury.edu>
+* @license http://www.apache.org/licenses/LICENSE-2.0 Apache License 2.0
+* @link https://wiki.jasig.org/display/CASC/phpCAS
+*/
+
+// Load the CAS lib
+require_once('CAS.php');
+
+// Uncomment to enable debugging
+phpCAS::setDebug();
+
+// Initialize phpCAS
+phpCAS::client(CAS_VERSION_2_0, CAS_HOST, CAS_PORT, CAS_CONTEXT);
+
+// For production use set the CA certificate that is the issuer of the cert
+// on the CAS server and uncomment the line below
+// phpCAS::setCasServerCACert(CAS_SERVER_CA_CERT_PATH);
+phpCAS::setNoCasServerValidation();
+
+phpCAS::forceAuthentication();
+
 // Registry
 $registry = new Registry();
 
@@ -108,8 +136,14 @@ $registry->set('cache', $cache);
 $session = new Session();
 $registry->set('session', $session); 
 
+//DUMMY Token, for things that expect it.
+$session->data['token'] = "DUMMY";
+
 // Language
 $languages = array();
+
+// User
+$registry->set('user_id', phpCAS::getUser());
 
 $query = $db->query("SELECT * FROM `" . DB_PREFIX . "language`"); 
 
@@ -141,9 +175,6 @@ $registry->set('user', new User($registry));
 
 // Front Controller
 $controller = new Front($registry);
-
-// Login
-$controller->addPreAction(new Action('common/home/login'));
 
 // Permission
 $controller->addPreAction(new Action('common/home/permission'));

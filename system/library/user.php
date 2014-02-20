@@ -8,54 +8,38 @@ class User {
 		$this->db = $registry->get('db');
 		$this->request = $registry->get('request');
 		$this->session = $registry->get('session');
-		
-    	if (isset($this->session->data['user_id'])) {
-			$user_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE user_id = '" . (int)$this->session->data['user_id'] . "' AND status = '1'");
+		$this->load = $registry->get('load');
+		$this->user_id = $registry->get('user_id');
+		$this->username = $this->user_id;
+		$this->permissions = array();
+
+		$this->load->model("roles/roles");
+		$this->model_roles_roles = $registry->get('model_roles_roles');
+		$groups = $this->model_roles_roles->getRoles($this->user_id);
+
+		//permissions are the greatest amount allowed by
+		//all groups user is in. i.e. if user is in group A
+		//and in group B and group B can modify page C, bug group
+		//A cannot, user will be able to modify page C.
+		foreach ($groups as $group_id) {
+		  	$user_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$group_id . "'");
 			
-			if ($user_query->num_rows) {
-				$this->user_id = $user_query->row['user_id'];
-				$this->username = $user_query->row['username'];
-				
-      			$this->db->query("UPDATE " . DB_PREFIX . "user SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE user_id = '" . (int)$this->session->data['user_id'] . "'");
-
-      			$user_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_query->row['user_group_id'] . "'");
-				
-	  			$permissions = unserialize($user_group_query->row['permission']);
-
-				if (is_array($permissions)) {
-	  				foreach ($permissions as $key => $value) {
-	    				$this->permission[$key] = $value;
-	  				}
-				}
-			} else {
-				$this->logout();
+			if ($user_group_query->rows) {		  
+				$permissions = unserialize($user_group_query->row['permission']);
 			}
-    	}
-  	}
-		
-  	public function login($username, $password) {
-    	$user_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE username = '" . $this->db->escape($username) . "' AND (password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password) . "'))))) OR password = '" . $this->db->escape(md5($password)) . "') AND status = '1'");
-
-    	if ($user_query->num_rows) {
-			$this->session->data['user_id'] = $user_query->row['user_id'];
-			
-			$this->user_id = $user_query->row['user_id'];
-			$this->username = $user_query->row['username'];			
-
-      		$user_group_query = $this->db->query("SELECT permission FROM " . DB_PREFIX . "user_group WHERE user_group_id = '" . (int)$user_query->row['user_group_id'] . "'");
-
-	  		$permissions = unserialize($user_group_query->row['permission']);
-
+		  	  
 			if (is_array($permissions)) {
-				foreach ($permissions as $key => $value) {
-					$this->permission[$key] = $value;
-				}
-			}
-		
-      		return true;
-    	} else {
-      		return false;
-    	}
+		    	   foreach ($permissions as $key => $value) {
+			   	   if (!array_key_exists($key, $this->permission)) {
+				   	$this->permission[$key] = $value;
+				   } else {
+				        foreach ($this->permission[$key] as $_i => $page) {
+						$this->permission[$key][] = $page;
+					} 
+				   }
+		    	   }
+		  	}
+		}
   	}
 
   	public function logout() {
@@ -70,17 +54,17 @@ class User {
   	public function hasPermission($key, $value) {
     	if (isset($this->permission[$key])) {
 	  		return in_array($value, $this->permission[$key]);
-		} else {
+	} else {
 	  		return false;
-		}
+	}
   	}
   
   	public function isLogged() {
-    	return $this->user_id;
+ 	  return (isset($this->user_id) && $this->user_id != '');
   	}
   
   	public function getId() {
-    	return $this->user_id;
+    	  return $this->user_id;
   	}
 	
   	public function getUserName() {
