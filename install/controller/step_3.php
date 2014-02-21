@@ -37,19 +37,24 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// CAS' . "\n";
 			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
-			$output .= 'define(\'CAS_HOST\', \'' . addslashes($this->request->post['cas_host']) . '\');' . "\n";
+			$output .= 'define(\'CAS_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['cas_host'])) . '\');' . "\n";
 			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cas_context']) . '\');' . "\n";
 			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n\n";
 
 			$output .= '// LDAP' . "\n";
-			$output .= 'define(\'LDAP_HOST\', \'' . addslashes($this->request->post['ldap_host']) . '\');' . "\n";
+			$output .= 'define(\'LDAP_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['ldap_host'])) . '\');' . "\n";
 			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n\n";
 		
 			$output .= '// Sysaid' . "\n";
 			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes($this->request->post['sysaid_host']) . '\');' . "\n";
 			$output .= 'define(\'SYSAID_WSDL\', \'' . addslashes($this->request->post['sysaid_host']) . '/services/SysaidApiService?wsdl' . '\');' . "\n";
-			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n";
-			$output .= 'define(\'SYSAID_SERIAL\', \'' . addslashes($this->request->post['sysaid_serial']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n\n";
+
+			$output .= '// Roles Management' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_API\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['roles_management_api'])) . '\');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_APPNAME\', \'' . addslashes($this->request->post['roles_management_appname']) . '\');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_APPID\', ' . addslashes($this->request->post['roles_management_appid']) . ');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_SECRET\', \'' . addslashes($this->request->post['roles_management_secret']) . '\');' . "\n";
 			$output .= '?>';
 		
 			$file = fopen(DIR_OPENCART . 'config.php', 'w');
@@ -90,19 +95,24 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// CAS' . "\n";
 			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
-			$output .= 'define(\'CAS_HOST\', \'' . addslashes($this->request->post['cas_host']) . '\');' . "\n";
+			$output .= 'define(\'CAS_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['cas_host'])) . '\');' . "\n";
 			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cas_context']) . '\');' . "\n";
 			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n\n";
 
 			$output .= '// LDAP' . "\n";
-			$output .= 'define(\'LDAP_HOST\', \'' . addslashes($this->request->post['ldap_host']) . '\');' . "\n";
+			$output .= 'define(\'LDAP_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['ldap_host'])) . '\');' . "\n";
 			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n\n";
 				
 			$output .= '// Sysaid' . "\n";
 			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes($this->request->post['sysaid_host']) . '\');' . "\n";
 			$output .= 'define(\'SYSAID_WSDL\', \'' . addslashes($this->request->post['sysaid_host']) . '/services/SysaidApiService?wsdl' . '\');' . "\n";
-			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n";
-			$output .= 'define(\'SYSAID_SERIAL\', \'' . addslashes($this->request->post['sysaid_serial']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n\n";
+
+			$output .= '// Roles Management' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_API\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['roles_management_api'])) . '\');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_APPNAME\', \'' . addslashes($this->request->post['roles_management_appname']) . '\');' . "\n";
+											$output .= 'define(\'ROLES_MANAGEMENT_APPID\', ' . addslashes($this->request->post['roles_management_appid']) . ');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_SECRET\', \'' . addslashes($this->request->post['roles_management_secret']) . '\');' . "\n";
 			$output .= '?>';
 		
 			$file = fopen(DIR_OPENCART . 'admin/config.php', 'w');
@@ -180,29 +190,30 @@ class ControllerStep3 extends Controller {
 			$this->data['error_sysaid_account'] = '';
 		}
 		
-		if (isset($this->error['sysaid_serial'])) {
-			$this->data['error_sysaid_serial'] = $this->error['sysaid_serial'];
+
+		if (isset($this->error['roles_management_api'])) {
+			$this->data['error_roles_management_api'] = $this->error['roles_management_api'];
 		} else {
-			$this->data['error_sysaid_serial'] = '';
+			$this->data['error_roles_management_api'] = '';
 		}
-		
-		if (isset($this->error['username'])) {
-			$this->data['error_username'] = $this->error['username'];
+
+		if (isset($this->error['roles_management_appname'])) {
+			$this->data['error_roles_management_appname'] = $this->error['roles_management_appname'];
 		} else {
-			$this->data['error_username'] = '';
+			$this->data['error_roles_management_appname'] = '';
 		}
-		
-		if (isset($this->error['password'])) {
-			$this->data['error_password'] = $this->error['password'];
+
+		if (isset($this->error['roles_management_appid'])) {
+			$this->data['error_roles_management_appid'] = $this->error['roles_management_appid'];
 		} else {
-			$this->data['error_password'] = '';
-		}		
-		
-		if (isset($this->error['email'])) {
-			$this->data['error_email'] = $this->error['email'];
+			$this->data['error_roles_management_appid'] = '';
+		}
+
+		if (isset($this->error['roles_management_secret'])) {
+			$this->data['error_roles_management_secret'] = $this->error['roles_management_secret'];
 		} else {
-			$this->data['error_email'] = '';
-		}	
+			$this->data['error_roles_management_secret'] = '';
+		}
 		
 		$this->data['action'] = $this->url->link('step_3');
 		
@@ -284,28 +295,28 @@ class ControllerStep3 extends Controller {
 			$this->data['sysaid_account'] = '';
 		}
 		
-		if (isset($this->request->post['sysaid_serial'])) {
-			$this->data['sysaid_serial'] = html_entity_decode($this->request->post['sysaid_serial']);
+		if (isset($this->request->post['roles_management_api'])) {
+			$this->data['roles_management_api'] = html_entity_decode($this->request->post['roles_management_api']);
 		} else {
-			$this->data['sysaid_serial'] = '';
+			$this->data['roles_management_api'] = '';
 		}
 		
-		if (isset($this->request->post['username'])) {
-			$this->data['username'] = $this->request->post['username'];
+		if (isset($this->request->post['roles_management_appname'])) {
+			$this->data['roles_management_appname'] = html_entity_decode($this->request->post['roles_management_appname']);
 		} else {
-			$this->data['username'] = 'admin';
-		}
-
-		if (isset($this->request->post['password'])) {
-			$this->data['password'] = $this->request->post['password'];
-		} else {
-			$this->data['password'] = '';
+			$this->data['roles_management_appname'] = '';
 		}
 		
-		if (isset($this->request->post['email'])) {
-			$this->data['email'] = $this->request->post['email'];
+		if (isset($this->request->post['roles_management_appid'])) {
+			$this->data['roles_management_appid'] = html_entity_decode($this->request->post['roles_management_appid']);
 		} else {
-			$this->data['email'] = '';
+			$this->data['roles_management_appid'] = '';
+		}
+		
+		if (isset($this->request->post['roles_management_secret'])) {
+			$this->data['roles_management_secret'] = html_entity_decode($this->request->post['roles_management_secret']);
+		} else {
+			$this->data['roles_management_secret'] = '';
 		}
 		
 		$this->data['back'] = $this->url->link('step_2');
@@ -379,22 +390,22 @@ class ControllerStep3 extends Controller {
 			$this->error['sysaid_account'] = 'Please specify the sysaid account.';
 		}
 				
-		if (!$this->request->post['sysaid_serial'] || preg_match('/[^A-Z0-9]/', $this->request->post['sysaid_serial'])) {
-			$this->error['sysaid_serial'] = 'Sysaid Serial invalid!';
+		if (!$this->request->post['roles_management_api']) {
+			$this->error['roles_management_api'] = 'Must specify roles management api url!';
 		}
 				
-		if (!$this->request->post['username']) {
-			$this->error['username'] = 'Username required!';
+		if (!$this->request->post['roles_management_appname']) {
+			$this->error['roles_management_appname'] = 'Roles Management App Name Must be specified!';
 		}
-
-		if (!$this->request->post['password']) {
-			$this->error['password'] = 'Password required!';
+				
+		if (!$this->request->post['roles_management_appid'] || preg_match('/[^0-9]+/', $this->request->post['roles_management_appid'])) {
+			$this->error['roles_management_appid'] = 'App ID invalid!';
 		}
-
-		if ((utf8_strlen($this->request->post['email']) > 96) || !preg_match('/^[^\@]+@.*\.[a-z]{2,6}$/i', $this->request->post['email'])) {
-			$this->error['email'] = 'Invalid E-Mail!';
+				
+		if (!$this->request->post['roles_management_secret'] || preg_match('/[^A-Za-z0-9]/', $this->request->post['roles_management_secret'])) {
+			$this->error['roles_management_secret'] = 'Roles Management Secret invalid!';
 		}
-		
+				
 		if (!is_writable(DIR_OPENCART . 'config.php')) {
 			$this->error['warning'] = 'Error: Could not write to config.php please check you have set the correct permissions on: ' . DIR_OPENCART . 'config.php!';
 		}

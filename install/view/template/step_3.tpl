@@ -126,43 +126,43 @@
             <span class="required"><?php echo $error_sysaid_account; ?></span>
             <?php } ?></td>
 	</tr>
-	<tr>
-	  <td><span class="required">*</span> Sysaid Serial:</td>
-          <td><input type="text" name="sysaid_serial" value="<?php echo $sysaid_serial; ?>" />
-            <br />
-            <?php if ($error_sysaid_serial) { ?>
-            <span class="required"><?php echo $error_sysaid_serial; ?></span>
-            <?php } ?></td>
-	</tr>
       </table>
     </fieldset>
-    <p>5. Please enter a username and password for the administration.</p>
+    <p>5. Please enter roles management details.</p>
     <fieldset>
       <table class="form">
-        <tr>
-          <td><span class="required">*</span> Username:</td>
-          <td><input type="text" name="username" value="<?php echo $username; ?>" />
+	<tr>
+	  <td><span class="required">*</span> Roles Management API URL:</td>
+          <td><input type="text" name="roles_management_api" value="<?php echo $roles_management_api; ?>" />
             <br />
-            <?php if ($error_username) { ?>
-            <span class="required"><?php echo $error_username; ?></span>
+            <?php if ($error_roles_management_api) { ?>
+            <span class="required"><?php echo $error_roles_management_api; ?></span>
             <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> Password:</td>
-          <td><input type="text" name="password" value="<?php echo $password; ?>" />
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> Roles Management Application Name:</td>
+          <td><input type="text" name="roles_management_appname" value="<?php echo $roles_management_appname; ?>" />
             <br />
-            <?php if ($error_password) { ?>
-            <span class="required"><?php echo $error_password; ?></span>
+            <?php if ($error_roles_management_appname) { ?>
+            <span class="required"><?php echo $error_roles_management_appname; ?></span>
             <?php } ?></td>
-        </tr>
-        <tr>
-          <td><span class="required">*</span> E-Mail:</td>
-          <td><input type="text" name="email" value="<?php echo $email; ?>" />
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> Roles Management Application Secret:</td>
+          <td><input type="text" name="roles_management_secret" value="<?php echo $roles_management_secret; ?>" />
             <br />
-            <?php if ($error_email) { ?>
-            <span class="required"><?php echo $error_email; ?></span>
+            <?php if ($error_roles_management_secret) { ?>
+            <span class="required"><?php echo $error_roles_management_secret; ?></span>
             <?php } ?></td>
-        </tr>
+	</tr>
+	<tr>
+	  <td><span class="required">*</span> Roles Management Application ID:</td>
+          <td><input type="text" name="roles_management_appid" value="<?php echo $roles_management_appid; ?>" />
+            <br />
+            <?php if ($error_roles_management_appid) { ?>
+            <span class="required"><?php echo $error_roles_management_appid; ?></span>
+            <?php } ?></td>
+	</tr>
       </table>
     </fieldset>
     <div class="buttons">
