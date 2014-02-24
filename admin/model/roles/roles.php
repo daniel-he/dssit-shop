@@ -23,13 +23,17 @@ class ModelRolesRoles extends Model {
 	       $roles = json_decode($curlresult);
 	       $user_roles = array();
 
-	       foreach ($roles->role_assignments as $role) {
+	       if (isset($roles->role_assignments)) {
+		   foreach ($roles->role_assignments as $role) {
 	       	       if ($role->application_id == ROLES_MANAGEMENT_APPID) {
-		               $user_roles[] = (int)$role->role_id;
+		               $user_roles[] = $role->token;
 		       }
-	       }
+		   }
 	       
-	       return $user_roles;
+		   return $user_roles;
+	       } else {
+		   return false;
+	       }
 	}
 }
 ?>
