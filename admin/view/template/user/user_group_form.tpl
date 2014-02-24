@@ -24,6 +24,13 @@
               <?php  } ?></td>
           </tr>
           <tr>
+            <td><span class="required">*</span> <?php echo $entry_token; ?></td>
+            <td><input type="text" name="token" value="<?php echo $token; ?>" />
+              <?php if ($error_token) { ?>
+              <span class="error"><?php echo $error_token; ?></span>
+              <?php  } ?></td>
+          </tr>
+          <tr>
             <td><?php echo $entry_access; ?></td>
             <td><div class="scrollbox">
                 <?php $class = 'odd'; ?>

@@ -265,6 +265,7 @@ class ControllerUserUserPermission extends Controller {
 		$this->data['text_unselect_all'] = $this->language->get('text_unselect_all');
 				
 		$this->data['entry_name'] = $this->language->get('entry_name');
+		$this->data['entry_token'] = $this->language->get('entry_token');
 		$this->data['entry_access'] = $this->language->get('entry_access');
 		$this->data['entry_modify'] = $this->language->get('entry_modify');
 		
@@ -281,6 +282,12 @@ class ControllerUserUserPermission extends Controller {
 			$this->data['error_name'] = $this->error['name'];
 		} else {
 			$this->data['error_name'] = '';
+		}
+
+ 		if (isset($this->error['token'])) {
+			$this->data['error_token'] = $this->error['token'];
+		} else {
+			$this->data['error_token'] = '';
 		}
 
 		$url = '';
@@ -329,6 +336,14 @@ class ControllerUserUserPermission extends Controller {
 			$this->data['name'] = $user_group_info['name'];
 		} else {
 			$this->data['name'] = '';
+		}
+		
+		if (isset($this->request->post['token'])) {
+			$this->data['token'] = $this->request->post['token'];
+		} elseif (!empty($user_group_info)) {
+			$this->data['token'] = $user_group_info['token'];
+		} else {
+			$this->data['token'] = '';
 		}
 		
 		$ignore = array(
@@ -390,6 +405,10 @@ class ControllerUserUserPermission extends Controller {
 
 		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
 			$this->error['name'] = $this->language->get('error_name');
+		}
+
+		if ((utf8_strlen($this->request->post['token']) < 1) || (utf8_strlen($this->request->post['token']) > 64)) {
+			$this->error['token'] = $this->language->get('error_token');
 		}
 
 		if (!$this->error) {
