@@ -95,7 +95,6 @@ $(document).ready(function(){
           <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
           <li><a href="<?php echo $suppliers; ?>"><?php echo $text_suppliers; ?></a></li>
           <li><a href="<?php echo $recurring_profile; ?>"><?php echo $text_recurring_profile; ?></a></li>
-          <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
           <li><a class="parent"><?php echo $text_customer; ?></a>
             <ul>
               <li><a href="<?php echo $customer; ?>"><?php echo $text_customer; ?></a></li>
@@ -110,7 +109,6 @@ $(document).ready(function(){
               <li><a href="<?php echo $voucher_theme; ?>"><?php echo $text_voucher_theme; ?></a></li>
             </ul>
           </li>
-          <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
         </ul>
       </li>
       <li id="system"><a class="top"><?php echo $text_system; ?></a>
@@ -139,13 +137,6 @@ $(document).ready(function(){
             <ul>
               <li><a href="<?php echo $stock_status; ?>"><?php echo $text_stock_status; ?></a></li>
               <li><a href="<?php echo $order_status; ?>"><?php echo $text_order_status; ?></a></li>
-              <li><a class="parent"><?php echo $text_return; ?></a>
-                <ul>
-                  <li><a href="<?php echo $return_status; ?>"><?php echo $text_return_status; ?></a></li>
-                  <li><a href="<?php echo $return_action; ?>"><?php echo $text_return_action; ?></a></li>
-                  <li><a href="<?php echo $return_reason; ?>"><?php echo $text_return_reason; ?></a></li>
-                </ul>
-              </li>
               <li><a class="parent"><?php echo $text_tax; ?></a>
                 <ul>
                   <li><a href="<?php echo $tax_class; ?>"><?php echo $text_tax_class; ?></a></li>
