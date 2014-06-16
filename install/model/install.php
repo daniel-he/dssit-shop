@@ -1,8 +1,9 @@
 <?php
 class ModelInstall extends Model {
 	public function mysql($data) {
+		
 		$db = new DB('mysql', $data['db_host'], $data['db_user'], $data['db_password'], $data['db_name']);
-				
+			
 		$file = DIR_APPLICATION . 'opencart.sql';
 		
 		if (!file_exists($file)) { 
@@ -13,8 +14,9 @@ class ModelInstall extends Model {
 		
 		if ($lines) {
 			$sql = '';
-
+			
 			foreach($lines as $line) {
+			
 				if ($line && (substr($line, 0, 2) != '--') && (substr($line, 0, 1) != '#')) {
 					$sql .= $line;
   
@@ -24,14 +26,14 @@ class ModelInstall extends Model {
 						$sql = str_replace("INSERT INTO `oc_", "INSERT INTO `" . $data['db_prefix'], $sql);
 						
 						$db->query($sql);
-	
+						
 						$sql = '';
 					}
 				}
 			}
 			
 			$db->query("SET CHARACTER SET utf8");
-	
+			
 			$db->query("SET @@session.sql_mode = 'MYSQL40'");
 		
 			$db->query("DELETE FROM `" . $data['db_prefix'] . "user` WHERE user_id = '1'");
@@ -48,6 +50,7 @@ class ModelInstall extends Model {
 			$db->query("INSERT INTO `" . $data['db_prefix'] . "setting` SET `group` = 'config', `key` = 'config_encryption', value = '" . $db->escape(md5(mt_rand())) . "'");
 			
 			$db->query("UPDATE `" . $data['db_prefix'] . "product` SET `viewed` = '0'");
+			
 		}		
 	}	
 }

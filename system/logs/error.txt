@@ -1,0 +1,81 @@
+2014-05-27 23:39:33 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-05-27 23:39:34 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-05-27 23:46:13 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-05-27 23:46:16 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-05-27 23:46:16 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-05-30 22:27:19 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-05-30 22:27:19 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-05-30 22:27:19 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-05-30 22:27:19 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-05-30 22:27:19 - PHP Notice:  Error: E-Mail to required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 51
+2014-05-30 22:27:22 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-05-30 22:27:22 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-05-30 22:27:22 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-05-30 22:27:22 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-05-30 22:27:26 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-05-30 22:27:26 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-05-30 22:27:26 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-05-30 22:27:26 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-05-30 22:35:44 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-05-30 22:35:44 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-05-30 22:35:44 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-05-30 22:35:44 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:00:01 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 22:00:01 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 22:00:01 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 22:00:01 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:00:01 - PHP Notice:  Error: E-Mail to required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 51
+2014-06-03 22:15:11 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:15:12 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:15:18 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 22:15:18 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 22:15:18 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 22:15:18 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:15:22 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:15:22 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:15:43 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 22:15:43 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 22:15:43 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 22:15:43 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:18:23 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:18:48 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 22:18:48 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 22:18:48 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 22:18:48 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:19:10 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 22:19:10 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 22:19:10 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 22:19:10 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:19:14 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 22:19:14 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 22:19:14 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 22:19:14 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 22:26:30 - PHP Notice:  Error: E-Mail from required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 56
+2014-06-03 22:28:13 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:28:13 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:29:48 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:29:48 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:29:54 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 22:29:54 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-03 23:29:23 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 23:29:23 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 23:29:23 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 23:29:23 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 23:45:14 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 23:45:14 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 23:45:14 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 23:45:14 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 23:45:36 - PHP Warning:  ldap_connect(): Could not create session handle: Bad parameter to an ldap routine in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 49
+2014-06-03 23:45:36 - PHP Warning:  ldap_bind() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 50
+2014-06-03 23:45:36 - PHP Warning:  ldap_search(): supplied argument is not a valid ldap link resource in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 51
+2014-06-03 23:45:36 - PHP Warning:  ldap_get_entries() expects parameter 1 to be resource, boolean given in /Users/irischan/Sites/dssit-shop/system/library/customer.php on line 52
+2014-06-03 23:51:11 - PHP Notice:  Error: E-Mail from required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 56
+2014-06-05 20:04:37 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-05 20:04:37 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-12 22:12:03 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-12 22:12:03 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-16 16:12:37 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-16 16:12:37 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-16 16:12:38 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-16 16:42:19 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-16 16:42:19 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24

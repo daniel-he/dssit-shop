@@ -52,10 +52,10 @@ class Customer {
    	       $usr = ldap_get_entries($ldap_server, $ldsearch);
 
 		$this->firstname = $usr[0]['givenname'][0];
--		$this->lastname = $usr[0]['sn'][0];
--		$this->uid = $usr[0]['uid'][0];
--		$this->email = $usr[0]['mail'][0];
--		$this->telephone = (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "");
+		$this->lastname = $usr[0]['sn'][0];
+		$this->uid = $usr[0]['uid'][0];
+		$this->email = $usr[0]['mail'][0];
+		$this->telephone = (isset($usr[0]['telephonenumber'][0]) ? $usr[0]['telephonenumber'][0] : "");
 		$this->fax = '0';
 
 		$this->load->model_account_customer->addCustomer(array(
@@ -69,7 +69,6 @@ class Customer {
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET ip = '" . $this->db->escape($this->request->server['REMOTE_ADDR']) . "' WHERE customer_id = '" . (int)$this->customer_id . "'");
 
 		ldap_close($ldap_server);
-
       		return true;
 	  
 	}

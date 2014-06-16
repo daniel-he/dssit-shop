@@ -4,9 +4,11 @@ class ControllerStep3 extends Controller {
 	
 	public function index() {		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			
 			$this->load->model('install');
 			
 			$this->model_install->mysql($this->request->post);
+			
 			
 			$output  = '<?php' . "\n";
 			$output .= '// HTTP' . "\n";
@@ -34,24 +36,27 @@ class ControllerStep3 extends Controller {
 			$output .= 'define(\'DB_PASSWORD\', \'' . addslashes($this->request->post['db_password']) . '\');' . "\n";
 			$output .= 'define(\'DB_DATABASE\', \'' . addslashes($this->request->post['db_name']) . '\');' . "\n";
 			$output .= 'define(\'DB_PREFIX\', \'' . addslashes($this->request->post['db_prefix']) . '\');' . "\n\n";
+			
 
 			$output .= '// CAS' . "\n";
 			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
-			$output .= 'define(\'CAS_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['cas_host'])) . '\');' . "\n";
+			$output .= 'define(\'CAS_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['cas_host'], '/'))) . '\');' . "\n";
 			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cas_context']) . '\');' . "\n";
 			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n\n";
+			
 
 			$output .= '// LDAP' . "\n";
-			$output .= 'define(\'LDAP_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['ldap_host'])) . '\');' . "\n";
+			$output .= 'define(\'LDAP_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['ldap_host'], '/'))) . '\');' . "\n";
 			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n\n";
 		
 			$output .= '// Sysaid' . "\n";
-			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes($this->request->post['sysaid_host']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes(rtrim($this->request->post['sysaid_host'], '/')) . '\');' . "\n";
 			$output .= 'define(\'SYSAID_WSDL\', \'' . addslashes($this->request->post['sysaid_host']) . '/services/SysaidApiService?wsdl' . '\');' . "\n";
 			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n\n";
+			
 
 			$output .= '// Roles Management' . "\n";
-			$output .= 'define(\'ROLES_MANAGEMENT_API\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['roles_management_api'])) . '\');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_API\', \'' . preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['roles_management_api'], '/'))) . '\');' . "\n";
 			$output .= 'define(\'ROLES_MANAGEMENT_APPNAME\', \'' . addslashes($this->request->post['roles_management_appname']) . '\');' . "\n";
 			$output .= 'define(\'ROLES_MANAGEMENT_APPID\', ' . addslashes($this->request->post['roles_management_appid']) . ');' . "\n";
 			$output .= 'define(\'ROLES_MANAGEMENT_SECRET\', \'' . addslashes($this->request->post['roles_management_secret']) . '\');' . "\n";
@@ -95,23 +100,25 @@ class ControllerStep3 extends Controller {
 
 			$output .= '// CAS' . "\n";
 			$output .= 'define(\'CAS_SERVER_CA_CERT_PATH\', \'' . DIR_OPENCART . 'cas.pem\');' . "\n";
-			$output .= 'define(\'CAS_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['cas_host'])) . '\');' . "\n";
+			$output .= 'define(\'CAS_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['cas_host'], "/"))) . '\');' . "\n";
 			$output .= 'define(\'CAS_CONTEXT\', \'' . addslashes($this->request->post['cas_context']) . '\');' . "\n";
 			$output .= 'define(\'CAS_PORT\', ' . addslashes($this->request->post['cas_port']) . ');' . "\n\n";
+			
 
 			$output .= '// LDAP' . "\n";
-			$output .= 'define(\'LDAP_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['ldap_host'])) . '\');' . "\n";
+			$output .= 'define(\'LDAP_HOST\', \'' . preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['ldap_host'], '/'))) . '\');' . "\n";
 			$output .= 'define(\'LDAP_SEARCH_BASE\', \'' . addslashes($this->request->post['ldap_search_base']) . '\');' . "\n\n";
 				
 			$output .= '// Sysaid' . "\n";
-			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes($this->request->post['sysaid_host']) . '\');' . "\n";
+			$output .= 'define(\'SYSAID_HOST\', \'' . addslashes(rtrim($this->request->post['sysaid_host'], "/")) . '\');' . "\n";
 			$output .= 'define(\'SYSAID_WSDL\', \'' . addslashes($this->request->post['sysaid_host']) . '/services/SysaidApiService?wsdl' . '\');' . "\n";
 			$output .= 'define(\'SYSAID_ACCOUNT\', \'' . addslashes($this->request->post['sysaid_account']) . '\');' . "\n\n";
+			
 
 			$output .= '// Roles Management' . "\n";
-			$output .= 'define(\'ROLES_MANAGEMENT_API\', \'' . preg_replace("#(^https?://)#", "", addslashes($this->request->post['roles_management_api'])) . '\');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_API\', \'' . preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['roles_management_api'], "/"))) . '\');' . "\n";
 			$output .= 'define(\'ROLES_MANAGEMENT_APPNAME\', \'' . addslashes($this->request->post['roles_management_appname']) . '\');' . "\n";
-											$output .= 'define(\'ROLES_MANAGEMENT_APPID\', ' . addslashes($this->request->post['roles_management_appid']) . ');' . "\n";
+			$output .= 'define(\'ROLES_MANAGEMENT_APPID\', ' . addslashes($this->request->post['roles_management_appid']) . ');' . "\n";
 			$output .= 'define(\'ROLES_MANAGEMENT_SECRET\', \'' . addslashes($this->request->post['roles_management_secret']) . '\');' . "\n";
 			$output .= '?>';
 		
@@ -346,10 +353,10 @@ class ControllerStep3 extends Controller {
 		if ($this->request->post['db_prefix'] && preg_match('/[^a-z0-9_]/', $this->request->post['db_prefix'])) {
 			$this->error['db_prefix'] = 'DB Prefix can only contain lowercase characters in the a-z range, 0-9 and "_"!';
 		}
-				
 		if ($this->request->post['db_driver'] == 'mysql') {
 			if (!$connection = @mysql_connect($this->request->post['db_host'], $this->request->post['db_user'], $this->request->post['db_password'])) {
-				$this->error['warning'] = 'Error: Could not connect to the database please make sure the database server, username and password is correct!';
+				$this->error['warning'] = 'Error: Could not connect to the database please make sure the database server, username and password is not correct! Reason: ';
+				print(mysql_error());
 			} else {
 				if (!@mysql_select_db($this->request->post['db_name'], $connection)) {
 					$this->error['warning'] = 'Error: Database does not exist!';
@@ -360,30 +367,52 @@ class ControllerStep3 extends Controller {
 		}
 
 		if(!$this->request->post['cas_host']) {
-		  $this->error['cas_host'] = "Error: CAS host required!";
+
+			$this->error['cas_host'] = "Error: CAS host required!";
+
 		}
 
+		
 		if(!$this->request->post['cas_port']) {
-		  $this->error['cas_port'] = "Error: please specify the port to use with CAS.";
+
+			$this->error['cas_port'] = "Error: please specify the port to use with CAS.";
+
 		}
 
+		
 		if(!$this->request->post['ldap_host']) {
-		  $this->error['ldap_host'] = "Error: LDAP host required!";
-		} else {
-		  $cntn = ldap_connect($this->request->post['ldap_host']);
-		  if (ldap_bind($cntn)) {
-		    ldap_close($cntn);
-		  } else {
-		    $this->error['ldap_host'] = "Error: Could not connect to specified LDAP server.";
-		  }
+
+			$this->error['ldap_host'] = "Error: LDAP host required!";
+
+		} 
+		else {
+
+			$cntn = ldap_connect(preg_replace("#(^https?://)#", "", addslashes(rtrim($this->request->post['ldap_host'], '/'))));
+		  
+			if (ldap_bind($cntn)) {
+
+				ldap_close($cntn);
+
+			} 
+			else {
+$this->error['ldap_host'] = "Error: Could not connect to specified LDAP server.";
+
+			}
+		
 		}
 
+	
+			
 		if(!$this->request->post['ldap_search_base']) {
-		  $this->error['ldap_search_base'] = "Error: Please specify the LDAP search base!";
+
+			$this->error['ldap_search_base'] = "Error: Please specify the LDAP search base!";
+
 		}
 				
 		if(!$this->request->post['sysaid_host']) {
-		  $this->error['sysaid_host'] = "Error: Please specify the Sysaid Server!";
+
+			$this->error['sysaid_host'] = "Error: Please specify the Sysaid Server!";
+
 		}
 				
 		if (!$this->request->post['sysaid_account']) {
@@ -414,11 +443,13 @@ class ControllerStep3 extends Controller {
 			$this->error['warning'] = 'Error: Could not write to config.php please check you have set the correct permissions on: ' . DIR_OPENCART . 'admin/config.php!';
 		}	
 		
+		
     	if (!$this->error) {
       		return true;
     	} else {
       		return false;
-    	}		
+    	}
+    	
 	}
 }
 ?>
