@@ -79,3 +79,6 @@
 2014-06-16 16:12:38 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
 2014-06-16 16:42:19 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
 2014-06-16 16:42:19 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-17 20:23:06 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-17 20:23:06 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
+2014-06-17 21:08:16 - PHP Notice:  Error: E-Mail from required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 56

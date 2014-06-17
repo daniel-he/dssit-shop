@@ -31,7 +31,7 @@ define('DB_PREFIX', 'oc_');
 // CAS
 define('CAS_SERVER_CA_CERT_PATH', '/Users/irischan/Sites/dssit-shop/cas.pem');
 define('CAS_HOST', 'cas.ucdavis.edu');
-define('CAS_CONTEXT', '');
+define('CAS_CONTEXT', 'cas');
 define('CAS_PORT', 443);
 
 // LDAP
@@ -44,7 +44,7 @@ define('SYSAID_WSDL', 'https://sysaid.dss.ucdavis.edu//services/SysaidApiService
 define('SYSAID_ACCOUNT', 'ucdavis');
 
 // Roles Management
-define('ROLES_MANAGEMENT_API', 'roles.dss.ucdavis.edu/API');
+define('ROLES_MANAGEMENT_API', 'roles.dss.ucdavis.edu/api');
 define('ROLES_MANAGEMENT_APPNAME', 'DSS Cart');
 define('ROLES_MANAGEMENT_APPID', 68);
 define('ROLES_MANAGEMENT_SECRET', '6338212d37aff940f4594383cd8ca916');
