@@ -64,7 +64,6 @@ class ControllerAccountRegister extends Controller {
 		$this->data['text_your_details'] = $this->language->get('text_your_details');
     	$this->data['text_your_address'] = $this->language->get('text_your_address');
     	$this->data['text_your_password'] = $this->language->get('text_your_password');
-		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 		$this->data['text_select'] = $this->language->get('text_select');
@@ -85,7 +84,6 @@ class ControllerAccountRegister extends Controller {
     	$this->data['entry_city'] = $this->language->get('entry_city');
     	$this->data['entry_country'] = $this->language->get('entry_country');
     	$this->data['entry_zone'] = $this->language->get('entry_zone');
-		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
     	$this->data['entry_password'] = $this->language->get('entry_password');
     	$this->data['entry_confirm'] = $this->language->get('entry_confirm');
 
@@ -303,12 +301,6 @@ class ControllerAccountRegister extends Controller {
     		$this->data['confirm'] = $this->request->post['confirm'];
 		} else {
 			$this->data['confirm'] = '';
-		}
-		
-		if (isset($this->request->post['newsletter'])) {
-    		$this->data['newsletter'] = $this->request->post['newsletter'];
-		} else {
-			$this->data['newsletter'] = '';
 		}	
 
 		if ($this->config->get('config_account_id')) {

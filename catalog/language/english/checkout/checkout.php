@@ -59,7 +59,6 @@ $_['entry_country']                  = 'Country:';
 $_['entry_building']                 = 'Building:';
 $_['entry_service_center']           = 'Service Center:';
 $_['entry_zone']                     = 'Region / State:';
-$_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter.';
 $_['entry_shipping'] 	             = 'My delivery and billing addresses are the same.';
 $_['entry_dafis']                    = 'Account number or description of funds to be used:';
 

@@ -77,18 +77,6 @@
                   <?php  } ?></td>
               </tr>
               <tr>
-                <td><?php echo $entry_newsletter; ?></td>
-                <td><select name="newsletter">
-                    <?php if ($newsletter) { ?>
-                    <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
-                    <option value="0"><?php echo $text_disabled; ?></option>
-                    <?php } else { ?>
-                    <option value="1"><?php echo $text_enabled; ?></option>
-                    <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
-                    <?php } ?>
-                  </select></td>
-              </tr>
-              <tr>
                 <td><?php echo $entry_customer_group; ?></td>
                 <td><select name="customer_group_id">
                     <?php foreach ($customer_groups as $customer_group) { ?>

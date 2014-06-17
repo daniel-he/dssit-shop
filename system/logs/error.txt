@@ -82,3 +82,6 @@
 2014-06-17 20:23:06 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
 2014-06-17 20:23:06 - PHP Warning:  Invalid argument supplied for foreach() in /Users/irischan/Sites/dssit-shop/system/library/user.php on line 24
 2014-06-17 21:08:16 - PHP Notice:  Error: E-Mail from required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 56
+2014-06-17 21:17:42 - PHP Notice:  Undefined index: newsletter in /Users/irischan/Sites/dssit-shop/admin/controller/sale/customer.php on line 858
+2014-06-17 21:17:43 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-17 21:27:06 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91

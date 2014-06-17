@@ -131,11 +131,6 @@ class ModelSaleAffiliate extends Model {
 		}
 	}
 	
-	public function getAffiliatesByNewsletter() {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "affiliate WHERE newsletter = '1' ORDER BY firstname, lastname, email");
-	
-		return $query->rows;
-	}
 		
 	public function getTotalAffiliates($data = array()) {
       	$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "affiliate";

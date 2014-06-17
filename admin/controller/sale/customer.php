@@ -617,7 +617,6 @@ class ControllerSaleCustomer extends Controller {
     	$this->data['entry_fax'] = $this->language->get('entry_fax');
     	$this->data['entry_password'] = $this->language->get('entry_password');
     	$this->data['entry_confirm'] = $this->language->get('entry_confirm');
-		$this->data['entry_newsletter'] = $this->language->get('entry_newsletter');
     	$this->data['entry_customer_group'] = $this->language->get('entry_customer_group');
 		$this->data['entry_status'] = $this->language->get('entry_status');
 		$this->data['entry_company'] = $this->language->get('entry_company');
@@ -850,14 +849,6 @@ class ControllerSaleCustomer extends Controller {
 			$this->data['fax'] = $customer_info['fax'];
 		} else {
       		$this->data['fax'] = '';
-    	}
-
-    	if (isset($this->request->post['newsletter'])) {
-      		$this->data['newsletter'] = $this->request->post['newsletter'];
-    	} elseif (!empty($customer_info)) { 
-			$this->data['newsletter'] = $customer_info['newsletter'];
-		} else {
-      		$this->data['newsletter'] = '';
     	}
 		
 		$this->load->model('sale/customer_group');

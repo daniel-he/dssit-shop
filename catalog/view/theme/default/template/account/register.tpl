@@ -154,25 +154,6 @@
         </tr>
       </table>
     </div>
-    <h2><?php echo $text_newsletter; ?></h2>
-    <div class="content">
-      <table class="form">
-        <tr>
-          <td><?php echo $entry_newsletter; ?></td>
-          <td><?php if ($newsletter) { ?>
-            <input type="radio" name="newsletter" value="1" checked="checked" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="newsletter" value="0" />
-            <?php echo $text_no; ?>
-            <?php } else { ?>
-            <input type="radio" name="newsletter" value="1" />
-            <?php echo $text_yes; ?>
-            <input type="radio" name="newsletter" value="0" checked="checked" />
-            <?php echo $text_no; ?>
-            <?php } ?></td>
-        </tr>
-      </table>
-    </div>
     <?php if ($text_agree) { ?>
     <div class="buttons">
       <div class="right"><?php echo $text_agree; ?>
