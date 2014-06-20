@@ -85,3 +85,17 @@
 2014-06-17 21:17:42 - PHP Notice:  Undefined index: newsletter in /Users/irischan/Sites/dssit-shop/admin/controller/sale/customer.php on line 858
 2014-06-17 21:17:43 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
 2014-06-17 21:27:06 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-18 22:58:05 - PHP Notice:  Error: E-Mail from required! in /Users/irischan/Sites/dssit-shop/system/library/mail.php on line 56
+2014-06-18 22:58:28 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-18 23:01:12 - PHP Notice:  Undefined variable: address_info in /Users/irischan/Sites/dssit-shop/catalog/controller/account/login.php on line 40
+2014-06-18 23:02:24 - PHP Notice:  Undefined variable: address_info in /Users/irischan/Sites/dssit-shop/catalog/controller/account/login.php on line 40
+2014-06-18 23:02:29 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-18 23:03:58 - PHP Notice:  Undefined index: city in /Users/irischan/Sites/dssit-shop/admin/controller/sale/customer.php on line 990
+2014-06-18 23:03:58 - PHP Notice:  Undefined index: country_id in /Users/irischan/Sites/dssit-shop/admin/controller/sale/customer.php on line 996
+2014-06-18 23:03:58 - PHP Notice:  Undefined index: country_id in /Users/irischan/Sites/dssit-shop/admin/controller/sale/customer.php on line 1011
+2014-06-18 23:03:59 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-18 23:05:03 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-20 19:21:10 - PHP Notice:  Undefined variable: address_info in /Users/irischan/Sites/dssit-shop/catalog/controller/account/login.php on line 40
+2014-06-20 19:22:59 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91
+2014-06-20 19:23:27 - PHP Notice:  Undefined variable: address_info in /Users/irischan/Sites/dssit-shop/catalog/controller/account/login.php on line 40
+2014-06-20 19:25:14 - PHP Notice:  Error: Could not load template /Users/irischan/Sites/dssit-shop/admin/view/template/sale/customer_reward.tpl! in /Users/irischan/Sites/dssit-shop/system/engine/controller.php on line 91

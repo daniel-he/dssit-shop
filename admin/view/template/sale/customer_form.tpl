@@ -143,54 +143,6 @@
                   <span class="error"><?php echo $error_address_address_1[$address_row]; ?></span>
                   <?php } ?></td>
               </tr>
-              <tr>
-                <td><?php echo $entry_address_2; ?></td>
-                <td><input type="text" name="address[<?php echo $address_row; ?>][address_2]" value="<?php echo $address['address_2']; ?>" /></td>
-              </tr>
-              <tr>
-                <td><span class="required">*</span> <?php echo $entry_city; ?></td>
-                <td><input type="text" name="address[<?php echo $address_row; ?>][city]" value="<?php echo $address['city']; ?>" />
-                  <?php if (isset($error_address_city[$address_row])) { ?>
-                  <span class="error"><?php echo $error_address_city[$address_row]; ?></span>
-                  <?php } ?></td>
-              </tr>
-              <tr>
-                <td><span id="postcode-required<?php echo $address_row; ?>" class="required">*</span> <?php echo $entry_postcode; ?></td>
-                <td><input type="text" name="address[<?php echo $address_row; ?>][postcode]" value="<?php echo $address['postcode']; ?>" /></td>
-              </tr>
-              <tr>
-                <td><span class="required">*</span> <?php echo $entry_country; ?></td>
-                <td><select name="address[<?php echo $address_row; ?>][country_id]" onchange="country(this, '<?php echo $address_row; ?>', '<?php echo $address['zone_id']; ?>');">
-                    <option value=""><?php echo $text_select; ?></option>
-                    <?php foreach ($countries as $country) { ?>
-                    <?php if ($country['country_id'] == $address['country_id']) { ?>
-                    <option value="<?php echo $country['country_id']; ?>" selected="selected"><?php echo $country['name']; ?></option>
-                    <?php } else { ?>
-                    <option value="<?php echo $country['country_id']; ?>"><?php echo $country['name']; ?></option>
-                    <?php } ?>
-                    <?php } ?>
-                  </select>
-                  <?php if (isset($error_address_country[$address_row])) { ?>
-                  <span class="error"><?php echo $error_address_country[$address_row]; ?></span>
-                  <?php } ?></td>
-              </tr>
-              <tr>
-                <td><span class="required">*</span> <?php echo $entry_zone; ?></td>
-                <td><select name="address[<?php echo $address_row; ?>][zone_id]">
-                  </select>
-                  <?php if (isset($error_address_zone[$address_row])) { ?>
-                  <span class="error"><?php echo $error_address_zone[$address_row]; ?></span>
-                  <?php } ?></td>
-              </tr>
-              <tr>
-                <td><?php echo $entry_default; ?></td>
-                <td><?php if (($address['address_id'] == $address_id) || !$addresses) { ?>
-                  <input type="radio" name="address[<?php echo $address_row; ?>][default]" value="<?php echo $address_row; ?>" checked="checked" /></td>
-                <?php } else { ?>
-                <input type="radio" name="address[<?php echo $address_row; ?>][default]" value="<?php echo $address_row; ?>" />
-                  </td>
-                <?php } ?>
-              </tr>
             </table>
           </div>
           <?php $address_row++; ?>
@@ -381,31 +333,6 @@ function addAddress() {
     html += '    <tr>';
     html += '      <td><span class="required">*</span> <?php echo $entry_address_1; ?></td>';
     html += '      <td><input type="text" name="address[' + address_row + '][address_1]" value="" /></td>';
-    html += '    </tr>';
-    html += '    <tr>';
-    html += '      <td><?php echo $entry_address_2; ?></td>';
-    html += '      <td><input type="text" name="address[' + address_row + '][address_2]" value="" /></td>';
-    html += '    </tr>';
-    html += '    <tr>';
-    html += '      <td><span class="required">*</span> <?php echo $entry_city; ?></td>';
-    html += '      <td><input type="text" name="address[' + address_row + '][city]" value="" /></td>';
-    html += '    </tr>';
-    html += '    <tr>';
-    html += '      <td><span id="postcode-required' + address_row + '" class="required">*</span> <?php echo $entry_postcode; ?></td>';
-    html += '      <td><input type="text" name="address[' + address_row + '][postcode]" value="" /></td>';
-    html += '    </tr>';
-	html += '    <tr>';
-    html += '      <td><span class="required">*</span> <?php echo $entry_country; ?></td>';
-    html += '      <td><select name="address[' + address_row + '][country_id]" onchange="country(this, \'' + address_row + '\', \'0\');">';
-    html += '         <option value=""><?php echo $text_select; ?></option>';
-    <?php foreach ($countries as $country) { ?>
-    html += '         <option value="<?php echo $country['country_id']; ?>"><?php echo addslashes($country['name']); ?></option>';
-    <?php } ?>
-    html += '      </select></td>';
-    html += '    </tr>';
-    html += '    <tr>';
-    html += '      <td><span class="required">*</span> <?php echo $entry_zone; ?></td>';
-    html += '      <td><select name="address[' + address_row + '][zone_id]"><option value="false"><?php echo $this->language->get('text_none'); ?></option></select></td>';
     html += '    </tr>';
 	html += '    <tr>';
     html += '      <td><?php echo $entry_default; ?></td>';
